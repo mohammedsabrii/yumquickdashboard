@@ -10,7 +10,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColor.kCultured,
-        body: HomeViewBody(),
+        body: const HomeViewBody(),
       ),
     );
   }
