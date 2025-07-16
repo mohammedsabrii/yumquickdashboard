@@ -7,13 +7,11 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Container(
-        height: double.infinity,
-        width: MediaQuery.sizeOf(context).width * 0.2,
-        color: AppColor.kMainColor,
-        child: child,
-      ),
+    return Container(
+      height: double.infinity,
+      width: MediaQuery.sizeOf(context).width * 0.2,
+      color: AppColor.kMainColor,
+      child: child,
     );
   }
 }

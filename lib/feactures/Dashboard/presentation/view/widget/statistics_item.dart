@@ -51,7 +51,7 @@ class StatisticsItem extends StatelessWidget {
               ],
             ),
             Spacer(),
-            statisticsItemModel.icon,
+            Flexible(child: statisticsItemModel.icon),
             // Container(
             //   width: 28,
             //   height: 28,
