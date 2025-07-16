@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 
 class AppStayls {
+  static TextStyle styleInerRegular10(context) {
+    return TextStyle(
+      color: const Color(0xFF5A607F),
+      fontSize: 10,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle styleInterRegular12(context) {
     return TextStyle(
       color: Colors.white,
@@ -25,6 +34,14 @@ class AppStayls {
       fontSize: 16,
       fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle styleInterBold16(context) {
+    return const TextStyle(
+      fontSize: 16,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
     );
   }
 

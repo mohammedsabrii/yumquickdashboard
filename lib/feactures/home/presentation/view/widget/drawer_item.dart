@@ -22,26 +22,30 @@ class DrawerItem extends StatelessWidget {
             left: MediaQuery.sizeOf(context).width * 0.01111,
             bottom: MediaQuery.sizeOf(context).height * 0.0125,
           ),
-          child: Container(
-            height: 44,
-            width: MediaQuery.sizeOf(context).width * 0.2,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Row(
-              children: [
-                SizedBox(width: MediaQuery.sizeOf(context).width * 0.01111),
-                SvgPicture.asset(drawerData.icon, color: AppColor.kDarkRed),
-                SizedBox(width: MediaQuery.sizeOf(context).width * 0.0111),
-                Text(
-                  drawerData.title,
-                  style: AppStayls.styleInterRegular14(
-                    context,
-                  ).copyWith(color: AppColor.kMainColor),
-                ),
-                SizedBox(width: MediaQuery.sizeOf(context).width * 0.01111),
-              ],
+          child: Flexible(
+            child: Container(
+              height: 44,
+              width: MediaQuery.sizeOf(context).width * 0.17,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.01111),
+                  SvgPicture.asset(drawerData.icon, color: AppColor.kDarkRed),
+                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.0111),
+                  Flexible(
+                    child: Text(
+                      drawerData.title,
+                      style: AppStayls.styleInterRegular14(
+                        context,
+                      ).copyWith(color: AppColor.kMainColor),
+                    ),
+                  ),
+                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.01111),
+                ],
+              ),
             ),
           ),
         )
@@ -56,9 +60,11 @@ class DrawerItem extends StatelessWidget {
               children: [
                 SvgPicture.asset(drawerData.icon),
                 SizedBox(width: MediaQuery.sizeOf(context).width * 0.0111),
-                Text(
-                  drawerData.title,
-                  style: AppStayls.styleInterRegular14(context),
+                Flexible(
+                  child: Text(
+                    drawerData.title,
+                    style: AppStayls.styleInterRegular14(context),
+                  ),
                 ),
               ],
             ),

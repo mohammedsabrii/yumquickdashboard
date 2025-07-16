@@ -13,4 +13,8 @@ class AppAssets {
   static const kPersonalSettingsIcon =
       'assets/image/personal settings icon.svg';
   static const kGlobalSettingsIcon = 'assets/image/global settings icon.svg';
+  static const kUpIcon = 'assets/image/Up icon.svg';
+  static const kDollarIcon = 'assets/image/Dollar icon.svg';
+  static const kCartIcon = 'assets/image/cart icon.svg';
+  static const kChartIcon = 'assets/image/chart icon.svg';
 }

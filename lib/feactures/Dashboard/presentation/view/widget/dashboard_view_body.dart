@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/dashboard_header.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/statistics_item_list.dart';
 
 class DashboardViewBody extends StatelessWidget {
   const DashboardViewBody({super.key});
@@ -11,7 +12,13 @@ class DashboardViewBody extends StatelessWidget {
         vertical: MediaQuery.sizeOf(context).height * 0.0325,
         horizontal: MediaQuery.sizeOf(context).width * 0.0277,
       ),
-      child: Column(children: [DashboardHeader()]),
+      child: Column(
+        children: [
+          DashboardHeader(),
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+          StatisticsItemList(),
+        ],
+      ),
     );
   }
 }

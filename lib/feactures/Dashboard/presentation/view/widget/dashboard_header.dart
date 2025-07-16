@@ -28,11 +28,13 @@ class DashboardHeader extends StatelessWidget {
                 AppAssets.kGlobalSettingsIcon,
                 color: AppColor.kMainColor,
               ),
-              Text(
-                'Manage',
-                style: AppStayls.styleInterRegular16(
-                  context,
-                ).copyWith(color: AppColor.kDarkRed),
+              Flexible(
+                child: Text(
+                  'Manage',
+                  style: AppStayls.styleInterRegular16(
+                    context,
+                  ).copyWith(color: AppColor.kDarkRed),
+                ),
               ),
             ],
           ),
