@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/core/widget/drawer_items_data.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/widget/drawer_items_data.dart';
 
 class DrawerPageView extends StatefulWidget {
   const DrawerPageView({super.key, required this.pageController});

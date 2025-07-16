@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yumquickdashboard/core/manger/drawer_data.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/manger/drawer_data.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 

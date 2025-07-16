@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/core/data/drawer_icon_and_title.dart';
+import 'package:yumquickdashboard/feactures/home/data/drawer_icon_and_title.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/core/widget/custom_drawer.dart';
-import 'package:yumquickdashboard/core/widget/drawer_item.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/widget/custom_drawer.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/widget/drawer_item.dart';
 
 class DrawerPageViewList extends StatelessWidget {
   const DrawerPageViewList({

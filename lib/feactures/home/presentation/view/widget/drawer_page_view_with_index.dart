@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:yumquickdashboard/core/widget/drawer_page_view.dart';
-import 'package:yumquickdashboard/core/widget/drawer_page_view_list.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/widget/drawer_page_view.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/widget/drawer_page_view_list.dart';
 
 class DrawerPageViewWithIndex extends StatefulWidget {
   const DrawerPageViewWithIndex({super.key});

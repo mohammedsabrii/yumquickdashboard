@@ -1,4 +1,4 @@
-import 'package:yumquickdashboard/core/manger/drawer_data.dart';
+import 'package:yumquickdashboard/feactures/home/presentation/view/manger/drawer_data.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 
 final List<DrawerData> drawerIconAndTitle = const [
