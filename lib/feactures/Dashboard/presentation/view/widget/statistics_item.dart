@@ -52,22 +52,6 @@ class StatisticsItem extends StatelessWidget {
             ),
             Spacer(),
             Flexible(child: statisticsItemModel.icon),
-            // Container(
-            //   width: 28,
-            //   height: 28,
-            //   decoration: ShapeDecoration(
-            //     color: AppColor.kPinkishOrange,
-            //     shape: OvalBorder(),
-            //   ),
-            //   child: Center(
-            //     child: Text(
-            //       r'$',
-            //       style: AppStayls.styleInterRegular12(
-            //         context,
-            //       ).copyWith(color: AppColor.kDarkRed),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

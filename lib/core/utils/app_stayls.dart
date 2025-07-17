@@ -45,6 +45,15 @@ class AppStayls {
     );
   }
 
+  static TextStyle styleInterBold20(context) {
+    return const TextStyle(
+      fontSize: 20,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+      height: 1.40,
+    );
+  }
+
   static TextStyle styleInterBold24(context) {
     return const TextStyle(
       color: AppColor.kDarkRed,

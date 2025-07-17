@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/dashboard_header.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/oredrs_over_time_item.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/statistics_item_list.dart';
 
 class DashboardView extends StatelessWidget {
@@ -13,10 +14,13 @@ class DashboardView extends StatelessWidget {
         horizontal: MediaQuery.sizeOf(context).width * 0.0277,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DashboardHeader(),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
           StatisticsItemList(),
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+          OredrsOverTimeItem(),
         ],
       ),
     );
