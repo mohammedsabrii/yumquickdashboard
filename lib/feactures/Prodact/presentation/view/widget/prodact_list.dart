@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/feactures/orders/presentation/data/order_table.dart';
-import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/order_list_header.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/data/prodact_table.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_list_header.dart';
 
-class OrdersList extends StatefulWidget {
-  const OrdersList({super.key});
+class ProdactList extends StatefulWidget {
+  const ProdactList({super.key});
 
   @override
-  State<OrdersList> createState() => _OrdersListState();
+  State<ProdactList> createState() => _ProdactListState();
 }
 
-class _OrdersListState extends State<OrdersList> {
+class _ProdactListState extends State<ProdactList> {
   String? selectedValue;
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,9 @@ class _OrdersListState extends State<OrdersList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              OrderListHeader(),
+              ProdactsListHeader(),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
-              OrdersTable(),
+              ProdactsTable(),
             ],
           ),
         ),
