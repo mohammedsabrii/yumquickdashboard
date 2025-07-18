@@ -25,6 +25,8 @@ TableRow topProductsByUnitsSoldTableRow(
             Flexible(
               child: Text(
                 name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: AppStayls.styleInterRegular14(context).copyWith(
                   color: AppColor.kDarkRed,
                   fontWeight: FontWeight.w600,

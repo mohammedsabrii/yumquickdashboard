@@ -11,12 +11,12 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.sizeOf(context).height * 0.0325,
-        horizontal: MediaQuery.sizeOf(context).width * 0.0277,
-      ),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.0325,
+          horizontal: MediaQuery.sizeOf(context).width * 0.0277,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

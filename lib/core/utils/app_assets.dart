@@ -18,4 +18,6 @@ class AppAssets {
   static const kCartIcon = 'assets/image/cart icon.svg';
   static const kChartIcon = 'assets/image/chart icon.svg';
   static const kImageTest = 'assets/image/Bitmap test.png';
+  static const kEditIcon = 'assets/image/Edit icon.svg';
+  static const kDeleteicon = 'assets/image/delete icon.svg';
 }

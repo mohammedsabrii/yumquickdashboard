@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/custom_table_recent_transactions_row_header_method.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/custom_tebl_row_method.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/state_container.dart';
+import 'package:yumquickdashboard/core/widget/payment_state_container.dart';
 
 class RecentTransactions extends StatelessWidget {
   const RecentTransactions({super.key});
@@ -41,7 +41,10 @@ class RecentTransactions extends StatelessWidget {
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
                     amount: r'$124.97',
-                    status: StateContainer(isActive: true),
+                    status: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PaymentStateContainer(isActive: true),
+                    ),
                   ),
 
                   customTableRecentTransactionsRow(
@@ -49,7 +52,10 @@ class RecentTransactions extends StatelessWidget {
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
                     amount: r'$124.97',
-                    status: StateContainer(isActive: false),
+                    status: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PaymentStateContainer(isActive: false),
+                    ),
                   ),
 
                   customTableRecentTransactionsRow(
@@ -57,7 +63,10 @@ class RecentTransactions extends StatelessWidget {
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
                     amount: r'$124.97',
-                    status: StateContainer(isActive: true),
+                    status: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PaymentStateContainer(isActive: true),
+                    ),
                   ),
 
                   customTableRecentTransactionsRow(
@@ -65,7 +74,10 @@ class RecentTransactions extends StatelessWidget {
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
                     amount: r'$124.97',
-                    status: StateContainer(isActive: false),
+                    status: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PaymentStateContainer(isActive: false),
+                    ),
                   ),
 
                   customTableRecentTransactionsRow(
@@ -73,7 +85,10 @@ class RecentTransactions extends StatelessWidget {
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
                     amount: r'$124.97',
-                    status: StateContainer(isActive: true),
+                    status: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PaymentStateContainer(isActive: true),
+                    ),
                   ),
                 ],
               ),
