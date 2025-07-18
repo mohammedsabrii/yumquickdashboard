@@ -4,6 +4,7 @@ import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/l
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/oredrs_over_time_item.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/recent_transactions.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/statistics_item_list.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/top_products_by_units_sold.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -31,7 +32,13 @@ class DashboardView extends StatelessWidget {
               ],
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
-            RecentTransactions(),
+            Row(
+              children: [
+                RecentTransactions(),
+                SizedBox(width: MediaQuery.sizeOf(context).width * 0.02083),
+                TopProductsByUnitsSold(),
+              ],
+            ),
           ],
         ),
       ),

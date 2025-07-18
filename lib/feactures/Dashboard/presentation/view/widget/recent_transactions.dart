@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/custom_table_recent_transactions_row_header_method.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/custom_tebl_row_method.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/state_container.dart';
 
@@ -10,8 +11,8 @@ class RecentTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * 0.47,
-      height: MediaQuery.sizeOf(context).height * 0.395,
+      width: MediaQuery.sizeOf(context).width * 0.375,
+      height: MediaQuery.sizeOf(context).height * 0.47,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -34,35 +35,8 @@ class RecentTransactions extends StatelessWidget {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
               Table(
                 children: [
-                  TableRow(
-                    children: [
-                      Text(
-                        'Name',
-                        style: AppStayls.styleInterRegular14(
-                          context,
-                        ).copyWith(color: Colors.grey),
-                      ),
-                      Text(
-                        'Date',
-                        style: AppStayls.styleInterRegular14(
-                          context,
-                        ).copyWith(color: Colors.grey),
-                      ),
-                      Text(
-                        'Amount',
-                        style: AppStayls.styleInterRegular14(
-                          context,
-                        ).copyWith(color: Colors.grey),
-                      ),
-                      Text(
-                        'Status',
-                        style: AppStayls.styleInterRegular14(
-                          context,
-                        ).copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  customTableRow(
+                  customTableRecentTransactionsRowHeader(context),
+                  customTableRecentTransactionsRow(
                     context,
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
@@ -70,7 +44,7 @@ class RecentTransactions extends StatelessWidget {
                     status: StateContainer(isActive: true),
                   ),
 
-                  customTableRow(
+                  customTableRecentTransactionsRow(
                     context,
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
@@ -78,7 +52,7 @@ class RecentTransactions extends StatelessWidget {
                     status: StateContainer(isActive: false),
                   ),
 
-                  customTableRow(
+                  customTableRecentTransactionsRow(
                     context,
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
@@ -86,7 +60,7 @@ class RecentTransactions extends StatelessWidget {
                     status: StateContainer(isActive: true),
                   ),
 
-                  customTableRow(
+                  customTableRecentTransactionsRow(
                     context,
                     name: 'Jagarnath S.',
                     date: '24.05.2023',
@@ -94,7 +68,7 @@ class RecentTransactions extends StatelessWidget {
                     status: StateContainer(isActive: false),
                   ),
 
-                  customTableRow(
+                  customTableRecentTransactionsRow(
                     context,
                     name: 'Jagarnath S.',
                     date: '24.05.2023',

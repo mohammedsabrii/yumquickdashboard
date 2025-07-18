@@ -17,4 +17,5 @@ class AppAssets {
   static const kDollarIcon = 'assets/image/Dollar icon.svg';
   static const kCartIcon = 'assets/image/cart icon.svg';
   static const kChartIcon = 'assets/image/chart icon.svg';
+  static const kImageTest = 'assets/image/Bitmap test.png';
 }

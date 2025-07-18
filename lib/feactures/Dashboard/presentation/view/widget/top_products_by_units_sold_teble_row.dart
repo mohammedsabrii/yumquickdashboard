@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-TableRow customTableRecentTransactionsRow(
+TableRow topProductsByUnitsSoldTableRow(
   BuildContext context, {
   required String name,
-  date,
-  amount,
-  required Widget status,
+  price,
+  unitsSold,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -18,11 +18,20 @@ TableRow customTableRecentTransactionsRow(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
-        child: Text(
-          name,
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
+        child: Row(
+          children: [
+            Flexible(child: Image.asset(AppAssets.kImageTest)),
+            SizedBox(width: 5),
+            Flexible(
+              child: Text(
+                name,
+                style: AppStayls.styleInterRegular14(context).copyWith(
+                  color: AppColor.kDarkRed,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
 
@@ -31,7 +40,7 @@ TableRow customTableRecentTransactionsRow(
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
-          date,
+          price,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -42,17 +51,11 @@ TableRow customTableRecentTransactionsRow(
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
-          amount,
+          unitsSold,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
         ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.02,
-        ),
-        child: status,
       ),
     ],
   );
