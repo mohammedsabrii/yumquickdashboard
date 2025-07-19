@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/core/widget/custom_container.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_list.dart';
 
 class ProdactsView extends StatelessWidget {
@@ -16,7 +17,13 @@ class ProdactsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Proacts', style: AppStayls.styleInterBold24(context)),
+            Row(
+              children: [
+                Text('Proacts', style: AppStayls.styleInterBold24(context)),
+                Spacer(),
+                CustomContainer(title: 'Add Prodact'),
+              ],
+            ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.027),
             ProdactList(),
           ],

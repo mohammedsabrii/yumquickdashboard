@@ -20,4 +20,5 @@ class AppAssets {
   static const kImageTest = 'assets/image/Bitmap test.png';
   static const kEditIcon = 'assets/image/Edit icon.svg';
   static const kDeleteicon = 'assets/image/delete icon.svg';
+  static const kCategoryImageTest = 'assets/image/category image test.png';
 }
