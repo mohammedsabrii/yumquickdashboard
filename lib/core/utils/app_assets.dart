@@ -21,4 +21,5 @@ class AppAssets {
   static const kEditIcon = 'assets/image/Edit icon.svg';
   static const kDeleteicon = 'assets/image/delete icon.svg';
   static const kCategoryImageTest = 'assets/image/category image test.png';
+  static const kBackicon = 'assets/image/back icon.svg';
 }

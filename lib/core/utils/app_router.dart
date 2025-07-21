@@ -9,6 +9,10 @@ class AppRouter {
     routes: [
       GoRoute(path: '/', builder: (context, state) => SpalshView()),
       GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
+      // GoRoute(
+      //   path: kAddProdactView,
+      //   builder: (context, state) => AddProdactView(),
+      // ),
     ],
   );
 }
