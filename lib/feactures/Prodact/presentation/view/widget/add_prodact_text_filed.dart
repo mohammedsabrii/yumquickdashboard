@@ -9,9 +9,15 @@ class AddProdactTextFiled extends StatefulWidget {
     required this.hintText,
     this.height,
     this.width,
+    this.onSubmitted,
+    this.controller,
+    this.maxLines,
   });
   final String helperText, hintText;
   final double? height, width;
+  final Function(String)? onSubmitted;
+  final TextEditingController? controller;
+  final int? maxLines;
   @override
   State<AddProdactTextFiled> createState() => _AddProdactTextFiledState();
 }
@@ -35,13 +41,15 @@ class _AddProdactTextFiledState extends State<AddProdactTextFiled> {
           height: widget.height ?? 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
           child: TextField(
-            maxLines: 10,
+            controller: widget.controller,
+            maxLines: widget.maxLines ?? 1,
             cursorColor: AppColor.kDarkRed,
             onChanged: (value) {
               setState(() {
                 searchText = value;
               });
             },
+            onSubmitted: widget.onSubmitted,
             decoration: InputDecoration(
               hintText: widget.hintText,
 

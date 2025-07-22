@@ -34,6 +34,13 @@ class AddProdactCargorys extends StatelessWidget {
             AddProdactCategoryItem(title: 'T-Shirt'),
             AddProdactCategoryItem(title: 'Hoodie'),
             AddProdactCategoryItem(title: 'Dress'),
+            SizedBox(height: 22),
+            Text(
+              'Create New',
+              style: AppStayls.styleInterRegular14(
+                context,
+              ).copyWith(color: const Color(0xFF1E5EFF)),
+            ),
           ],
         ),
       ),

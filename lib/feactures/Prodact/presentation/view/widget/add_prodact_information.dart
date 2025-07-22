@@ -39,6 +39,7 @@ class AddProdactInformation extends StatelessWidget {
             SizedBox(height: 24),
             AddProdactTextFiled(
               height: 100,
+              maxLines: 10,
               helperText: 'Product description',
               hintText: 'Product description',
             ),
