@@ -4,7 +4,6 @@ import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/pick_image.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_text_filed.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_switch_list_tile.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/show_dialog_method.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/size_selector_row.dart';
 
 class AddProdactInformation extends StatelessWidget {

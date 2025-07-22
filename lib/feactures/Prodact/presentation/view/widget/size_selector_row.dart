@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/core/utils/app_color.dart';
-import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_drop_button_size_selector_method.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_selected_values_method.dart';
 

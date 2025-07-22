@@ -8,8 +8,6 @@ class CustomSwitchListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start, // make sure alignment is left
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           title,
@@ -17,6 +15,7 @@ class CustomSwitchListTile extends StatelessWidget {
             context,
           ).copyWith(color: AppColor.kDarkRed),
         ),
+        Spacer(),
         Flexible(
           child: Transform.scale(
             scale: 0.7,

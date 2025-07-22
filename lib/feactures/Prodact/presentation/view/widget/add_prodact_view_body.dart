@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_cargorys.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_information.dart';
 
 class AddProdactViewBody extends StatelessWidget {
@@ -18,7 +19,13 @@ class AddProdactViewBody extends StatelessWidget {
           children: [
             AddProdactViewHeader(onClose: onClose),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
-            AddProdactInformation(),
+            Row(
+              spacing: MediaQuery.sizeOf(context).width * 0.02,
+              children: [
+                AddProdactInformation(),
+                Flexible(child: AddProdactCargorys()),
+              ],
+            ),
           ],
         ),
       ),
