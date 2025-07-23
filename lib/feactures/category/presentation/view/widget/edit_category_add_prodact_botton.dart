@@ -3,12 +3,12 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
 class EditCategoryAddProdactBotton extends StatelessWidget {
-  const EditCategoryAddProdactBotton({super.key});
-
+  const EditCategoryAddProdactBotton({super.key, this.width});
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * 0.5,
+      width: width ?? MediaQuery.sizeOf(context).width * 0.5,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),

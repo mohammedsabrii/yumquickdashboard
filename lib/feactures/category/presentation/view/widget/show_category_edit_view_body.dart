@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_info.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_visibility.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/edit_category_information.dart';
 
@@ -25,7 +26,10 @@ class ShowCategoryEditViewBody extends StatelessWidget {
               children: [
                 CategoryEditInformation(),
                 Flexible(
-                  child: Column(spacing: 30, children: [CategoryVisibility()]),
+                  child: Column(
+                    spacing: 30,
+                    children: [CategoryVisibility(), CategoryInfo()],
+                  ),
                 ),
               ],
             ),
