@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_visibility.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/edit_category_information.dart';
 
 class ShowCategoryEditViewBody extends StatelessWidget {
@@ -18,7 +19,16 @@ class ShowCategoryEditViewBody extends StatelessWidget {
           children: [
             CustomAddedHeader(onClose: onClose, title: 'Add Product'),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
-            CategoryEditInformation(),
+            Row(
+              spacing: 30,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CategoryEditInformation(),
+                Flexible(
+                  child: Column(spacing: 30, children: [CategoryVisibility()]),
+                ),
+              ],
+            ),
           ],
         ),
       ),

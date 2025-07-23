@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/pick_image.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_text_filed.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_switch_list_tile.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_switch.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/size_selector_row.dart';
 
 class AddProdactInformation extends StatelessWidget {
@@ -80,7 +80,7 @@ class AddProdactInformation extends StatelessWidget {
               ],
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.012),
-            CustomSwitchListTile(title: 'Add tax for this product'),
+            CustomSwitch(title: 'Add tax for this product'),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.024),
             Divider(color: Colors.grey, thickness: 1),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.0169),
@@ -91,7 +91,7 @@ class AddProdactInformation extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.012),
-            CustomSwitchListTile(title: 'This product has multiple options'),
+            CustomSwitch(title: 'This product has multiple options'),
             SizeSelectorRow(),
           ],
         ),
