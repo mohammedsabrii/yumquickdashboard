@@ -12,6 +12,8 @@ class CategoryGridView extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 10,
+        mainAxisSpacing: 0,
+        mainAxisExtent: 220,
       ),
       itemBuilder: (context, index) {
         return CategoryItem(onTap: onTap);
