@@ -5,11 +5,15 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_prodact_contanier.dart';
 
-class AddProdactViewHeader extends StatelessWidget {
-  const AddProdactViewHeader({super.key, required this.onClose});
+class CustomAddedHeader extends StatelessWidget {
+  const CustomAddedHeader({
+    super.key,
+    required this.onClose,
+    required this.title,
+  });
 
   final VoidCallback onClose;
-
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +37,7 @@ class AddProdactViewHeader extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Add Product',
+              title,
               style: AppStayls.styleInterBold24(
                 context,
               ).copyWith(color: AppColor.kDarkRed),

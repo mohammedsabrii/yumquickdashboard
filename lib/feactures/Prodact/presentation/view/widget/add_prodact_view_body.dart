@@ -19,7 +19,7 @@ class AddProdactViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AddProdactViewHeader(onClose: onClose),
+            CustomAddedHeader(onClose: onClose, title: 'Add Product'),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

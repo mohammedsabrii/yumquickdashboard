@@ -3,6 +3,7 @@ import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_container.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/add_prodact_view.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_grid_view.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_item.dart';
 
 class CategoryView extends StatefulWidget {
   const CategoryView({super.key});
@@ -13,6 +14,7 @@ class CategoryView extends StatefulWidget {
 
 class _CategoryViewState extends State<CategoryView> {
   bool showAddCategory = false;
+  bool showCategoryEditView = false;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -44,17 +46,33 @@ class _CategoryViewState extends State<CategoryView> {
                   ],
                 ),
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.027),
-                CategoryGridView(),
+                CategoryGridView(
+                  onTap: () {
+                    setState(() {
+                      showCategoryEditView = true;
+                    });
+                  },
+                ),
               ],
             ),
           ),
         ),
         if (showAddCategory)
           Positioned.fill(
-            child: AddProdactView(
+            child: ShowAddCategoryView(
               onClose: () {
                 setState(() {
                   showAddCategory = false;
+                });
+              },
+            ),
+          ),
+        if (showCategoryEditView)
+          Positioned.fill(
+            child: ShowAddCategoryView(
+              onClose: () {
+                setState(() {
+                  showCategoryEditView = false;
                 });
               },
             ),
