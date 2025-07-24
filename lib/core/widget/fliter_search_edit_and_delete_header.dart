@@ -4,8 +4,8 @@ import 'package:yumquickdashboard/core/widget/action_item.dart';
 import 'package:yumquickdashboard/core/widget/custom_drop_button.dart';
 import 'package:yumquickdashboard/core/widget/custom_search_text_fild.dart';
 
-class ProdactsListHeader extends StatelessWidget {
-  const ProdactsListHeader({super.key});
+class FliterSearchEditAndDeleteHeader extends StatelessWidget {
+  const FliterSearchEditAndDeleteHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

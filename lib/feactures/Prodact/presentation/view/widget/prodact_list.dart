@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/data/prodact_table.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_list_header.dart';
+import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
 
 class ProdactList extends StatefulWidget {
   const ProdactList({super.key});
@@ -29,7 +29,7 @@ class _ProdactListState extends State<ProdactList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProdactsListHeader(),
+              FliterSearchEditAndDeleteHeader(),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
               ProdactsTable(),
             ],
