@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
 
 TableRow prodactsTableRow(
   BuildContext context, {
-  required String prodactImage,
-  required String prodactName,
-  required String prodactCategory,
-  required String prodactInventory,
-  required String prodactColor,
-  required String price,
-  required String rating,
+  required ProdactTableModel prodactTableModel,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -29,19 +24,19 @@ TableRow prodactsTableRow(
               side: BorderSide(color: Colors.grey),
             ),
 
-            Image.asset(prodactImage, width: 59, height: 48),
+            Image.asset(prodactTableModel.prodactImage, width: 59, height: 48),
 
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  prodactName,
+                  prodactTableModel.prodactName,
                   style: AppStayls.styleInterRegular14(
                     context,
                   ).copyWith(color: AppColor.kDarkRed),
                 ),
                 Text(
-                  prodactCategory,
+                  prodactTableModel.prodactCategory,
                   style: AppStayls.styleInterRegular14(
                     context,
                   ).copyWith(color: Colors.grey),
@@ -57,7 +52,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactInventory,
+          prodactTableModel.prodactInventory,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -70,7 +65,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactColor,
+          prodactTableModel.prodactColor,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -82,7 +77,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          price,
+          prodactTableModel.price,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -95,7 +90,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          rating,
+          prodactTableModel.rating,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),

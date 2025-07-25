@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/orders/model/order_table_model.dart';
 
 TableRow ordersTableRow(
   BuildContext context, {
-  required String order,
-  required String date,
-  required String customer,
-  required String total,
-  required Widget paymentStatus,
-  required Widget orderStatus,
+  required OrdersTableModel ordersTableModel,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -29,7 +25,7 @@ TableRow ordersTableRow(
             ),
             SizedBox(width: 12),
             Text(
-              order,
+              ordersTableModel.order,
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: AppColor.kDarkRed),
@@ -43,7 +39,7 @@ TableRow ordersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          date,
+          ordersTableModel.date,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -56,7 +52,7 @@ TableRow ordersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          customer,
+          ordersTableModel.customer,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -67,14 +63,14 @@ TableRow ordersTableRow(
           top: MediaQuery.sizeOf(context).height * 0.02,
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: paymentStatus,
+        child: ordersTableModel.paymentState,
       ),
       Padding(
         padding: EdgeInsets.only(
           top: MediaQuery.sizeOf(context).height * 0.02,
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: orderStatus,
+        child: ordersTableModel.orderState,
       ),
       Padding(
         padding: EdgeInsets.only(
@@ -82,7 +78,7 @@ TableRow ordersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          total,
+          ordersTableModel.total,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),

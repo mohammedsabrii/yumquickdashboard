@@ -1,12 +1,105 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
+import 'package:yumquickdashboard/feactures/Customers/model/customers_table_model.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_category_list.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_table_header.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_table_row.dart';
 
 class CustomersViewBodyDetails extends StatelessWidget {
   const CustomersViewBodyDetails({super.key});
-
+  final List<CustomersTableModel> customersData = const [
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+    CustomersTableModel(
+      fristLetterOfName: 'R',
+      name: 'Rakesh Mishra',
+      location: 'Sawaynchester',
+      orders: '5',
+      spent: r'$96.14',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,85 +129,12 @@ class CustomersViewBodyDetails extends StatelessWidget {
                 },
                 children: [
                   customersTableHeader(context),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
-                  ),
-                  customersTableRow(
-                    context,
-                    name: 'Rakesh Mishra',
-                    nameFristLetter: 'R',
-                    location: 'Sawaynchester',
-                    orders: '5',
-                    spent: r'$96.14',
+                  ...List.generate(
+                    customersData.length,
+                    (index) => customersTableRow(
+                      context,
+                      customersTableModel: customersData[index],
+                    ),
                   ),
                 ],
               ),

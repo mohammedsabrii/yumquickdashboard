@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/Customers/model/customers_table_model.dart';
 
 TableRow customersTableRow(
   BuildContext context, {
-  required String nameFristLetter,
-  required String name,
-  required String location,
-  required String orders,
-  required String spent,
+  required CustomersTableModel customersTableModel,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -35,7 +32,7 @@ TableRow customersTableRow(
               ),
               alignment: Alignment.center,
               child: Text(
-                nameFristLetter,
+                customersTableModel.fristLetterOfName,
                 style: AppStayls.styleInterBold24(
                   context,
                 ).copyWith(color: Colors.white),
@@ -46,7 +43,7 @@ TableRow customersTableRow(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  customersTableModel.name,
                   style: AppStayls.styleInterRegular14(
                     context,
                   ).copyWith(color: AppColor.kDarkRed),
@@ -63,7 +60,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          location,
+          customersTableModel.location,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -76,7 +73,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          orders,
+          customersTableModel.location,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -89,7 +86,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          spent,
+          customersTableModel.spent,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
