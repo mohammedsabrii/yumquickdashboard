@@ -6,7 +6,8 @@ import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/c
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_table_row.dart';
 
 class CustomersViewBodyDetails extends StatelessWidget {
-  const CustomersViewBodyDetails({super.key});
+  const CustomersViewBodyDetails({super.key, required this.onTap});
+  final Function() onTap;
   final List<CustomersTableModel> customersData = const [
     CustomersTableModel(
       fristLetterOfName: 'R',
@@ -108,12 +109,12 @@ class CustomersViewBodyDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.018,
-          horizontal: MediaQuery.sizeOf(context).width * 0.027,
-        ),
-        child: SingleChildScrollView(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.sizeOf(context).height * 0.018,
+            horizontal: MediaQuery.sizeOf(context).width * 0.027,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -134,6 +135,7 @@ class CustomersViewBodyDetails extends StatelessWidget {
                     (index) => customersTableRow(
                       context,
                       customersTableModel: customersData[index],
+                      onTap: onTap,
                     ),
                   ),
                 ],

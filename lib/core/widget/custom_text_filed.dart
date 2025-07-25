@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-class AddProdactTextFiled extends StatefulWidget {
-  const AddProdactTextFiled({
+class CustomTextFiled extends StatefulWidget {
+  const CustomTextFiled({
     super.key,
     required this.helperText,
     required this.hintText,
@@ -19,10 +19,10 @@ class AddProdactTextFiled extends StatefulWidget {
   final TextEditingController? controller;
   final int? maxLines;
   @override
-  State<AddProdactTextFiled> createState() => _AddProdactTextFiledState();
+  State<CustomTextFiled> createState() => _CustomTextFiledState();
 }
 
-class _AddProdactTextFiledState extends State<AddProdactTextFiled> {
+class _CustomTextFiledState extends State<CustomTextFiled> {
   String searchText = '';
   @override
   Widget build(BuildContext context) {

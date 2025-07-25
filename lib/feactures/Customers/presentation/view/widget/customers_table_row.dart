@@ -6,6 +6,7 @@ import 'package:yumquickdashboard/feactures/Customers/model/customers_table_mode
 TableRow customersTableRow(
   BuildContext context, {
   required CustomersTableModel customersTableModel,
+  required Function() onTap,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -16,41 +17,44 @@ TableRow customersTableRow(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: Row(
-          children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-            Container(
-              width: 35,
-              height: 35,
-              decoration: ShapeDecoration(
-                color: const Color(0xFFA1A7C4),
-                shape: OvalBorder(),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Row(
+            children: [
+              Checkbox(
+                value: false,
+                onChanged: (value) {},
+                side: BorderSide(color: Colors.grey),
               ),
-              alignment: Alignment.center,
-              child: Text(
-                customersTableModel.fristLetterOfName,
-                style: AppStayls.styleInterBold24(
-                  context,
-                ).copyWith(color: Colors.white),
-              ),
-            ),
-            SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  customersTableModel.name,
-                  style: AppStayls.styleInterRegular14(
-                    context,
-                  ).copyWith(color: AppColor.kDarkRed),
+              Container(
+                width: 35,
+                height: 35,
+                decoration: ShapeDecoration(
+                  color: const Color(0xFFA1A7C4),
+                  shape: OvalBorder(),
                 ),
-              ],
-            ),
-          ],
+                alignment: Alignment.center,
+                child: Text(
+                  customersTableModel.fristLetterOfName,
+                  style: AppStayls.styleInterBold24(
+                    context,
+                  ).copyWith(color: Colors.white),
+                ),
+              ),
+              SizedBox(width: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    customersTableModel.name,
+                    style: AppStayls.styleInterRegular14(
+                      context,
+                    ).copyWith(color: AppColor.kDarkRed),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
 

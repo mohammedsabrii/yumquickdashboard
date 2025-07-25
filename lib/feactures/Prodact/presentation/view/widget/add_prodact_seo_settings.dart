@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_text_filed.dart';
+import 'package:yumquickdashboard/core/widget/custom_text_filed.dart';
 
 class AddProdactSeoSettings extends StatelessWidget {
   const AddProdactSeoSettings({super.key});
@@ -30,13 +30,13 @@ class AddProdactSeoSettings extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
 
-            AddProdactTextFiled(
+            CustomTextFiled(
               helperText: 'Title',
               hintText: 'Title',
               maxLines: 2,
             ),
 
-            AddProdactTextFiled(
+            CustomTextFiled(
               height: 100,
               helperText: 'Description',
               hintText: 'Description',

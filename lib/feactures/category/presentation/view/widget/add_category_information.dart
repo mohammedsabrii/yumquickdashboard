@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/pick_image.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_text_filed.dart';
+import 'package:yumquickdashboard/core/widget/custom_text_filed.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/edit_category_add_prodact_botton.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/edit_category_prodact_item_list.dart';
 
@@ -32,7 +32,7 @@ class AddCategooryInformation extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             SizedBox(height: 24),
-            AddProdactTextFiled(
+            CustomTextFiled(
               helperText: 'Category Name',
               hintText: 'Category Name',
             ),

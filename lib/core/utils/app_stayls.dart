@@ -62,4 +62,12 @@ class AppStayls {
       fontWeight: FontWeight.w700,
     );
   }
+
+  static TextStyle styleInterBold32(context) {
+    return const TextStyle(
+      fontSize: 32,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+    );
+  }
 }
