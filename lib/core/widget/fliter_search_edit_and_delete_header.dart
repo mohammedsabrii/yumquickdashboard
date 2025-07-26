@@ -11,7 +11,15 @@ class FliterSearchEditAndDeleteHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomDropButton(),
+        Container(
+          height: 40,
+          width: MediaQuery.sizeOf(context).width * 0.125,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            border: Border.all(color: Colors.grey),
+          ),
+          child: CustomDropButton(),
+        ),
         SizedBox(width: 12),
         CustomSearchTextFild(),
         Spacer(),
