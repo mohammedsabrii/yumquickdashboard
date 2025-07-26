@@ -7,7 +7,7 @@ import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/pro
 
 class ProdactsTable extends StatelessWidget {
   const ProdactsTable({super.key});
-  final List<ProdactTableModel> ProdactData = const [
+  final List<ProdactTableModel> prodactData = const [
     ProdactTableModel(
       prodactImage: AppAssets.kImageTest,
       prodactName: 'Men Grey Hoodie',
@@ -112,9 +112,9 @@ class ProdactsTable extends StatelessWidget {
       children: [
         prodactsTableRowHeader(context),
         ...List.generate(
-          ProdactData.length,
+          prodactData.length,
           (index) =>
-              prodactsTableRow(context, prodactTableModel: ProdactData[index]),
+              prodactsTableRow(context, prodactTableModel: prodactData[index]),
         ),
       ],
     );

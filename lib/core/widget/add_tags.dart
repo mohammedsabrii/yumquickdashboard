@@ -3,14 +3,14 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_text_filed.dart';
 
-class AddProdactTags extends StatefulWidget {
-  const AddProdactTags({super.key});
+class AddTags extends StatefulWidget {
+  const AddTags({super.key});
 
   @override
-  State<AddProdactTags> createState() => _AddProdactTagsState();
+  State<AddTags> createState() => _AddTagsState();
 }
 
-class _AddProdactTagsState extends State<AddProdactTags> {
+class _AddTagsState extends State<AddTags> {
   final TextEditingController tagController = TextEditingController();
   final List<String> tags = ['T-Shirt', 'Men Clothes', 'Summer Collection'];
 

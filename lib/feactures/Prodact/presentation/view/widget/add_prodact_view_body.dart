@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_cargorys.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_information.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_seo_settings.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_tags.dart';
+import 'package:yumquickdashboard/core/widget/add_tags.dart';
 
 class AddProdactViewBody extends StatelessWidget {
   const AddProdactViewBody({super.key, required this.onClose});
@@ -32,7 +32,7 @@ class AddProdactViewBody extends StatelessWidget {
                     spacing: 20,
                     children: [
                       AddProdactCargorys(),
-                      AddProdactTags(),
+                      AddTags(),
                       AddProdactSeoSettings(),
                     ],
                   ),
