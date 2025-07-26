@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/customer_growth.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_statistics.dart';
 
 class ReportView extends StatelessWidget {
   const ReportView({super.key});
@@ -19,6 +20,8 @@ class ReportView extends StatelessWidget {
             Text('Reports', style: AppStayls.styleInterBold24(context)),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.027),
             CustomerGrowth(),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.0289),
+            ReportsStatistics(),
           ],
         ),
       ),

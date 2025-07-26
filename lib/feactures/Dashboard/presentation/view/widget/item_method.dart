@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/statistics_item_model.dart';
+import 'package:yumquickdashboard/core/model/statistics_item_model.dart';
 
 List<StatisticsItemModel> itemMethod(BuildContext context) {
   return [

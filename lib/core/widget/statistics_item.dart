@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/statistics_item_model.dart';
+import 'package:yumquickdashboard/core/model/statistics_item_model.dart';
 
 class StatisticsItem extends StatelessWidget {
   const StatisticsItem({super.key, required this.statisticsItemModel});
@@ -12,7 +12,7 @@ class StatisticsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.14,
+        // width: MediaQuery.sizeOf(context).width * 0.14,
         height: 70,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         clipBehavior: Clip.antiAlias,
@@ -50,8 +50,13 @@ class StatisticsItem extends StatelessWidget {
                 ),
               ],
             ),
+
             Spacer(),
-            Flexible(child: statisticsItemModel.icon),
+            Flexible(
+              child:
+                  statisticsItemModel.icon ??
+                  VerticalDivider(color: Colors.grey, thickness: 1),
+            ),
           ],
         ),
       ),

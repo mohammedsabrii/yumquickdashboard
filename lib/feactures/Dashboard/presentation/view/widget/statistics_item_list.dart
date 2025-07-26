@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/item_method.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/statistics_item.dart';
+import 'package:yumquickdashboard/core/widget/statistics_item.dart';
 
 class StatisticsItemList extends StatelessWidget {
   const StatisticsItemList({super.key});
