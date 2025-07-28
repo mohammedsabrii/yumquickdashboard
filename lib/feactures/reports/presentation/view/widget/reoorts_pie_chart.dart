@@ -1,89 +1,85 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/reports/model/pie_chart_model.dart';
 
-class SalesGoalPieChart extends StatelessWidget {
-  const SalesGoalPieChart({
-    super.key,
-    required this.title,
-    required this.label,
-    required this.value,
-    required this.percentage,
-  });
-  final String title, percentage, label, value;
+class ReportsPieChart extends StatelessWidget {
+  const ReportsPieChart({super.key, required this.pieChartModel});
+  final PieChartModel pieChartModel;
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: 80,
-              height: 80,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  PieChart(
-                    PieChartData(
-                      sectionsSpace: 0,
-                      centerSpaceRadius: 28,
-                      startDegreeOffset: -90,
-                      sections: [
-                        PieChartSectionData(
-                          color: Colors.amber,
-                          value: 75,
-                          showTitle: false,
-                          radius: 8,
-                        ),
-                        PieChartSectionData(
-                          color: Colors.grey.shade200,
-                          value: 25,
-                          showTitle: false,
-                          radius: 8,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    percentage,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
+    return Padding(
+      padding: EdgeInsets.only(right: MediaQuery.sizeOf(context).width * 0.02),
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * 0.177,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.sizeOf(context).height * 0.027,
+            horizontal: MediaQuery.sizeOf(context).width * 0.027,
+          ),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  pieChartModel.title,
+                  style: AppStayls.styleInterBold16(
+                    context,
+                  ).copyWith(color: AppColor.kDarkRed),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            PieChartItem(label: label, value: value),
-
-            const SizedBox(height: 4),
-            PieChartItem(label: label, value: value),
-
-            const SizedBox(height: 4),
-            PieChartItem(label: label, value: value),
-          ],
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.0386),
+              SizedBox(
+                width: 80,
+                height: 80,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    PieChart(
+                      PieChartData(
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 28,
+                        startDegreeOffset: -90,
+                        sections: [
+                          PieChartSectionData(
+                            color: pieChartModel.percentageColor,
+                            value: pieChartModel.highestPercentage,
+                            showTitle: false,
+                            radius: 8,
+                          ),
+                          PieChartSectionData(
+                            color: Colors.grey,
+                            value: pieChartModel.lowestPercentage,
+                            showTitle: false,
+                            radius: 8,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      pieChartModel.percentage,
+                      style: AppStayls.styleInterBold16(
+                        context,
+                      ).copyWith(color: AppColor.kDarkRed),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: pieChartModel.pieChartItem,
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class PieChartItem extends StatelessWidget {
-  const PieChartItem({super.key, required this.label, required this.value});
-  final String label, value;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(label),
-        Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
