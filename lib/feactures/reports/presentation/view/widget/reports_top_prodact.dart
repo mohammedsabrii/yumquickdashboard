@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/reports/model/top_customers_table_row_model.dart';
-import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/top_customers_table_header.dart';
-import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/top_customers_table_row.dart';
+import 'package:yumquickdashboard/feactures/reports/model/reports_top_prodact_table_row_model.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_top_prodact_table_header.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_top_prodact_table_row.dart';
 
-class ReportsTopCustomers extends StatelessWidget {
-  const ReportsTopCustomers({super.key});
-  final List<TopCustomersTableRowModel> topCustomersData = const [
-    TopCustomersTableRowModel(
+class ReportsTopProdact extends StatelessWidget {
+  const ReportsTopProdact({super.key});
+  final List<ReportsTopProdactTableRowModel> reportsTopProdactData = const [
+    ReportsTopProdactTableRowModel(
       name: 'Lee Henry',
-      nameFristLetter: 'L',
-      orders: '52',
-      spent: r'$969.37',
+
+      clicks: '12.040',
+      unitsSold: '195',
     ),
-    TopCustomersTableRowModel(
+    ReportsTopProdactTableRowModel(
       name: 'Lee Henry',
-      nameFristLetter: 'L',
-      orders: '52',
-      spent: r'$969.37',
+
+      clicks: '12.040',
+      unitsSold: '195',
     ),
-    TopCustomersTableRowModel(
+    ReportsTopProdactTableRowModel(
       name: 'Lee Henry',
-      nameFristLetter: 'L',
-      orders: '52',
-      spent: r'$969.37',
+
+      clicks: '12.040',
+      unitsSold: '195',
     ),
-    TopCustomersTableRowModel(
+    ReportsTopProdactTableRowModel(
       name: 'Lee Henry',
-      nameFristLetter: 'L',
-      orders: '52',
-      spent: r'$969.37',
+
+      clicks: '12.040',
+      unitsSold: '195',
     ),
   ];
   @override
@@ -68,12 +68,13 @@ class ReportsTopCustomers extends StatelessWidget {
                   ),
                 },
                 children: [
-                  topCustomersTableHeader(context),
+                  reportsTopProdactTableHeader(context),
                   ...List.generate(
-                    topCustomersData.length,
-                    (index) => topCustomersTableRow(
+                    reportsTopProdactData.length,
+                    (index) => reportsTopProdactTableRow(
                       context,
-                      topCustomersTableRowModel: topCustomersData[index],
+                      reportsTopProdactTableRowModel:
+                          reportsTopProdactData[index],
                     ),
                   ),
                 ],

@@ -9,6 +9,7 @@ import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reo
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_average_order_value.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_statistics.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_top_customers.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_top_prodact.dart';
 
 class ReportView extends StatelessWidget {
   ReportView({super.key});
@@ -70,7 +71,13 @@ class ReportView extends StatelessWidget {
               ],
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.0289),
-            ReportsTopCustomers(),
+            Row(
+              children: [
+                ReportsTopCustomers(),
+                SizedBox(width: MediaQuery.sizeOf(context).width * 0.02),
+                Expanded(child: ReportsTopProdact()),
+              ],
+            ),
           ],
         ),
       ),
