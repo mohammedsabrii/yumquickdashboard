@@ -6,6 +6,7 @@ import 'package:yumquickdashboard/feactures/reports/model/pie_chart_model.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/customer_growth.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/pie_chart_item.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reoorts_pie_chart.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_average_order_value.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_statistics.dart';
 
 class ReportView extends StatelessWidget {
@@ -59,10 +60,13 @@ class ReportView extends StatelessWidget {
             ReportsStatistics(),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.0289),
             Row(
-              children: List.generate(
-                pieCharts.length,
-                (index) => ReportsPieChart(pieChartModel: pieCharts[index]),
-              ),
+              children: [
+                ...List.generate(
+                  pieCharts.length,
+                  (index) => ReportsPieChart(pieChartModel: pieCharts[index]),
+                ),
+                Flexible(child: ReportsAverageOrderValue()),
+              ],
             ),
           ],
         ),
