@@ -8,6 +8,7 @@ import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/pie
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reoorts_pie_chart.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_average_order_value.dart';
 import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_statistics.dart';
+import 'package:yumquickdashboard/feactures/reports/presentation/view/widget/reports_top_customers.dart';
 
 class ReportView extends StatelessWidget {
   ReportView({super.key});
@@ -68,6 +69,8 @@ class ReportView extends StatelessWidget {
                 Flexible(child: ReportsAverageOrderValue()),
               ],
             ),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.0289),
+            ReportsTopCustomers(),
           ],
         ),
       ),
