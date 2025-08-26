@@ -10,10 +10,12 @@ class CustomAddedHeader extends StatelessWidget {
     super.key,
     required this.onClose,
     required this.title,
+    this.onSave,
   });
 
   final VoidCallback onClose;
   final String title;
+  final Function()? onSave;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,7 +51,7 @@ class CustomAddedHeader extends StatelessWidget {
               textColor: AppColor.kMainColor,
             ),
             SizedBox(width: 10),
-            CustomProdactContainer(title: 'Save'),
+            CustomProdactContainer(onTap: onSave, title: 'Save'),
           ],
         ),
       ],

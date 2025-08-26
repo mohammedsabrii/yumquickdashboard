@@ -23,4 +23,5 @@ class AppAssets {
   static const kCategoryImageTest = 'assets/image/category image test.png';
   static const kBackicon = 'assets/image/back icon.svg';
   static const kDotIcon = 'assets/image/dot icon.svg';
+  static const kEmptyProductList = 'assets/image/empty_product_list.svg';
 }

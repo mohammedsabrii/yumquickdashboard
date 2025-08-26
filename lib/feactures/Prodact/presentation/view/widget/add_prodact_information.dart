@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/core/widget/pick_image.dart';
 import 'package:yumquickdashboard/core/widget/custom_text_filed.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_switch.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/size_selector_row.dart';
+import 'package:yumquickdashboard/core/widget/pick_image.dart';
 
 class AddProdactInformation extends StatelessWidget {
-  const AddProdactInformation({super.key});
-
+  const AddProdactInformation({
+    super.key,
+    this.pickedImage,
+    required this.onImagePicked,
+    required this.onNameChanged,
+    required this.onDescriptionChanged,
+    required this.onPriceChanged,
+    required this.onDiscountPriceChanged,
+  });
+  final XFile? pickedImage;
+  final VoidCallback onImagePicked;
+  final Function(String) onNameChanged;
+  final Function(String) onDescriptionChanged;
+  final Function(String) onPriceChanged;
+  final Function(String) onDiscountPriceChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,15 +45,17 @@ class AddProdactInformation extends StatelessWidget {
             ),
             SizedBox(height: 24),
             CustomTextFiled(
+              onChanged: onNameChanged,
               helperText: 'Product Name',
-              hintText: 'Summer T-Shirt',
+              hintText: 'Add Product Name',
             ),
             SizedBox(height: 24),
             CustomTextFiled(
+              onChanged: onDescriptionChanged,
               height: 100,
               maxLines: 10,
               helperText: 'Product description',
-              hintText: 'Product description',
+              hintText: 'Add Product description',
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.024),
             Divider(color: Colors.grey, thickness: 1),
@@ -53,7 +67,7 @@ class AddProdactInformation extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             SizedBox(height: 24),
-            PickImage(),
+            PickImage(onImagePicked: onImagePicked, pickedImage: pickedImage),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.024),
             Divider(color: Colors.grey, thickness: 1),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.024),
@@ -67,12 +81,14 @@ class AddProdactInformation extends StatelessWidget {
             Row(
               children: [
                 CustomTextFiled(
+                  onChanged: onPriceChanged,
                   helperText: 'Prodact Price',
                   hintText: 'Enter price',
                   width: MediaQuery.sizeOf(context).width * 0.22,
                 ),
                 SizedBox(width: 20),
                 CustomTextFiled(
+                  onChanged: onDiscountPriceChanged,
                   helperText: 'Discount Price',
                   hintText: 'Price at Discount',
                   width: MediaQuery.sizeOf(context).width * 0.22,
@@ -80,19 +96,6 @@ class AddProdactInformation extends StatelessWidget {
               ],
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.012),
-            CustomSwitch(title: 'Add tax for this product'),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.024),
-            Divider(color: Colors.grey, thickness: 1),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.0169),
-            Text(
-              'Different Options',
-              style: AppStayls.styleInterBold16(
-                context,
-              ).copyWith(color: AppColor.kDarkRed),
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.012),
-            CustomSwitch(title: 'This product has multiple options'),
-            SizeSelectorRow(),
           ],
         ),
       ),

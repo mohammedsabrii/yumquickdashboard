@@ -12,10 +12,12 @@ class CustomTextFiled extends StatefulWidget {
     this.onSubmitted,
     this.controller,
     this.maxLines,
+    this.onChanged,
   });
   final String helperText, hintText;
   final double? height, width;
   final Function(String)? onSubmitted;
+  final Function(String)? onChanged;
   final TextEditingController? controller;
   final int? maxLines;
   @override
@@ -23,7 +25,6 @@ class CustomTextFiled extends StatefulWidget {
 }
 
 class _CustomTextFiledState extends State<CustomTextFiled> {
-  String searchText = '';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,11 +45,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
             controller: widget.controller,
             maxLines: widget.maxLines ?? 1,
             cursorColor: AppColor.kDarkRed,
-            onChanged: (value) {
-              setState(() {
-                searchText = value;
-              });
-            },
+            onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
             decoration: InputDecoration(
               hintText: widget.hintText,

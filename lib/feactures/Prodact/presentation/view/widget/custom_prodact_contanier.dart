@@ -8,24 +8,29 @@ class CustomProdactContainer extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     required this.title,
+    this.onTap,
   });
   final Color? backgroundColor, textColor;
   final String title;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width * 0.0597,
-      height: 30,
-      decoration: ShapeDecoration(
-        color: backgroundColor ?? AppColor.kMainColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: textColor ?? Colors.white),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * 0.0597,
+        height: 30,
+        decoration: ShapeDecoration(
+          color: backgroundColor ?? AppColor.kMainColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: AppStayls.styleInterRegular14(
+              context,
+            ).copyWith(color: textColor ?? Colors.white),
+          ),
         ),
       ),
     );

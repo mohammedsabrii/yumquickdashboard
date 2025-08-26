@@ -9,9 +9,4 @@ final List<DrawerData> drawerIconAndTitle = const [
   DrawerData(icon: AppAssets.kCustomersIcon, title: 'Customers'),
   DrawerData(icon: AppAssets.kReportsIcon, title: 'Reports'),
   DrawerData(icon: AppAssets.kCouponsIcon, title: 'Coupons'),
-  DrawerData(icon: AppAssets.kInboxIcon, title: 'Inbox'),
-  DrawerData(icon: AppAssets.kKnowledgeBaseIcon, title: 'Knowledge Base'),
-  DrawerData(icon: AppAssets.kProdactUpdatesIcon, title: 'Product Updates'),
-  DrawerData(icon: AppAssets.kPersonalSettingsIcon, title: 'Personal Settings'),
-  DrawerData(icon: AppAssets.kGlobalSettingsIcon, title: 'Global Settings'),
 ];
