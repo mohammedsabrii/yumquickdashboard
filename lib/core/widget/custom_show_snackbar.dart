@@ -14,7 +14,7 @@ void customShowSnackBar(BuildContext context, {required String title}) {
     backgroundColor: AppColor.kPinkishOrange.withOpacity(0.8),
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-    margin: const EdgeInsets.all(16),
+    // margin: const EdgeInsets.all(16),
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/core/utils/app_constant.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_category_item.dart';
@@ -11,11 +12,11 @@ class AddProdactCargorys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = [
-      {'id': '0fd46bb0-0eec-47de-af15-971c9f2e6954', 'title': 'Snacks'},
-      {'id': '2', 'title': 'Vegan'},
-      {'id': '3', 'title': 'Meal'},
-      {'id': '4', 'title': 'Drinks'},
-      {'id': '5', 'title': 'Dessert'},
+      {'id': snacksId, 'title': 'Snacks'},
+      {'id': veganId, 'title': 'Vegan'},
+      {'id': mealId, 'title': 'Meal'},
+      {'id': drinksId, 'title': 'Drinks'},
+      {'id': dessertsId, 'title': 'Dessert'},
     ];
 
     return Container(
