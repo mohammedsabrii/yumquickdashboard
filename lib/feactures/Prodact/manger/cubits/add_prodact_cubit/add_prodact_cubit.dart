@@ -9,18 +9,18 @@ class AddProdactCubit extends Cubit<AddProdactState> {
   AddProdactCubit() : super(AddProdactInitial());
 
   final SupabaseClient supabase = Supabase.instance.client;
-  List<String> selectedCategoryIds = [];
+  List<String> selectedCategoryNames = [];
 
-  void toggleCategory(String categoryId, bool isSelected) {
+  void toggleCategory(String categoryName, bool isSelected) {
     if (isSelected) {
-      selectedCategoryIds.add(categoryId);
+      selectedCategoryNames.add(categoryName);
     } else {
-      selectedCategoryIds.remove(categoryId);
+      selectedCategoryNames.remove(categoryName);
     }
     emit(AddProdactInitial());
   }
 
-  Future<String> _uploadImageToSupabase(XFile imageFile) async {
+  Future<String> uploadImageToSupabase(XFile imageFile) async {
     final fileName =
         '${DateTime.now().millisecondsSinceEpoch}_${imageFile.name}';
     final filePath = 'products/$fileName';
@@ -47,7 +47,7 @@ class AddProdactCubit extends Cubit<AddProdactState> {
   }) async {
     if (name.isEmpty ||
         price <= 0 ||
-        selectedCategoryIds.isEmpty ||
+        selectedCategoryNames.isEmpty ||
         imageFile == null) {
       emit(
         AddProdactFailure(
@@ -55,7 +55,6 @@ class AddProdactCubit extends Cubit<AddProdactState> {
               'Please fill all required fields and select at least one category',
         ),
       );
-
       return;
     }
 
@@ -65,13 +64,12 @@ class AddProdactCubit extends Cubit<AddProdactState> {
           errorMassage: 'Price after discount must be less than original price',
         ),
       );
-
       return;
     }
 
     emit(AddProdactLoading());
     try {
-      final imageUrl = await _uploadImageToSupabase(imageFile);
+      final imageUrl = await uploadImageToSupabase(imageFile);
 
       final productResponse =
           await supabase
@@ -82,18 +80,25 @@ class AddProdactCubit extends Cubit<AddProdactState> {
                 'image': imageUrl,
                 'price': price,
                 'price_after_discount': priceAfterDiscount,
+
+                'categories': selectedCategoryNames,
               })
               .select()
               .single();
+      final selectedCategory =
+          await supabase
+              .from(selectedCategoryNames[0])
+              .insert({
+                'name': name,
+                'subtitle': subtitle,
+                'image': imageUrl,
+                'price': price,
+                'price_after_discount': priceAfterDiscount,
 
-      final productId = productResponse['id'];
-
-      for (String categoryId in selectedCategoryIds) {
-        await supabase.from('category_products').insert({
-          'category_id': categoryId,
-          'product_id': productId,
-        });
-      }
+                'categories': selectedCategoryNames,
+              })
+              .select()
+              .single();
 
       emit(AddProdactSuccess());
     } catch (e) {

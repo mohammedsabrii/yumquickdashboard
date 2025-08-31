@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/data/prodact_table.dart';
 import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
 
 class ProdactList extends StatefulWidget {
@@ -31,7 +30,7 @@ class _ProdactListState extends State<ProdactList> {
             children: [
               FliterSearchEditAndDeleteHeader(),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
-              ProdactsTable(),
+              // ProdactsTable(),
             ],
           ),
         ),

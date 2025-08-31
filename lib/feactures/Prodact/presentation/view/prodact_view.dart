@@ -3,6 +3,7 @@ import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_container.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/add_prodact_view.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/empty_product_list.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_list.dart';
 
 class ProdactsView extends StatefulWidget {
   const ProdactsView({super.key});
@@ -45,14 +46,14 @@ class _ProdactsViewState extends State<ProdactsView> {
                   ],
                 ),
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.027),
-                EmptyProductList(
-                  onTap: () {
-                    setState(() {
-                      showAddProduct = true;
-                    });
-                  },
-                ),
-                // ProdactList(),
+                // EmptyProductList(
+                //   onTap: () {
+                //     setState(() {
+                //       showAddProduct = true;
+                //     });
+                //   },
+                // ),
+                ProdactList(),
               ],
             ),
           ),

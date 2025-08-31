@@ -6,13 +6,13 @@ class AddProdactCategoryItem extends StatelessWidget {
   const AddProdactCategoryItem({
     super.key,
     required this.title,
-    required this.id,
+
     required this.isSelected,
     required this.onChanged,
   });
 
   final String title;
-  final String id;
+
   final bool isSelected;
   final ValueChanged<bool?> onChanged;
 

@@ -25,24 +25,6 @@ TableRow prodactsTableRow(
             ),
 
             Image.asset(prodactTableModel.prodactImage, width: 59, height: 48),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  prodactTableModel.prodactName,
-                  style: AppStayls.styleInterRegular14(
-                    context,
-                  ).copyWith(color: AppColor.kDarkRed),
-                ),
-                Text(
-                  prodactTableModel.prodactCategory,
-                  style: AppStayls.styleInterRegular14(
-                    context,
-                  ).copyWith(color: Colors.grey),
-                ),
-              ],
-            ),
           ],
         ),
       ),
@@ -52,7 +34,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.prodactInventory,
+          prodactTableModel.prodactName,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -65,7 +47,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.prodactColor,
+          prodactTableModel.prodactCategory,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -90,7 +72,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.rating,
+          prodactTableModel.discountPrice,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
