@@ -13,14 +13,8 @@ TableRow prodactsTableRowHeader(BuildContext context) {
         ),
         child: Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-            SizedBox(width: 12),
             Text(
-              'Order',
+              'Image',
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: Colors.grey),
@@ -34,7 +28,7 @@ TableRow prodactsTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Inventory',
+          'Name',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -46,7 +40,7 @@ TableRow prodactsTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Color',
+          'Category',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -70,7 +64,7 @@ TableRow prodactsTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Rating',
+          'Price After Discount',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),

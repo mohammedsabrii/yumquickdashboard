@@ -5,7 +5,8 @@ import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.da
 
 TableRow prodactsTableRow(
   BuildContext context, {
-  required ProdactTableModel prodactTableModel,
+  required ProductEntity prodactTableModel,
+  bool isSelected = false,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -16,16 +17,9 @@ TableRow prodactsTableRow(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: Row(
-          children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-
-            Image.asset(prodactTableModel.prodactImage, width: 59, height: 48),
-          ],
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Image.network(prodactTableModel.image, width: 59, height: 48),
         ),
       ),
       Padding(
@@ -34,7 +28,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.prodactName,
+          prodactTableModel.name,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -47,7 +41,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.prodactCategory,
+          prodactTableModel.category,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -59,7 +53,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.price,
+          prodactTableModel.price.toString(),
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -72,7 +66,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.discountPrice,
+          prodactTableModel.priceAfterDiscount.toString(),
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),

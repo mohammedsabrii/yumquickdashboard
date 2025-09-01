@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
@@ -19,7 +20,7 @@ class AddProdactViewBody extends StatefulWidget {
 class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
   final formKey = GlobalKey<FormState>();
   XFile? pickedImage;
-  String? prodactName, description, price, discountPrice;
+  String? prodactName, description, price, discountPrice, id;
 
   bool isLoading = false;
   Future<void> pickImage() async {
@@ -50,6 +51,9 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
       },
       builder: (context, state) {
         return ModalProgressHUD(
+          progressIndicator: CircularProgressIndicator(
+            color: AppColor.kMainColor,
+          ),
           inAsyncCall: isLoading,
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -66,6 +70,7 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                       onSave: () {
                         BlocProvider.of<AddProdactCubit>(context).addProduct(
                           context,
+                          id: id ?? '',
                           name: prodactName ?? '',
                           subtitle: description ?? '',
                           price: double.tryParse(price ?? '') ?? 0.0,

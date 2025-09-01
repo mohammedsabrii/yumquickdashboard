@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
+import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/products_cubit/products_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row_header.dart';
 
 class ProdactList extends StatefulWidget {
   const ProdactList({super.key});
@@ -9,7 +14,12 @@ class ProdactList extends StatefulWidget {
 }
 
 class _ProdactListState extends State<ProdactList> {
-  String? selectedValue;
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProductsCubit>().loadProducts(); // ✅ load when widget mounts
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +40,51 @@ class _ProdactListState extends State<ProdactList> {
             children: [
               FliterSearchEditAndDeleteHeader(),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
-              // ProdactsTable(),
+
+              BlocBuilder<ProductsCubit, ProductsState>(
+                builder: (context, state) {
+                  if (state is ProductsLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductsSuccess) {
+                    return ProductsTable(
+                      products: state.products,
+                    ); // ✅ show data
+                  } else if (state is ProductsFailure) {
+                    return Center(child: Text("Error: ${state.errorMessage}"));
+                  }
+                  return const SizedBox();
+                },
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class ProductsTable extends StatelessWidget {
+  final List<ProductEntity> products;
+  const ProductsTable({super.key, this.products = const []});
+
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      // columnWidths: {
+      //   0: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.254),
+      //   1: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
+      //   2: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
+      //   3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
+      //   4: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
+      // },
+      children: [
+        prodactsTableRowHeader(context),
+        ...List.generate(
+          products.length,
+          (index) =>
+              prodactsTableRow(context, prodactTableModel: products[index]),
+        ),
+      ],
     );
   }
 }
