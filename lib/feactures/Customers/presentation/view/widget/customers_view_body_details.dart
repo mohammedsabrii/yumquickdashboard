@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
 import 'package:yumquickdashboard/feactures/Customers/model/customers_table_model.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_category_list.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_table_header.dart';
@@ -120,7 +119,6 @@ class CustomersViewBodyDetails extends StatelessWidget {
             children: [
               CustomersCategoryList(),
               SizedBox(height: 30),
-              FliterSearchEditAndDeleteHeader(),
               SizedBox(height: 20),
               Table(
                 columnWidths: {

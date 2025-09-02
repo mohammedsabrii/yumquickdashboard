@@ -18,8 +18,6 @@ class AddProdactCargorys extends StatelessWidget {
       'dessert',
     ];
 
-    final cubit = context.watch<AddProdactCubit>();
-
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.243,
       decoration: BoxDecoration(
@@ -44,12 +42,18 @@ class AddProdactCargorys extends StatelessWidget {
           ...categoriesTitel.map(
             (title) => AddProdactCategoryItem(
               title: title,
-              isSelected: cubit.selectedCategoryName == title,
+              isSelected:
+                  BlocProvider.of<AddProdactCubit>(
+                    context,
+                  ).selectedCategoryName ==
+                  title,
               onChanged: (value) {
                 if (value == true) {
-                  cubit.selectCategory(title);
+                  BlocProvider.of<AddProdactCubit>(
+                    context,
+                  ).selectCategory(title);
                 } else {
-                  cubit.selectCategory('');
+                  BlocProvider.of<AddProdactCubit>(context).selectCategory('');
                 }
               },
             ),

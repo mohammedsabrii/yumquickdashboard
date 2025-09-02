@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yumquickdashboard/core/widget/fliter_search_edit_and_delete_header.dart';
+import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/products_cubit/products_cubit.dart';
-import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row_header.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/product_table.dart';
 
-class ProdactList extends StatefulWidget {
+class ProdactList extends StatelessWidget {
   const ProdactList({super.key});
 
   @override
-  State<ProdactList> createState() => _ProdactListState();
-}
-
-class _ProdactListState extends State<ProdactList> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<ProductsCubit>().loadProducts(); // ✅ load when widget mounts
-  }
-
-  @override
   Widget build(BuildContext context) {
+    BlocProvider.of<ProductsCubit>(context).loadProducts();
     return Container(
       height: MediaQuery.sizeOf(context).height * 0.876,
       width: MediaQuery.sizeOf(context).width * 0.77,
@@ -38,19 +27,33 @@ class _ProdactListState extends State<ProdactList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FliterSearchEditAndDeleteHeader(),
+              Text(
+                'All Products',
+                style: AppStayls.styleInterBold20(
+                  context,
+                ).copyWith(color: AppColor.kDarkRed),
+              ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
 
               BlocBuilder<ProductsCubit, ProductsState>(
                 builder: (context, state) {
                   if (state is ProductsLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColor.kMainColor,
+                      ),
+                    );
                   } else if (state is ProductsSuccess) {
-                    return ProductsTable(
-                      products: state.products,
-                    ); // ✅ show data
+                    return ProductsTable(products: state.products);
                   } else if (state is ProductsFailure) {
-                    return Center(child: Text("Error: ${state.errorMessage}"));
+                    return Center(
+                      child: Text(
+                        "Error: ${state.errorMessage}",
+                        style: AppStayls.styleInterBold16(
+                          context,
+                        ).copyWith(color: AppColor.kDarkRed),
+                      ),
+                    );
                   }
                   return const SizedBox();
                 },
@@ -59,32 +62,6 @@ class _ProdactListState extends State<ProdactList> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ProductsTable extends StatelessWidget {
-  final List<ProductEntity> products;
-  const ProductsTable({super.key, this.products = const []});
-
-  @override
-  Widget build(BuildContext context) {
-    return Table(
-      // columnWidths: {
-      //   0: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.254),
-      //   1: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
-      //   2: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
-      //   3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
-      //   4: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.111),
-      // },
-      children: [
-        prodactsTableRowHeader(context),
-        ...List.generate(
-          products.length,
-          (index) =>
-              prodactsTableRow(context, prodactTableModel: products[index]),
-        ),
-      ],
     );
   }
 }

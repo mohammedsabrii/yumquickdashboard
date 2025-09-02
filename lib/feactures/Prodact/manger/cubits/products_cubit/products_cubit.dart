@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/service/product_service.dart';
 import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
 
@@ -14,10 +14,8 @@ class ProductsCubit extends Cubit<ProductsState> {
     try {
       final products = await productService.fetchProducts();
       emit(ProductsSuccess(products));
-      print('Fetched ${products.length} products');
     } catch (e) {
       emit(ProductsFailure(errorMessage: e.toString()));
-      print('Error fetching products: $e');
     }
   }
 }
