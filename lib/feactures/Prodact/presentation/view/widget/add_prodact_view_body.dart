@@ -70,7 +70,7 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                       onSave: () {
                         BlocProvider.of<AddProdactCubit>(context).addProduct(
                           context,
-                          id: id ?? '',
+
                           name: prodactName ?? '',
                           subtitle: description ?? '',
                           price: double.tryParse(price ?? '') ?? 0.0,

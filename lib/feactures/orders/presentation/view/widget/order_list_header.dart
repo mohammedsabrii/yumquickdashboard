@@ -23,9 +23,9 @@ class OrderListHeader extends StatelessWidget {
         SizedBox(width: 12),
         CustomSearchTextFild(),
         Spacer(),
-        ActionItem(icon: AppAssets.kEditIcon),
+        ActionItem(icon: AppAssets.kEditIcon, onTap: () {}),
         SizedBox(width: 12),
-        ActionItem(icon: AppAssets.kDeleteicon),
+        ActionItem(icon: AppAssets.kDeleteicon, onTap: () {}),
       ],
     );
   }

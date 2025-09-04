@@ -8,7 +8,7 @@ class ProductService {
     final response = await supabase
         .from('products')
         .select(
-          'name, image, categories, price, price_after_discount, subtitle',
+          'name, image, categories, price, price_after_discount, subtitle ,id',
         );
 
     final products =

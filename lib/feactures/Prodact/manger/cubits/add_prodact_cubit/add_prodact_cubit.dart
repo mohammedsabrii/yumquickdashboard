@@ -19,7 +19,6 @@ class AddProdactCubit extends Cubit<AddProdactState> {
 
   Future<void> addProduct(
     BuildContext context, {
-    required String id,
     required String name,
     required String subtitle,
     required XFile? imageFile,
@@ -32,7 +31,7 @@ class AddProdactCubit extends Cubit<AddProdactState> {
         imageFile == null) {
       emit(
         AddProdactFailure(
-          errorMassage: 'Please fill all required fields and select a category',
+          errorMassage: 'يرجى ملء جميع الحقول المطلوبة واختيار فئة',
         ),
       );
       return;
@@ -41,7 +40,7 @@ class AddProdactCubit extends Cubit<AddProdactState> {
     if (priceAfterDiscount >= price) {
       emit(
         AddProdactFailure(
-          errorMassage: 'Price after discount must be less than original price',
+          errorMassage: 'يجب أن يكون السعر بعد الخصم أقل من السعر الأصلي',
         ),
       );
       return;
@@ -52,24 +51,28 @@ class AddProdactCubit extends Cubit<AddProdactState> {
       final imageUrl = await uplodeImageSrevice.uploadImageToSupabase(
         imageFile,
       );
+      final supabase = Supabase.instance.client;
 
       final productResponse =
           await supabase
               .from('products')
               .insert({
-                'id': id,
                 'name': name,
                 'subtitle': subtitle,
                 'image': imageUrl,
+                'category':
+                    selectedCategoryName, // تغيير من 'categories' إلى 'category'
                 'price': price,
                 'price_after_discount': priceAfterDiscount,
-                'categories': selectedCategoryName,
+                // يمكن إضافة 'discount_rate' إذا كنت تحتاجه
               })
               .select()
               .single();
+
       emit(AddProdactSuccess());
     } catch (e) {
       emit(AddProdactFailure(errorMassage: e.toString()));
+      print(e.toString());
     }
   }
 }

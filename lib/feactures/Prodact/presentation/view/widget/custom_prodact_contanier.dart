@@ -22,7 +22,9 @@ class CustomProdactContainer extends StatelessWidget {
         height: 30,
         decoration: ShapeDecoration(
           color: backgroundColor ?? AppColor.kMainColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
         child: Center(
           child: Text(
