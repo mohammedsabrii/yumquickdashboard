@@ -25,13 +25,11 @@ class AddProdactCubit extends Cubit<AddProdactState> {
     required double price,
     required double priceAfterDiscount,
   }) async {
-    if (name.isEmpty ||
-        price <= 0 ||
-        selectedCategoryName == null ||
-        imageFile == null) {
+    if (name.isEmpty || price <= 0 || imageFile == null) {
       emit(
         AddProdactFailure(
-          errorMassage: 'يرجى ملء جميع الحقول المطلوبة واختيار فئة',
+          errorMassage:
+              'Please fill all required fields and select at least one category',
         ),
       );
       return;
@@ -40,7 +38,7 @@ class AddProdactCubit extends Cubit<AddProdactState> {
     if (priceAfterDiscount >= price) {
       emit(
         AddProdactFailure(
-          errorMassage: 'يجب أن يكون السعر بعد الخصم أقل من السعر الأصلي',
+          errorMassage: 'Price after discount must be less than original price',
         ),
       );
       return;
@@ -51,7 +49,6 @@ class AddProdactCubit extends Cubit<AddProdactState> {
       final imageUrl = await uplodeImageSrevice.uploadImageToSupabase(
         imageFile,
       );
-      final supabase = Supabase.instance.client;
 
       final productResponse =
           await supabase
@@ -60,11 +57,9 @@ class AddProdactCubit extends Cubit<AddProdactState> {
                 'name': name,
                 'subtitle': subtitle,
                 'image': imageUrl,
-                'category':
-                    selectedCategoryName, // تغيير من 'categories' إلى 'category'
                 'price': price,
                 'price_after_discount': priceAfterDiscount,
-                // يمكن إضافة 'discount_rate' إذا كنت تحتاجه
+                'categories': selectedCategoryName,
               })
               .select()
               .single();
@@ -72,7 +67,6 @@ class AddProdactCubit extends Cubit<AddProdactState> {
       emit(AddProdactSuccess());
     } catch (e) {
       emit(AddProdactFailure(errorMassage: e.toString()));
-      print(e.toString());
     }
   }
 }

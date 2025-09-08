@@ -20,7 +20,7 @@ class AddProdactViewBody extends StatefulWidget {
 class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
   final formKey = GlobalKey<FormState>();
   XFile? pickedImage;
-  String? prodactName, description, price, discountPrice, id;
+  String? prodactName, description, price, discountPrice;
 
   bool isLoading = false;
   Future<void> pickImage() async {

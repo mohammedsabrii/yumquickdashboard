@@ -7,17 +7,15 @@ import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add
 
 class AddProdactCargorys extends StatelessWidget {
   const AddProdactCargorys({super.key});
-
+  final List<String> categoriesTitel = const [
+    'snacks',
+    'vegan',
+    'meal',
+    'drinks',
+    'dessert',
+  ];
   @override
   Widget build(BuildContext context) {
-    final List<String> categoriesTitel = const [
-      'snacks',
-      'vegan',
-      'meal',
-      'drinks',
-      'dessert',
-    ];
-
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.243,
       decoration: BoxDecoration(

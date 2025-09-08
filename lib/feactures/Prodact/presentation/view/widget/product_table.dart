@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/edit_product_dialog.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row_header.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/show_dialog_method.dart';
@@ -19,9 +20,21 @@ class ProductsTable extends StatelessWidget {
             context,
             prodactTableModel: products[index],
             deleteIcononTap: () {
-              showDeleteProductDialogMethod(context, id: products[index].id);
+              showDialog(
+                context: context,
+                builder:
+                    (context) =>
+                        ShowDeleteProductDialog(id: products[index].id),
+              );
             },
-            editIcononTap: () {},
+            editIcononTap: () {
+              showDialog(
+                context: context,
+                builder:
+                    (context) =>
+                        EditProductDialog(productEntity: products[index]),
+              );
+            },
           ),
         ),
       ],

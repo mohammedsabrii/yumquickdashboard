@@ -19,4 +19,21 @@ class UplodeImageSrevice {
 
     return supabase.storage.from('products').getPublicUrl(filePath);
   }
+
+  Future<String> updateImageToSupabase(XFile imageFile) async {
+    final fileName =
+        '${DateTime.now().millisecondsSinceEpoch}_${imageFile.name}';
+    final filePath = 'products/$fileName';
+    final bytes = await imageFile.readAsBytes();
+
+    await supabase.storage
+        .from('products')
+        .updateBinary(
+          filePath,
+          bytes,
+          fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+        );
+
+    return supabase.storage.from('products').getPublicUrl(filePath);
+  }
 }

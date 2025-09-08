@@ -45,13 +45,13 @@ class CustomAddedHeader extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             const Spacer(),
-            CustomProdactContainer(
+            CustomButtom(
               title: 'Cancel',
               backgroundColor: AppColor.kPinkishOrange,
               textColor: AppColor.kMainColor,
             ),
             SizedBox(width: 10),
-            CustomProdactContainer(onTap: onSave, title: 'Save'),
+            CustomButtom(onTap: onSave, title: 'Save'),
           ],
         ),
       ],
