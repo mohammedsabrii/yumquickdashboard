@@ -6,15 +6,19 @@ import 'package:yumquickdashboard/core/service/uplode_image_srevice.dart';
 
 part 'add_prodact_state.dart';
 
-class AddProdactCubit extends Cubit<AddProdactState> {
-  AddProdactCubit() : super(AddProdactInitial());
+class AddProductCubit extends Cubit<AddProductState> {
+  AddProductCubit() : super(AddProductInitial());
+
   final UplodeImageSrevice uplodeImageSrevice = UplodeImageSrevice();
   final SupabaseClient supabase = Supabase.instance.client;
+
+  String? selectedCategoryId;
   String? selectedCategoryName;
 
-  void selectCategory(String categoryName) {
+  void selectCategory(String? categoryId, String? categoryName) {
+    selectedCategoryId = categoryId;
     selectedCategoryName = categoryName;
-    emit(AddProdactInitial());
+    emit(AddProductInitial());
   }
 
   Future<void> addProduct(
@@ -25,11 +29,13 @@ class AddProdactCubit extends Cubit<AddProdactState> {
     required double price,
     required double priceAfterDiscount,
   }) async {
-    if (name.isEmpty || price <= 0 || imageFile == null) {
+    if (name.isEmpty ||
+        price <= 0 ||
+        imageFile == null ||
+        selectedCategoryId == null) {
       emit(
-        AddProdactFailure(
-          errorMassage:
-              'Please fill all required fields and select at least one category',
+        AddProductFailure(
+          errorMassage: 'Please fill all required fields and select a category',
         ),
       );
       return;
@@ -37,36 +43,32 @@ class AddProdactCubit extends Cubit<AddProdactState> {
 
     if (priceAfterDiscount >= price) {
       emit(
-        AddProdactFailure(
+        AddProductFailure(
           errorMassage: 'Price after discount must be less than original price',
         ),
       );
       return;
     }
 
-    emit(AddProdactLoading());
+    emit(AddProductLoading());
     try {
       final imageUrl = await uplodeImageSrevice.uploadImageToSupabase(
         imageFile,
       );
 
-      final productResponse =
-          await supabase
-              .from('products')
-              .insert({
-                'name': name,
-                'subtitle': subtitle,
-                'image': imageUrl,
-                'price': price,
-                'price_after_discount': priceAfterDiscount,
-                'categories': selectedCategoryName,
-              })
-              .select()
-              .single();
+      await supabase.from('products').insert({
+        'name': name,
+        'subtitle': subtitle,
+        'image': imageUrl,
+        'price': price,
+        'price_after_discount': priceAfterDiscount,
+        'categories': selectedCategoryName,
+        'category_id': selectedCategoryId,
+      });
 
-      emit(AddProdactSuccess());
+      emit(AddProductSuccess());
     } catch (e) {
-      emit(AddProdactFailure(errorMassage: e.toString()));
+      emit(AddProductFailure(errorMassage: e.toString()));
     }
   }
 }

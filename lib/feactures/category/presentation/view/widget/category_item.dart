@@ -1,11 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/category/model/category_model.dart';
 
 class CategoryItem extends StatefulWidget {
-  const CategoryItem({super.key, this.onTap});
+  const CategoryItem({super.key, this.onTap, required this.categoryModel});
   final Function()? onTap;
+  final CategoryModel categoryModel;
+
   @override
   State<CategoryItem> createState() => _CategoryItemState();
 }
@@ -26,7 +30,7 @@ class _CategoryItemState extends State<CategoryItem> {
 
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppAssets.kCategoryImageTest),
+                image: AssetImage(widget.categoryModel.imagePath),
                 fit: BoxFit.fitWidth,
               ),
               color: Colors.white,
@@ -55,13 +59,13 @@ class _CategoryItemState extends State<CategoryItem> {
                 children: [
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.017),
                   Text(
-                    'Men Clothes',
+                    widget.categoryModel.name,
                     style: AppStayls.styleInterBold16(
                       context,
                     ).copyWith(color: AppColor.kDarkRed),
                   ),
                   Text(
-                    '24 items',
+                    widget.categoryModel.itemCount.toString(),
                     style: AppStayls.styleInterRegular14(
                       context,
                     ).copyWith(color: Colors.grey),

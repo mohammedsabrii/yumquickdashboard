@@ -35,15 +35,15 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddProdactCubit, AddProdactState>(
+    return BlocConsumer<AddProductCubit, AddProductState>(
       listener: (context, state) {
-        if (state is AddProdactSuccess) {
+        if (state is AddProductSuccess) {
           customShowSnackBar(context, title: 'Successfully added product');
           isLoading = false;
-        } else if (state is AddProdactFailure) {
+        } else if (state is AddProductFailure) {
           customShowSnackBar(context, title: state.errorMassage);
           isLoading = false;
-        } else if (state is AddProdactLoading) {
+        } else if (state is AddProductLoading) {
           isLoading = true;
         } else {
           isLoading = false;
@@ -68,7 +68,7 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                   children: [
                     CustomAddedHeader(
                       onSave: () {
-                        BlocProvider.of<AddProdactCubit>(context).addProduct(
+                        BlocProvider.of<AddProductCubit>(context).addProduct(
                           context,
 
                           name: prodactName ?? '',

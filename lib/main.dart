@@ -20,7 +20,7 @@ class YumQuickDashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AddProdactCubit()),
+        BlocProvider(create: (context) => AddProductCubit()),
         BlocProvider(create: (context) => ProductsCubit()),
         BlocProvider(create: (context) => EditProductCubit()),
       ],

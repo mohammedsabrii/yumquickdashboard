@@ -1,16 +1,16 @@
 part of 'add_prodact_cubit.dart';
 
 @immutable
-sealed class AddProdactState {}
+sealed class AddProductState {}
 
-final class AddProdactInitial extends AddProdactState {}
+final class AddProductInitial extends AddProductState {}
 
-final class AddProdactSuccess extends AddProdactState {}
+final class AddProductSuccess extends AddProductState {}
 
-final class AddProdactLoading extends AddProdactState {}
+final class AddProductLoading extends AddProductState {}
 
-final class AddProdactFailure extends AddProdactState {
+final class AddProductFailure extends AddProductState {
   final String errorMassage;
 
-  AddProdactFailure({required this.errorMassage});
+  AddProductFailure({required this.errorMassage});
 }

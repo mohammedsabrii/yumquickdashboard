@@ -50,6 +50,7 @@ class ShowDeleteProductDialog extends StatelessWidget {
                     onTap: () async {
                       final SupabaseClient supabase = Supabase.instance.client;
                       await supabase.from('products').delete().eq('id', id);
+
                       GoRouter.of(context).pop();
                       BlocProvider.of<ProductsCubit>(context).loadProducts();
                     },
