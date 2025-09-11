@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/add_prodact_view.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 import 'package:yumquickdashboard/feactures/category/model/category_model.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/product_of_category_information.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/show_category_edit_view_header.dart';
 
 class ShowCategoryEditViewBody extends StatefulWidget {
   const ShowCategoryEditViewBody({
@@ -33,10 +33,8 @@ class _ShowCategoryEditViewBodyState extends State<ShowCategoryEditViewBody> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomAddedHeader(
-                  onClose: widget.onClose,
-                  title: 'Products of this category',
-                ),
+                ShowCategoryEditViewHeader(onClose: widget.onClose),
+
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
                 ProductOfCategoryInformation(
                   pushToAddProdactView: () {

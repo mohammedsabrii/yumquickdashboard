@@ -80,6 +80,7 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                           imageFile: pickedImage,
                         );
                       },
+                      onCancel: widget.onClose,
                       onClose: widget.onClose,
                       title: 'Add Product',
                     ),

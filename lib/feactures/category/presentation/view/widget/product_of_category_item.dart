@@ -3,12 +3,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/core/widget/action_item.dart';
 import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
 
 class ProductOfCategoryItem extends StatelessWidget {
-  const ProductOfCategoryItem({super.key, required this.product});
+  const ProductOfCategoryItem({
+    super.key,
+    required this.product,
+    required this.editIcononTap,
+    required this.deleteIcononTap,
+  });
   final ProductEntity product;
-
+  final Function() editIcononTap;
+  final Function() deleteIcononTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,9 +35,7 @@ class ProductOfCategoryItem extends StatelessWidget {
               product.image,
               width: 55,
               height: 48,
-              errorBuilder:
-                  (context, error, stackTrace) =>
-                      Image.asset(AppAssets.kImageTest, width: 55, height: 48),
+              fit: BoxFit.fill,
             ),
             const SizedBox(width: 20),
             Expanded(
@@ -41,6 +46,9 @@ class ProductOfCategoryItem extends StatelessWidget {
                 ).copyWith(color: AppColor.kDarkRed),
               ),
             ),
+            ActionItem(icon: AppAssets.kEditIcon, onTap: editIcononTap),
+            SizedBox(width: 15),
+            ActionItem(icon: AppAssets.kDeleteicon, onTap: deleteIcononTap),
           ],
         ),
       ),

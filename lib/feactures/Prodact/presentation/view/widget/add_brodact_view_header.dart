@@ -11,11 +11,12 @@ class CustomAddedHeader extends StatelessWidget {
     required this.onClose,
     required this.title,
     this.onSave,
+    this.onCancel,
   });
 
   final VoidCallback onClose;
   final String title;
-  final Function()? onSave;
+  final Function()? onSave, onCancel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,10 +46,13 @@ class CustomAddedHeader extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             const Spacer(),
-            CustomButtom(
-              title: 'Cancel',
-              backgroundColor: AppColor.kPinkishOrange,
-              textColor: AppColor.kMainColor,
+            GestureDetector(
+              onTap: onCancel,
+              child: CustomButtom(
+                title: 'Cancel',
+                backgroundColor: AppColor.kPinkishOrange,
+                textColor: AppColor.kMainColor,
+              ),
             ),
             SizedBox(width: 10),
             CustomButtom(onTap: onSave, title: 'Save'),
