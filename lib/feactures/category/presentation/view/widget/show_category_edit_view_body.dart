@@ -1,41 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/add_prodact_view.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
-import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_info.dart';
-import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_visibility.dart';
-import 'package:yumquickdashboard/feactures/category/presentation/view/widget/edit_category_information.dart';
+import 'package:yumquickdashboard/feactures/category/model/category_model.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/product_of_category_information.dart';
 
-class ShowCategoryEditViewBody extends StatelessWidget {
-  const ShowCategoryEditViewBody({super.key, required this.onClose});
+class ShowCategoryEditViewBody extends StatefulWidget {
+  const ShowCategoryEditViewBody({
+    super.key,
+    required this.onClose,
+    required this.category,
+  });
   final VoidCallback onClose;
+  final CategoryModel category;
+
+  @override
+  State<ShowCategoryEditViewBody> createState() =>
+      _ShowCategoryEditViewBodyState();
+}
+
+class _ShowCategoryEditViewBodyState extends State<ShowCategoryEditViewBody> {
+  bool showAddProdactView = false;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.sizeOf(context).height * 0.018,
-        horizontal: MediaQuery.sizeOf(context).width * 0.027,
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAddedHeader(onClose: onClose, title: 'Add Product'),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
-            Row(
-              spacing: 30,
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.sizeOf(context).height * 0.018,
+            horizontal: MediaQuery.sizeOf(context).width * 0.027,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CategoryEditInformation(),
-                Flexible(
-                  child: Column(
-                    spacing: 30,
-                    children: [CategoryVisibility(), CategoryInfo()],
-                  ),
+                CustomAddedHeader(
+                  onClose: widget.onClose,
+                  title: 'Products of this category',
+                ),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.018),
+                ProductOfCategoryInformation(
+                  pushToAddProdactView: () {
+                    setState(() {
+                      showAddProdactView = true;
+                    });
+                  },
+                  category: widget.category,
                 ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
+        if (showAddProdactView)
+          Positioned(
+            child: AddProdactView(
+              onClose: () {
+                setState(() {
+                  showAddProdactView = false;
+                });
+              },
+            ),
+          ),
+      ],
     );
   }
 }

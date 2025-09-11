@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/category/presentation/view/show_category_edit_view.dart';
+import 'package:yumquickdashboard/feactures/category/manger/cubit/cubit/category_product_cubit.dart';
+import 'package:yumquickdashboard/feactures/category/model/category_model.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/product_of_category_view.dart';
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/category_grid_view.dart';
 
 class CategoryView extends StatefulWidget {
@@ -13,6 +16,8 @@ class CategoryView extends StatefulWidget {
 class _CategoryViewState extends State<CategoryView> {
   bool showAddCategory = false;
   bool showCategoryEditView = false;
+  CategoryModel? selectedCategory;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -36,9 +41,10 @@ class _CategoryViewState extends State<CategoryView> {
                 ),
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.027),
                 CategoryGridView(
-                  onTap: () {
+                  onTap: (CategoryModel category) {
                     setState(() {
                       showCategoryEditView = true;
+                      selectedCategory = category;
                     });
                   },
                 ),
@@ -46,15 +52,22 @@ class _CategoryViewState extends State<CategoryView> {
             ),
           ),
         ),
-
-        if (showCategoryEditView)
+        if (showCategoryEditView && selectedCategory != null)
           Positioned.fill(
-            child: ShowCategoryEditView(
-              onClose: () {
-                setState(() {
-                  showCategoryEditView = false;
-                });
-              },
+            child: BlocProvider(
+              create:
+                  (context) =>
+                      ProductsByCategoryCubit()
+                        ..fetchProductsByCategory(selectedCategory!.id),
+              child: ProductOfCategory(
+                onClose: () {
+                  setState(() {
+                    showCategoryEditView = false;
+                    selectedCategory = null;
+                  });
+                },
+                category: selectedCategory!,
+              ),
             ),
           ),
       ],

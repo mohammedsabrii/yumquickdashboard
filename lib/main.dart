@@ -6,6 +6,7 @@ import 'package:yumquickdashboard/core/utils/app_router.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/edit_product_cubit/edit_product_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/products_cubit/products_cubit.dart';
+import 'package:yumquickdashboard/feactures/category/manger/cubit/cubit/category_product_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class YumQuickDashBoard extends StatelessWidget {
         BlocProvider(create: (context) => AddProductCubit()),
         BlocProvider(create: (context) => ProductsCubit()),
         BlocProvider(create: (context) => EditProductCubit()),
+        BlocProvider(create: (context) => ProductsByCategoryCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
