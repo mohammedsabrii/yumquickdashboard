@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
 class ProductService {
   final supabase = Supabase.instance.client;

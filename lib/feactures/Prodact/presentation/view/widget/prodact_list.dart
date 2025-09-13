@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/products_cubit/products_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/product_table.dart';
 
 class ProdactList extends StatelessWidget {

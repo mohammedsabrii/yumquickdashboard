@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Customers/model/customers_table_model.dart';
+import 'package:yumquickdashboard/feactures/Customers/presentation/entity/customer_entity.dart';
 
 TableRow customersTableRow(
   BuildContext context, {
-  required CustomersTableModel customersTableModel,
+  required CustomerEntity customersEntity,
   required Function() onTap,
 }) {
   return TableRow(
@@ -21,11 +21,6 @@ TableRow customersTableRow(
           onTap: onTap,
           child: Row(
             children: [
-              Checkbox(
-                value: false,
-                onChanged: (value) {},
-                side: BorderSide(color: Colors.grey),
-              ),
               Container(
                 width: 35,
                 height: 35,
@@ -35,7 +30,7 @@ TableRow customersTableRow(
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  customersTableModel.fristLetterOfName,
+                  customersEntity.name.characters.first,
                   style: AppStayls.styleInterBold24(
                     context,
                   ).copyWith(color: Colors.white),
@@ -46,7 +41,7 @@ TableRow customersTableRow(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    customersTableModel.name,
+                    customersEntity.name,
                     style: AppStayls.styleInterRegular14(
                       context,
                     ).copyWith(color: AppColor.kDarkRed),
@@ -64,7 +59,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          customersTableModel.location,
+          customersEntity.email,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -77,7 +72,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          customersTableModel.location,
+          customersEntity.phone,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -90,7 +85,7 @@ TableRow customersTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          customersTableModel.spent,
+          customersEntity.country,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),

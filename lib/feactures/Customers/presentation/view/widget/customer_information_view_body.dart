@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/widget/add_tags.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_information_overview.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_orders.dart';
-import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/personal_information_and_notes.dart';
+import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/personal_information.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 
 class CustomerInformationViewBody extends StatelessWidget {
@@ -26,7 +26,7 @@ class CustomerInformationViewBody extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    PersonalInformationAndNotes(),
+                    PersonalInformation(),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * 0.0289,
                     ),

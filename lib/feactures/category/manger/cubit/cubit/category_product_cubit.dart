@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
 part 'category_product_state.dart';
 

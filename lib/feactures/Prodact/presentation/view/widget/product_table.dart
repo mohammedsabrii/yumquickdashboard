@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/feactures/Prodact/model/prodact_table_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/edit_product_dialog.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/prodact_teble_row_header.dart';

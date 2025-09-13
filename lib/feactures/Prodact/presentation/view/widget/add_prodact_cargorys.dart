@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_constant.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/model/category_info_model.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_category_item.dart';
 

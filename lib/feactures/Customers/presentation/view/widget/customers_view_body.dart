@@ -46,7 +46,7 @@ class _CustomersViewBodyState extends State<CustomersViewBody> {
           ),
         ),
         if (showCustomerInformation)
-          Positioned.fill(
+          Positioned(
             child: CustomerInformationView(
               onClose: () {
                 setState(() {

@@ -11,30 +11,8 @@ TableRow customersTableHeader(BuildContext context) {
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: Row(
-          children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-            SizedBox(width: 12),
-            Text(
-              'Name',
-              style: AppStayls.styleInterRegular14(
-                context,
-              ).copyWith(color: Colors.grey),
-            ),
-          ],
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(
-          top: MediaQuery.sizeOf(context).height * 0.02,
-          bottom: MediaQuery.sizeOf(context).height * 0.01,
-        ),
         child: Text(
-          'Location',
+          'Name',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -46,7 +24,7 @@ TableRow customersTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Orders',
+          'Email',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -58,7 +36,19 @@ TableRow customersTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Spent',
+          'Phone Number',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height * 0.02,
+          bottom: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Text(
+          'Cuntry',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),

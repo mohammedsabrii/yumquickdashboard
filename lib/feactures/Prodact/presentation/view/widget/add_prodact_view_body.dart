@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
-import 'package:yumquickdashboard/feactures/Prodact/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_cargorys.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_information.dart';
