@@ -26,7 +26,9 @@ class CustomerInformationOverview extends StatelessWidget {
         >(
           builder: (context, state) {
             if (state is CustomersProfileInfoLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(color: AppColor.kMainColor),
+              );
             } else if (state is CustomersProfileInfoSuccess &&
                 state.customerEntity.isNotEmpty) {
               final customer = state.customerEntity.firstWhere(
@@ -92,7 +94,7 @@ class CustomerInformationOverview extends StatelessWidget {
             } else if (state is CustomersProfileInfoFailure) {
               return Center(
                 child: Text(
-                  'error: ${state.errorMassage}',
+                  'Error: ${state.errorMassage}',
                   style: AppStayls.styleInterRegular14(
                     context,
                   ).copyWith(color: Colors.red),

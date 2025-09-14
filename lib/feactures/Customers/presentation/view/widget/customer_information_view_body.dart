@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_information_overview.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_orders.dart';
+import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customers_information_view_header.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/personal_information.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 
 class CustomerInformationViewBody extends StatelessWidget {
   const CustomerInformationViewBody({
@@ -30,7 +30,7 @@ class CustomerInformationViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAddedHeader(onClose: onClose, title: 'Customer Information'),
+            CustomersInformationViewHeader(onClose: onClose),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.0289),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

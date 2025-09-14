@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/feactures/category/model/category_model.dart';
-import 'package:yumquickdashboard/feactures/category/presentation/view/widget/show_category_edit_view_body.dart';
+import 'package:yumquickdashboard/feactures/category/presentation/view/widget/show_category_product_view_body.dart';
 
 class ProductOfCategory extends StatelessWidget {
   const ProductOfCategory({

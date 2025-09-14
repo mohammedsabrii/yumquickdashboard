@@ -4,18 +4,17 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
 
-class CustomerNameCountryTotalOrdersAndJoiningDate extends StatelessWidget {
-  const CustomerNameCountryTotalOrdersAndJoiningDate({
-    super.key,
-    required this.customerId,
-  });
+class CustomerNameCountryAndAddress extends StatelessWidget {
+  const CustomerNameCountryAndAddress({super.key, required this.customerId});
   final String customerId;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CustomersProfileInfoCubit, CustomersProfileInfoState>(
       builder: (context, state) {
         if (state is CustomersProfileInfoLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: CircularProgressIndicator(color: AppColor.kMainColor),
+          );
         } else if (state is CustomersProfileInfoSuccess) {
           final customer = state.customerEntity.firstWhere(
             (c) => c.id == customerId,
@@ -32,7 +31,7 @@ class CustomerNameCountryTotalOrdersAndJoiningDate extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    customer.name,
+                    customer.name.characters.first,
                     textAlign: TextAlign.center,
                     style: AppStayls.styleInterBold32(
                       context,
@@ -63,7 +62,7 @@ class CustomerNameCountryTotalOrdersAndJoiningDate extends StatelessWidget {
         } else if (state is CustomersProfileInfoFailure) {
           return Center(
             child: Text(
-              'error: ${state.errorMassage}',
+              'Error: ${state.errorMassage}',
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: Colors.red),

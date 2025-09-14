@@ -4,8 +4,8 @@ import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-class ShowCategoryEditViewHeader extends StatelessWidget {
-  const ShowCategoryEditViewHeader({super.key, required this.onClose});
+class ShowCategoryProductViewHeader extends StatelessWidget {
+  const ShowCategoryProductViewHeader({super.key, required this.onClose});
 
   final VoidCallback onClose;
 
