@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/core/widget/add_tags.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_information_overview.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/customer_orders.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/personal_information.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 
 class CustomerInformationViewBody extends StatelessWidget {
-  const CustomerInformationViewBody({super.key, required this.onClose});
+  const CustomerInformationViewBody({
+    super.key,
+    required this.onClose,
+    required this.customerId,
+  });
   final VoidCallback onClose;
+  final String customerId;
+
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CustomersProfileInfoCubit>(
+      context,
+    ).fetchCustomerById(context, customerId);
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -26,7 +37,7 @@ class CustomerInformationViewBody extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    PersonalInformation(),
+                    PersonalInformation(customerId: customerId),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * 0.0289,
                     ),
@@ -35,15 +46,7 @@ class CustomerInformationViewBody extends StatelessWidget {
                 ),
                 SizedBox(width: MediaQuery.sizeOf(context).width * 0.02),
                 Flexible(
-                  child: Column(
-                    children: [
-                      CustomerInformationOverview(),
-                      SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.0289,
-                      ),
-                      AddTags(),
-                    ],
-                  ),
+                  child: CustomerInformationOverview(customerId: customerId),
                 ),
               ],
             ),

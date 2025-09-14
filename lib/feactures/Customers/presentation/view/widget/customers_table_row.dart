@@ -6,7 +6,7 @@ import 'package:yumquickdashboard/feactures/Customers/presentation/entity/custom
 TableRow customersTableRow(
   BuildContext context, {
   required CustomerEntity customersEntity,
-  required Function() onTap,
+  required Function(String) onTap,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -18,7 +18,7 @@ TableRow customersTableRow(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: GestureDetector(
-          onTap: onTap,
+          onTap: () => onTap(customersEntity.id),
           child: Row(
             children: [
               Container(

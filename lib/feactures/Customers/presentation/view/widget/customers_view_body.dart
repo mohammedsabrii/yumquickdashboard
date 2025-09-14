@@ -13,6 +13,7 @@ class CustomersViewBody extends StatefulWidget {
 
 class _CustomersViewBodyState extends State<CustomersViewBody> {
   bool showCustomerInformation = false;
+  String? selectedCustomerId;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +36,10 @@ class _CustomersViewBodyState extends State<CustomersViewBody> {
                   ).copyWith(color: AppColor.kDarkRed),
                 ),
                 CustomersViewBodyDetails(
-                  onTap: () {
+                  onTap: (customerId) {
                     setState(() {
                       showCustomerInformation = true;
+                      selectedCustomerId = customerId;
                     });
                   },
                 ),
@@ -48,9 +50,11 @@ class _CustomersViewBodyState extends State<CustomersViewBody> {
         if (showCustomerInformation)
           Positioned(
             child: CustomerInformationView(
+              customerId: selectedCustomerId!,
               onClose: () {
                 setState(() {
                   showCustomerInformation = false;
+                  selectedCustomerId = null;
                 });
               },
             ),

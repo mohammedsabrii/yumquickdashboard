@@ -1,51 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
 
 class CustomerNameCountryTotalOrdersAndJoiningDate extends StatelessWidget {
-  const CustomerNameCountryTotalOrdersAndJoiningDate({super.key});
-
+  const CustomerNameCountryTotalOrdersAndJoiningDate({
+    super.key,
+    required this.customerId,
+  });
+  final String customerId;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 20,
-      children: [
-        Container(
-          width: 72,
-          height: 72,
-          decoration: ShapeDecoration(
-            color: const Color(0xFFA1A7C4),
-            shape: OvalBorder(),
-          ),
-          child: Center(
+    return BlocBuilder<CustomersProfileInfoCubit, CustomersProfileInfoState>(
+      builder: (context, state) {
+        if (state is CustomersProfileInfoLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is CustomersProfileInfoSuccess) {
+          final customer = state.customerEntity.firstWhere(
+            (c) => c.id == customerId,
+          );
+          return Row(
+            spacing: 20,
+            children: [
+              Container(
+                width: 72,
+                height: 72,
+                decoration: const ShapeDecoration(
+                  color: Color(0xFFA1A7C4),
+                  shape: OvalBorder(),
+                ),
+                child: Center(
+                  child: Text(
+                    customer.name,
+                    textAlign: TextAlign.center,
+                    style: AppStayls.styleInterBold32(
+                      context,
+                    ).copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    customer.name,
+                    style: AppStayls.styleInterBold16(
+                      context,
+                    ).copyWith(color: AppColor.kDarkRed),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${customer.country}\n${customer.address}',
+                    style: AppStayls.styleInterRegular14(
+                      context,
+                    ).copyWith(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
+          );
+        } else if (state is CustomersProfileInfoFailure) {
+          return Center(
             child: Text(
-              'R',
-              textAlign: TextAlign.center,
-              style: AppStayls.styleInterBold32(
-                context,
-              ).copyWith(color: Colors.white),
-            ),
-          ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Randhir Kumar',
-              style: AppStayls.styleInterBold16(
-                context,
-              ).copyWith(color: AppColor.kDarkRed),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'India\n5 Orders\nCustomer for 2 years',
+              'error: ${state.errorMassage}',
               style: AppStayls.styleInterRegular14(
                 context,
-              ).copyWith(color: Colors.grey),
+              ).copyWith(color: Colors.red),
             ),
-          ],
-        ),
-      ],
+          );
+        }
+        return const Center(child: Text('No data available'));
+      },
     );
   }
 }

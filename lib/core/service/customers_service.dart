@@ -7,12 +7,19 @@ class CustomersService {
     final response = await supabase
         .from('profiles')
         .select('username, phone, email, country, date_of_birth, address, id');
+    return response.map((data) => CustomerEntity.fromJson(data)).toList();
+  }
 
-    final customer =
-        (response as List)
-            .map((item) => CustomerEntity.fromJson(item))
-            .toList();
+  Future<CustomerEntity> fetchCustomerById(String customerId) async {
+    final response =
+        await supabase
+            .from('profiles')
+            .select(
+              'username, phone, email, country, date_of_birth, address, id',
+            )
+            .eq('id', customerId)
+            .single();
 
-    return customer;
+    return CustomerEntity.fromJson(response);
   }
 }

@@ -8,11 +8,13 @@ import 'package:yumquickdashboard/feactures/Customers/presentation/view/widget/c
 
 class CustomersViewBodyDetails extends StatelessWidget {
   const CustomersViewBodyDetails({super.key, required this.onTap});
-  final Function() onTap;
+  final Function(String) onTap;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CustomersProfileInfoCubit>(context).editPrifile(context);
+    BlocProvider.of<CustomersProfileInfoCubit>(
+      context,
+    ).fetchCustomersInfo(context);
     return BlocBuilder<CustomersProfileInfoCubit, CustomersProfileInfoState>(
       builder: (context, state) {
         if (state is CustomersProfileInfoLoading) {
@@ -41,7 +43,6 @@ class CustomersViewBodyDetails extends StatelessWidget {
                         context,
                       ).copyWith(color: AppColor.kDarkRed),
                     ),
-
                     SizedBox(height: 20),
                     Table(
                       columnWidths: {
