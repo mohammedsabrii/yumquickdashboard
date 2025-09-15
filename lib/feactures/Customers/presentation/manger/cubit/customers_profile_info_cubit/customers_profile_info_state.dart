@@ -14,7 +14,7 @@ final class CustomersProfileInfoSuccess extends CustomersProfileInfoState {
 final class CustomersProfileInfoLoading extends CustomersProfileInfoState {}
 
 final class CustomersProfileInfoFailure extends CustomersProfileInfoState {
-  final String errorMassage;
+  final String errorMessage;
 
-  CustomersProfileInfoFailure({required this.errorMassage});
+  CustomersProfileInfoFailure({required this.errorMessage});
 }

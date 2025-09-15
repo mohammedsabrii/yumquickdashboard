@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Coupons/model/all_coupons_table_model.dart';
+import 'package:yumquickdashboard/core/widget/action_item.dart';
+import 'package:yumquickdashboard/feactures/Coupons/entity/offers_entity.dart';
 
-TableRow allCouponsTableRow(
+TableRow allOffersTableRow(
   BuildContext context, {
-  required AllCouponsTableModel allCouponsTableModel,
+  required OffersEntity offersEntity,
+  required dynamic Function() editIcononTap,
+  required dynamic Function() deleteIcononTap,
 }) {
   return TableRow(
     decoration: BoxDecoration(
@@ -20,13 +22,6 @@ TableRow allCouponsTableRow(
         ),
         child: Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: AppColor.kDarkRed),
-            ),
-
-            SizedBox(width: 12),
             Container(
               width: 48,
               height: 48,
@@ -36,11 +31,18 @@ TableRow allCouponsTableRow(
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
-              child: Center(child: SvgPicture.asset(AppAssets.kProdactIcon)),
+              child: Center(
+                child: Image.network(
+                  offersEntity.image,
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             SizedBox(width: 12),
             Text(
-              allCouponsTableModel.couponName,
+              offersEntity.offerName,
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: AppColor.kDarkRed),
@@ -48,37 +50,61 @@ TableRow allCouponsTableRow(
           ],
         ),
       ),
+
       Padding(
         padding: EdgeInsets.only(
           top: MediaQuery.sizeOf(context).height * 0.03,
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          allCouponsTableModel.usage,
+          offersEntity.productName,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
         ),
       ),
-
-      Padding(
-        padding: EdgeInsets.only(
-          top: MediaQuery.sizeOf(context).height * 0.03,
-          bottom: MediaQuery.sizeOf(context).height * 0.01,
-        ),
-        child: allCouponsTableModel.status,
-      ),
-
       Padding(
         padding: EdgeInsets.only(
           top: MediaQuery.sizeOf(context).height * 0.03,
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          allCouponsTableModel.date,
+          offersEntity.price.toString(),
           style: AppStayls.styleInterRegular14(
             context,
-          ).copyWith(color: AppColor.kDarkRed, fontSize: 13),
+          ).copyWith(color: AppColor.kDarkRed),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height * 0.03,
+          bottom: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Text(
+          offersEntity.priceAfterDiscount.toString(),
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: AppColor.kDarkRed),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height * 0.03,
+          bottom: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Row(
+          children: [
+            Text(
+              '${((offersEntity.priceAfterDiscount / offersEntity.price) * 100).toInt()} %',
+              style: AppStayls.styleInterRegular14(
+                context,
+              ).copyWith(color: AppColor.kDarkRed, fontSize: 13),
+            ),
+            Spacer(),
+            ActionItem(icon: AppAssets.kEditIcon, onTap: editIcononTap),
+            SizedBox(width: 15),
+            ActionItem(icon: AppAssets.kDeleteicon, onTap: deleteIcononTap),
+          ],
         ),
       ),
     ],

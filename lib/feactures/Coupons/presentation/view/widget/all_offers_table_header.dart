@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-TableRow allCouponsTableHeader(BuildContext context) {
+TableRow allOfferssTableHeader(BuildContext context) {
   return TableRow(
     decoration: BoxDecoration(
       border: Border(bottom: BorderSide(width: 2, color: Colors.grey)),
@@ -11,22 +11,11 @@ TableRow allCouponsTableHeader(BuildContext context) {
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: Row(
-          children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-            SizedBox(width: 12),
-
-            Text(
-              'Coupon Name',
-              style: AppStayls.styleInterRegular14(
-                context,
-              ).copyWith(color: Colors.grey),
-            ),
-          ],
+        child: Text(
+          'Offer Title',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
         ),
       ),
 
@@ -36,7 +25,20 @@ TableRow allCouponsTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Usage',
+          'Produc Name',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
+        ),
+      ),
+
+      Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height * 0.02,
+          bottom: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Text(
+          'Price',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -48,7 +50,7 @@ TableRow allCouponsTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Status',
+          'Price After Discount',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -60,7 +62,7 @@ TableRow allCouponsTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Date',
+          'Discount Rate',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),

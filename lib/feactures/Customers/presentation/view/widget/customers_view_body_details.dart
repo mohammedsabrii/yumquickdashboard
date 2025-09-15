@@ -76,7 +76,7 @@ class CustomersViewBodyDetails extends StatelessWidget {
         } else if (state is CustomersProfileInfoFailure) {
           return Center(
             child: Text(
-              "Error: ${state.errorMassage}",
+              "Error: ${state.errorMessage}",
               style: AppStayls.styleInterBold16(
                 context,
               ).copyWith(color: AppColor.kDarkRed),

@@ -94,7 +94,7 @@ class CustomerInformationOverview extends StatelessWidget {
             } else if (state is CustomersProfileInfoFailure) {
               return Center(
                 child: Text(
-                  'Error: ${state.errorMassage}',
+                  'Error: ${state.errorMessage}',
                   style: AppStayls.styleInterRegular14(
                     context,
                   ).copyWith(color: Colors.red),

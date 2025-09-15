@@ -10,7 +10,7 @@ final class AddProductSuccess extends AddProductState {}
 final class AddProductLoading extends AddProductState {}
 
 final class AddProductFailure extends AddProductState {
-  final String errorMassage;
+  final String errorMessage;
 
-  AddProductFailure({required this.errorMassage});
+  AddProductFailure({required this.errorMessage});
 }

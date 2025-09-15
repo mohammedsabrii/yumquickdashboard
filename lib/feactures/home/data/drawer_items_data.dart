@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/coupons_view.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/offers_view.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/view/customers_view.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/dashboard_view.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/prodact_view.dart';
@@ -14,7 +14,7 @@ final List<Widget> drawerItamsData = [
   CategoryView(),
   CustomersView(),
   ReportView(),
-  CouponsView(),
+  OffersView(),
   Container(height: 100, width: 100, color: Colors.red),
   Container(height: 100, width: 100, color: Colors.red),
   Container(height: 100, width: 100, color: Colors.red),

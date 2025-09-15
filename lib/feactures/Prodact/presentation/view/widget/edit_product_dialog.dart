@@ -41,7 +41,7 @@ class _EditProductDialogState extends State<EditProductDialog> {
           customShowSnackBar(context, title: 'Successfully edit product');
         } else if (state is EditProductFailure) {
           Navigator.of(context).pop();
-          customShowSnackBar(context, title: state.errorMassage);
+          customShowSnackBar(context, title: state.errorMessage);
         }
       },
       builder: (context, state) {

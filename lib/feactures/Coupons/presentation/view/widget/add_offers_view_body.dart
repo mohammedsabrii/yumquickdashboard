@@ -4,26 +4,26 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offer_category.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offer_information.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_cargorys.dart';
-import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_information.dart';
 
-class AddProdactViewBody extends StatefulWidget {
-  const AddProdactViewBody({super.key, required this.onClose});
+class AddOfferViewBody extends StatefulWidget {
+  const AddOfferViewBody({super.key, required this.onClose});
   final VoidCallback onClose;
-
   @override
-  State<AddProdactViewBody> createState() => _AddProdactViewBodyyState();
+  State<AddOfferViewBody> createState() => _AddOfferViewBodyState();
 }
 
-class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
+class _AddOfferViewBodyState extends State<AddOfferViewBody> {
+  bool isLoading = false;
+
   final formKey = GlobalKey<FormState>();
 
-  String? prodactName, description, price, discountPrice;
-
-  bool isLoading = false;
   XFile? pickedImage;
+
+  String? subaTitle, price, discountPrice, productName, offerTitle;
   Future<void> pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -36,17 +36,15 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddProductCubit, AddProductState>(
+    return BlocConsumer<AddOffersCubit, AddOffersState>(
       listener: (context, state) {
-        if (state is AddProductSuccess) {
-          customShowSnackBar(context, title: 'Successfully added product');
-          isLoading = false;
-        } else if (state is AddProductFailure) {
-          customShowSnackBar(context, title: state.errorMessage);
-          isLoading = false;
-        } else if (state is AddProductLoading) {
+        if (state is AddOffersLoading) {
           isLoading = true;
-        } else {
+        } else if (state is AddOffersSuccess) {
+          customShowSnackBar(context, title: 'Successfully added offer');
+          isLoading = false;
+        } else if (state is AddOffersFailure) {
+          customShowSnackBar(context, title: state.errorMessage);
           isLoading = false;
         }
       },
@@ -69,11 +67,10 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                   children: [
                     CustomAddedHeader(
                       onSave: () {
-                        BlocProvider.of<AddProductCubit>(context).addProduct(
-                          context,
-
-                          name: prodactName ?? '',
-                          subtitle: description ?? '',
+                        BlocProvider.of<AddOffersCubit>(context).addOffers(
+                          productName: productName ?? '',
+                          offerTitle: offerTitle ?? '',
+                          subtitle: subaTitle ?? '',
                           price: double.tryParse(price ?? '') ?? 0.0,
                           priceAfterDiscount:
                               double.tryParse(discountPrice ?? '') ?? 0.0,
@@ -90,13 +87,15 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: MediaQuery.sizeOf(context).width * 0.02,
                       children: [
-                        AddProdactInformation(
+                        AddOfferInformation(
                           pickedImage: pickedImage,
                           onImagePicked: () => pickImage(),
                           onNameChanged:
-                              (value) => setState(() => prodactName = value),
+                              (value) => setState(() => productName = value),
+                          onOfferTitleChanged:
+                              (value) => setState(() => offerTitle = value),
                           onDescriptionChanged:
-                              (value) => setState(() => description = value),
+                              (value) => setState(() => subaTitle = value),
                           onPriceChanged:
                               (value) => setState(() => price = value),
                           onDiscountPriceChanged:
@@ -106,7 +105,7 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             spacing: 20,
-                            children: [AddProdactCargorys()],
+                            children: [AddOfferCargorys()],
                           ),
                         ),
                       ],

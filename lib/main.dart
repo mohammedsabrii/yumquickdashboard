@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/utils/app_constant.dart';
 import 'package:yumquickdashboard/core/utils/app_router.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/get_offers_cubit/get_offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/edit_product_cubit/edit_product_cubit.dart';
@@ -27,6 +29,8 @@ class YumQuickDashBoard extends StatelessWidget {
         BlocProvider(create: (context) => EditProductCubit()),
         BlocProvider(create: (context) => ProductsByCategoryCubit()),
         BlocProvider(create: (context) => CustomersProfileInfoCubit()),
+        BlocProvider(create: (context) => AddOffersCubit()),
+        BlocProvider(create: (context) => GetOffersCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

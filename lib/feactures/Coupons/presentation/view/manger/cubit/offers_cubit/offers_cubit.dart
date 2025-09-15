@@ -3,38 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/service/uplode_image_srevice.dart';
+part 'offers_state.dart';
 
-part 'add_prodact_state.dart';
-
-class AddProductCubit extends Cubit<AddProductState> {
-  AddProductCubit() : super(AddProductInitial());
-
+class AddOffersCubit extends Cubit<AddOffersState> {
+  AddOffersCubit() : super(OffersInitial());
   final UplodeImageSrevice uplodeImageSrevice = UplodeImageSrevice();
   final SupabaseClient supabase = Supabase.instance.client;
-
-  String? selectedCategoryId;
   String? selectedCategoryName;
-
-  void selectCategory(String? categoryId, String? categoryName) {
-    selectedCategoryId = categoryId;
+  void selectCategory(String? categoryName) {
     selectedCategoryName = categoryName;
-    emit(AddProductInitial());
+    emit(OffersInitial());
   }
 
-  Future<void> addProduct(
-    BuildContext context, {
-    required String name,
+  Future<void> addOffers({
+    required String productName,
+    required String offerTitle,
     required String subtitle,
     required XFile? imageFile,
     required double price,
     required double priceAfterDiscount,
   }) async {
-    if (name.isEmpty ||
-        price <= 0 ||
-        imageFile == null ||
-        selectedCategoryId == null) {
+    if (offerTitle.isEmpty || price <= 0 || imageFile == null) {
       emit(
-        AddProductFailure(
+        AddOffersFailure(
           errorMessage: 'Please fill all required fields and select a category',
         ),
       );
@@ -43,33 +34,31 @@ class AddProductCubit extends Cubit<AddProductState> {
 
     if (priceAfterDiscount >= price) {
       emit(
-        AddProductFailure(
+        AddOffersFailure(
           errorMessage: 'Price after discount must be less than original price',
         ),
       );
       return;
     }
-
-    emit(AddProductLoading());
+    emit(AddOffersLoading());
     try {
       final imageUrl = await uplodeImageSrevice.uploadImageToSupabase(
         imageFile,
-        'products',
+        'offers',
       );
-
-      await supabase.from('products').insert({
-        'name': name,
+      await supabase.from('offers').insert({
+        'product_name': productName,
+        'offer_name': offerTitle,
         'subtitle': subtitle,
         'image': imageUrl,
         'price': price,
         'price_after_discount': priceAfterDiscount,
-        'categories': selectedCategoryName,
-        'category_id': selectedCategoryId,
+        'category': selectedCategoryName,
       });
-
-      emit(AddProductSuccess());
+      emit(AddOffersSuccess());
     } catch (e) {
-      emit(AddProductFailure(errorMessage: e.toString()));
+      emit(AddOffersFailure(errorMessage: e.toString()));
+      print(e.toString());
     }
   }
 }

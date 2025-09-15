@@ -30,7 +30,7 @@ class EditProductCubit extends Cubit<EditProductState> {
 
       if (image != null) {
         final uploadService = UplodeImageSrevice();
-        imageUrl = await uploadService.uploadImageToSupabase(image);
+        imageUrl = await uploadService.uploadImageToSupabase(image, 'products');
       }
 
       final updateData = {
@@ -48,7 +48,7 @@ class EditProductCubit extends Cubit<EditProductState> {
 
       emit(EditProductSuccess());
     } catch (e) {
-      emit(EditProductFailure(errorMassage: e.toString()));
+      emit(EditProductFailure(errorMessage: e.toString()));
     }
   }
 }
