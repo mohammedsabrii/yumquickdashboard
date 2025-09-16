@@ -5,6 +5,8 @@ import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/get_offers_cubit/get_offers_cubit.dart';
 import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/all_offers_table_header.dart';
 import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/all_offers_table_row.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/delete_offer_dialog.dart';
+import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/edit_offer_dialog.dart';
 
 class OfffersViewBodyBlocBuilder extends StatelessWidget {
   const OfffersViewBodyBlocBuilder({super.key});
@@ -44,8 +46,24 @@ class OfffersViewBodyBlocBuilder extends StatelessWidget {
                     (index) => allOffersTableRow(
                       context,
                       offersEntity: state.getOffers[index],
-                      deleteIcononTap: () {},
-                      editIcononTap: () {},
+                      deleteIcononTap: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => DeleteOfferDailog(
+                                id: state.getOffers[index].id,
+                              ),
+                        );
+                      },
+                      editIcononTap: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => EditOfferDialog(
+                                offersEntity: state.getOffers[index],
+                              ),
+                        );
+                      },
                     ),
                   ),
                 ],

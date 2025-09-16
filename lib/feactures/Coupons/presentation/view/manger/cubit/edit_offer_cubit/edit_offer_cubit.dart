@@ -4,33 +4,33 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/service/uplode_image_srevice.dart';
 
-part 'edit_product_state.dart';
+part 'edit_offer_state.dart';
 
-class EditProductCubit extends Cubit<EditProductState> {
-  EditProductCubit() : super(EditProductInitial());
-
+class EditOfferCubit extends Cubit<EditOfferState> {
+  EditOfferCubit() : super(EditOfferInitial());
   final UplodeImageSrevice uplodeImageSrevice = UplodeImageSrevice();
-
-  Future<void> editProduct({
-    required String name,
+  Future<void> editOffer({
+    required String productName,
+    required String offerTitle,
     required String subtitle,
     XFile? image,
     required String price,
     required String priceAfterDiscount,
     required String id,
   }) async {
-    emit(EditProductLoading());
+    emit(EditOfferLoading());
     try {
       final SupabaseClient supabase = Supabase.instance.client;
       String? imageUrl;
 
       if (image != null) {
         final uploadService = UplodeImageSrevice();
-        imageUrl = await uploadService.uploadImageToSupabase(image, 'products');
+        imageUrl = await uploadService.uploadImageToSupabase(image, 'offerss');
       }
 
       final updateData = {
-        'name': name,
+        'product_name': productName,
+        'offer_name': offerTitle,
         'subtitle': subtitle,
         'price': price,
         'price_after_discount': priceAfterDiscount,
@@ -40,11 +40,11 @@ class EditProductCubit extends Cubit<EditProductState> {
         updateData['image'] = imageUrl;
       }
 
-      await supabase.from('products').update(updateData).eq('id', id);
+      await supabase.from('offers').update(updateData).eq('id', id);
 
-      emit(EditProductSuccess());
+      emit(EditOfferSuccess());
     } catch (e) {
-      emit(EditProductFailure(errorMessage: e.toString()));
+      emit(EditOfferFailure(errorMessage: e.toString()));
     }
   }
 }
