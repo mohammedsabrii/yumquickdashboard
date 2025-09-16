@@ -30,7 +30,17 @@ class EditImageWidget extends StatelessWidget {
               ).copyWith(color: AppColor.kDarkRed),
             ),
             SizedBox(height: 10),
-            Image.network(imageUrl, height: 100, fit: BoxFit.cover),
+            Container(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                  image: NetworkImage(imageUrl),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
           ],
         ),
         SizedBox(width: 20),

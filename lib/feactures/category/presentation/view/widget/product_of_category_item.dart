@@ -31,12 +31,18 @@ class ProductOfCategoryItem extends StatelessWidget {
           children: [
             SvgPicture.asset(AppAssets.kDotIcon),
             const SizedBox(width: 10),
-            Image.network(
-              product.image,
+            Container(
+              height: 55,
               width: 55,
-              height: 48,
-              fit: BoxFit.fill,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                  image: NetworkImage(product.image),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
+
             const SizedBox(width: 20),
             Expanded(
               child: Text(

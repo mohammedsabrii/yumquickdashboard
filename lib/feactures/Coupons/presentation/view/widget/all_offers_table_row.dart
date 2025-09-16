@@ -22,21 +22,16 @@ TableRow allOffersTableRow(
         ),
         child: Row(
           children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: ShapeDecoration(
-                color: AppColor.kMainColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              child: Center(
-                child: Image.network(
-                  offersEntity.image,
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.fill,
+            Center(
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                    image: NetworkImage(offersEntity.image),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -89,7 +84,7 @@ TableRow allOffersTableRow(
       ),
       Padding(
         padding: EdgeInsets.only(
-          top: MediaQuery.sizeOf(context).height * 0.03,
+          top: MediaQuery.sizeOf(context).height * 0.02,
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Row(

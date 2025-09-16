@@ -7,7 +7,7 @@ import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
 TableRow prodactsTableRow(
   BuildContext context, {
-  required ProductEntity prodactTableModel,
+  required ProductEntity prodactEntity,
   bool isSelected = false,
   required dynamic Function() editIcononTap,
   required dynamic Function() deleteIcononTap,
@@ -23,7 +23,17 @@ TableRow prodactsTableRow(
         ),
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Image.network(prodactTableModel.image, width: 59, height: 48),
+          child: Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(
+                image: NetworkImage(prodactEntity.image),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
         ),
       ),
       Padding(
@@ -32,7 +42,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.name,
+          prodactEntity.name,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -45,7 +55,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.category,
+          prodactEntity.category,
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -57,7 +67,7 @@ TableRow prodactsTableRow(
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          prodactTableModel.price.toString(),
+          prodactEntity.price.toString(),
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: AppColor.kDarkRed),
@@ -72,7 +82,7 @@ TableRow prodactsTableRow(
         child: Row(
           children: [
             Text(
-              prodactTableModel.priceAfterDiscount.toString(),
+              prodactEntity.priceAfterDiscount.toString(),
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: AppColor.kDarkRed),

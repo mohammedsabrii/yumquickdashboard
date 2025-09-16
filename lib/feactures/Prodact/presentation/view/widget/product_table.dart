@@ -18,7 +18,7 @@ class ProductsTable extends StatelessWidget {
           products.length,
           (index) => prodactsTableRow(
             context,
-            prodactTableModel: products[index],
+            prodactEntity: products[index],
             deleteIcononTap: () {
               showDialog(
                 context: context,
