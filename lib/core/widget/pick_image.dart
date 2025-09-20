@@ -4,8 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-import 'dart:io'; // Import for File
-// Assuming you're using image_picker for XFile
+import 'dart:io';
 
 class PickImage extends StatelessWidget {
   const PickImage({super.key, this.onImagePicked, this.pickedImage});
@@ -26,7 +25,7 @@ class PickImage extends StatelessWidget {
           children: [
             pickedImage != null
                 ? Image.file(
-                  File(pickedImage!.path), // Use Image.file for local files
+                  File(pickedImage!.path),
                   height: 200,
                   fit: BoxFit.cover,
                 )

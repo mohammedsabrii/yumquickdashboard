@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/action_item.dart';
-import 'package:yumquickdashboard/feactures/Coupons/entity/offers_entity.dart';
+import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
 
 TableRow allOffersTableRow(
   BuildContext context, {

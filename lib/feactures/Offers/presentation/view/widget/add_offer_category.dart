@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_category_item.dart';
 
 class AddOfferCargorys extends StatelessWidget {

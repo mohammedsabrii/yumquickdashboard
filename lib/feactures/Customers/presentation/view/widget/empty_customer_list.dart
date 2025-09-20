@@ -3,11 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/core/widget/custom_container.dart';
 
-class EmptyProductList extends StatelessWidget {
-  const EmptyProductList({super.key, this.onTap});
-  final Function()? onTap;
+class EmptyCustomerList extends StatelessWidget {
+  const EmptyCustomerList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,10 +19,10 @@ class EmptyProductList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(AppAssets.kEmptyProductList),
+          SvgPicture.asset(AppAssets.kEmptyCustomerList),
           SizedBox(height: 24),
           Text(
-            'Add Products',
+            'No Customers Yet',
             textAlign: TextAlign.center,
             style: AppStayls.styleInterBold20(
               context,
@@ -31,14 +30,13 @@ class EmptyProductList extends StatelessWidget {
           ),
           SizedBox(height: 12),
           Text(
-            'Start making sales by adding your products.\nYou can import and manage your products at any time.',
+            'Having a customer list helps to know your audience better.\nManage your customers in one place and target your audinece better.',
             textAlign: TextAlign.center,
             style: AppStayls.styleInterRegular16(
               context,
             ).copyWith(color: Colors.grey),
           ),
-          SizedBox(height: 24),
-          CustomContainer(title: 'Add Product', onTap: onTap),
+
           SizedBox(height: 50),
         ],
       ),

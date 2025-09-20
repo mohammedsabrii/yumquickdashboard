@@ -4,9 +4,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offer_category.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offer_information.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offer_category.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offer_information.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 
 class AddOfferViewBody extends StatefulWidget {

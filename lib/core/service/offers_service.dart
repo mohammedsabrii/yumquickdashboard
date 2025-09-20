@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yumquickdashboard/feactures/Coupons/entity/offers_entity.dart';
+import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
 
 class GetOffersService {
   final supabase = Supabase.instance.client;

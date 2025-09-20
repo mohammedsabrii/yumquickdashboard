@@ -15,7 +15,7 @@ class CustomersProfileInfoCubit extends Cubit<CustomersProfileInfoState> {
     emit(CustomersProfileInfoLoading());
     try {
       final customers = await customersService.fetchCustomersDate();
-      emit(CustomersProfileInfoSuccess(customerEntity: customers));
+      emit(CustomersProfileInfoSuccess(customers: customers));
     } on AuthApiException catch (e) {
       emit(CustomersProfileInfoFailure(errorMessage: e.toString()));
       customShowSnackBar(context, title: e.toString());
@@ -29,7 +29,7 @@ class CustomersProfileInfoCubit extends Cubit<CustomersProfileInfoState> {
     emit(CustomersProfileInfoLoading());
     try {
       final customer = await customersService.fetchCustomerById(customerId);
-      emit(CustomersProfileInfoSuccess(customerEntity: [customer]));
+      emit(CustomersProfileInfoSuccess(customers: [customer]));
     } on AuthApiException catch (e) {
       emit(CustomersProfileInfoFailure(errorMessage: e.toString()));
       customShowSnackBar(context, title: e.toString());

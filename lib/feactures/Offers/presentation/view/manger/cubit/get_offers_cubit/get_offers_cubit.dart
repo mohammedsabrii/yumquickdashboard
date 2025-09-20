@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/service/offers_service.dart';
-import 'package:yumquickdashboard/feactures/Coupons/entity/offers_entity.dart';
+import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
 
 part 'get_offers_state.dart';
 

@@ -30,8 +30,8 @@ class CustomerInformationOverview extends StatelessWidget {
                 child: CircularProgressIndicator(color: AppColor.kMainColor),
               );
             } else if (state is CustomersProfileInfoSuccess &&
-                state.customerEntity.isNotEmpty) {
-              final customer = state.customerEntity.firstWhere(
+                state.customers.isNotEmpty) {
+              final customer = state.customers.firstWhere(
                 (c) => c.id == customerId,
               );
               return Column(

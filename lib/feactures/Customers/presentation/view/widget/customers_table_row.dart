@@ -30,7 +30,7 @@ TableRow customersTableRow(
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  customersEntity.name.characters.first,
+                  customersEntity.name.toUpperCase().characters.first,
                   style: AppStayls.styleInterBold24(
                     context,
                   ).copyWith(color: Colors.white),

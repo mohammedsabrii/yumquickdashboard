@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_container.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offer_view.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/coupons_view_body_bloc_bulider.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offer_view.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/coupons_view_body_bloc_bulider.dart';
 
 class OffersViewBody extends StatefulWidget {
   const OffersViewBody({super.key});
@@ -58,7 +58,13 @@ class _OffersViewBodyState extends State<OffersViewBody> {
                       vertical: MediaQuery.sizeOf(context).height * 0.027,
                       horizontal: MediaQuery.sizeOf(context).width * 0.019,
                     ),
-                    child: OfffersViewBodyBlocBuilder(),
+                    child: OfffersViewBodyBlocBuilder(
+                      onTap: () {
+                        setState(() {
+                          showAddOffer = true;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ],

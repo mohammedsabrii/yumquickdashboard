@@ -23,7 +23,8 @@ class AppAssets {
   static const kCategoryImageTest = 'assets/image/category image test.png';
   static const kBackicon = 'assets/image/back icon.svg';
   static const kDotIcon = 'assets/image/dot icon.svg';
-  static const kEmptyProductList = 'assets/image/empty_product_list.svg';
+  static const kEmptyProductList = 'assets/image/empty_customer_list.svg';
+  static const kEmptyCustomerList = 'assets/image/empty_customer_list.svg';
   static const kVagenCategoryImage = 'assets/image/vagen_category_image.jpg';
   static const kMealCategoryImage = 'assets/image/meal_category_image.jpg';
   static const kDessertsCategoryImage =

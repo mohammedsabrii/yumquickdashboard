@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yumquickdashboard/feactures/Coupons/presentation/view/widget/add_offers_view_body.dart';
+import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offers_view_body.dart';
 
 class AddOfferView extends StatelessWidget {
   const AddOfferView({super.key, required this.onClose});

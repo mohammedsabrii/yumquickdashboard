@@ -16,7 +16,7 @@ class CustomerNameCountryAndAddress extends StatelessWidget {
             child: CircularProgressIndicator(color: AppColor.kMainColor),
           );
         } else if (state is CustomersProfileInfoSuccess) {
-          final customer = state.customerEntity.firstWhere(
+          final customer = state.customers.firstWhere(
             (c) => c.id == customerId,
           );
           return Row(

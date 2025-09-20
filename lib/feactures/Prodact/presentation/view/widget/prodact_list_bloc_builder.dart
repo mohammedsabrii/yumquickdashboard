@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/empty_product_list.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/product_table.dart';
 
-class ProdactList extends StatelessWidget {
-  const ProdactList({super.key});
-
+class ProdactListBlocBuilder extends StatelessWidget {
+  const ProdactListBlocBuilder({super.key, this.onTap});
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<ProductsCubit>(context).loadProducts();
@@ -25,16 +26,7 @@ class ProdactList extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'All Products',
-                style: AppStayls.styleInterBold20(
-                  context,
-                ).copyWith(color: AppColor.kDarkRed),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
-
               BlocBuilder<ProductsCubit, ProductsState>(
                 builder: (context, state) {
                   if (state is ProductsLoading) {
@@ -44,7 +36,11 @@ class ProdactList extends StatelessWidget {
                       ),
                     );
                   } else if (state is ProductsSuccess) {
-                    return ProductsTable(products: state.products);
+                    if (state.products.isNotEmpty) {
+                      return ProductsTable(products: state.products);
+                    } else {
+                      return EmptyProductList(onTap: onTap);
+                    }
                   } else if (state is ProductsFailure) {
                     return Center(
                       child: Text(

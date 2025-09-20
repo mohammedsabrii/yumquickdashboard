@@ -5,8 +5,8 @@ import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_container.dart';
 
-class EmptyProductList extends StatelessWidget {
-  const EmptyProductList({super.key, this.onTap});
+class EmptyOfferListView extends StatelessWidget {
+  const EmptyOfferListView({super.key, this.onTap});
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class EmptyProductList extends StatelessWidget {
           SvgPicture.asset(AppAssets.kEmptyProductList),
           SizedBox(height: 24),
           Text(
-            'Add Products',
+            'Add New Offer',
             textAlign: TextAlign.center,
             style: AppStayls.styleInterBold20(
               context,
@@ -31,14 +31,14 @@ class EmptyProductList extends StatelessWidget {
           ),
           SizedBox(height: 12),
           Text(
-            'Start making sales by adding your products.\nYou can import and manage your products at any time.',
+            'Start making sales by adding your offers.\nYou can import and manage your offers at any time.',
             textAlign: TextAlign.center,
             style: AppStayls.styleInterRegular16(
               context,
             ).copyWith(color: Colors.grey),
           ),
           SizedBox(height: 24),
-          CustomContainer(title: 'Add Product', onTap: onTap),
+          CustomContainer(title: 'Add Offer', onTap: onTap),
           SizedBox(height: 50),
         ],
       ),
