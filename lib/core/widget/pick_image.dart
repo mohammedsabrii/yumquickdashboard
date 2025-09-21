@@ -24,10 +24,34 @@ class PickImage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             pickedImage != null
-                ? Image.file(
-                  File(pickedImage!.path),
-                  height: 200,
-                  fit: BoxFit.cover,
+                ? Column(
+                  children: [
+                    Image.file(
+                      File(pickedImage!.path),
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: onImagePicked,
+                      child: Container(
+                        width: 102,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: AppColor.kPinkishOrange,
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Edit Image',
+                            style: AppStayls.styleInterRegular16(
+                              context,
+                            ).copyWith(color: AppColor.kMainColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
                 : Text('No image selected.'),
             SizedBox(height: 10),
