@@ -4,16 +4,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
-import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
-import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/edit_offer_cubit/edit_offer_cubit.dart';
-import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/get_offers_cubit/get_offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/edit_product_cubit/edit_product_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/custom_prodact_contanier.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/edit_image_widget.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/edit_product_item.dart';
 
 class EditOfferDialog extends StatefulWidget {
   const EditOfferDialog({super.key, required this.offersEntity});
-  final OffersEntity offersEntity;
+  final ProductEntity offersEntity;
   @override
   State<EditOfferDialog> createState() => _EditOfferDialogState();
 }
@@ -33,13 +33,13 @@ class _EditOfferDialogState extends State<EditOfferDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<EditOfferCubit, EditOfferState>(
+    return BlocConsumer<EditProductCubit, EditProductState>(
       listener: (context, state) {
-        if (state is EditOfferSuccess) {
+        if (state is EditProductSuccess) {
           Navigator.of(context).pop();
-          BlocProvider.of<GetOffersCubit>(context).getOffers();
+          BlocProvider.of<ProductsCubit>(context).loadProducts();
           customShowSnackBar(context, title: 'Successfully Edit Offer');
-        } else if (state is EditOfferFailure) {
+        } else if (state is EditProductFailure) {
           Navigator.of(context).pop();
           customShowSnackBar(context, title: state.errorMessage);
         }
@@ -74,19 +74,19 @@ class _EditOfferDialogState extends State<EditOfferDialog> {
                       EditProductItem(
                         onChanged:
                             (value) => setState(() => productName = value),
-                        initialValue: widget.offersEntity.productName,
+                        initialValue: widget.offersEntity.name,
                         initialValueName: 'Current Product Name',
                         helperText: 'Product Name',
                         hintText: 'Edit Product Name',
                       ),
-                      EditProductItem(
-                        onChanged:
-                            (value) => setState(() => offerTitle = value),
-                        initialValue: widget.offersEntity.offerName,
-                        initialValueName: 'Current Offer Title',
-                        helperText: 'Offer Title',
-                        hintText: 'Edit Offer Title',
-                      ),
+                      // EditProductItem(
+                      //   onChanged:
+                      //       (value) => setState(() => offerTitle = value),
+                      //   initialValue: widget.offersEntity.offerName,
+                      //   initialValueName: 'Current Offer Title',
+                      //   helperText: 'Offer Title',
+                      //   hintText: 'Edit Offer Title',
+                      // ),
                       EditProductItem(
                         onChanged: (value) => setState(() => subaTitle = value),
                         initialValue: widget.offersEntity.subtitle,
@@ -138,11 +138,11 @@ class _EditOfferDialogState extends State<EditOfferDialog> {
               backgroundColor: AppColor.kMainColor,
               textColor: AppColor.kCultured,
               onTap: () {
-                BlocProvider.of<EditOfferCubit>(context).editOffer(
+                BlocProvider.of<EditProductCubit>(context).editProduct(
                   image: pickedImage,
                   id: widget.offersEntity.id,
-                  productName: productName ?? widget.offersEntity.productName,
-                  offerTitle: offerTitle ?? widget.offersEntity.offerName,
+                  // productName: productName ?? widget.offersEntity.productName,
+                  name: offerTitle ?? widget.offersEntity.name,
 
                   subtitle: subaTitle ?? widget.offersEntity.subtitle,
                   price: price ?? widget.offersEntity.price.toString(),

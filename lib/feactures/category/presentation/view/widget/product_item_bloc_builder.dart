@@ -7,7 +7,8 @@ import 'package:yumquickdashboard/feactures/category/manger/cubit/cubit/category
 import 'package:yumquickdashboard/feactures/category/presentation/view/widget/product_of_category_item.dart';
 
 class ProductItemBlocBuilder extends StatelessWidget {
-  const ProductItemBlocBuilder({super.key});
+  const ProductItemBlocBuilder({super.key, this.onTap});
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,34 +19,39 @@ class ProductItemBlocBuilder extends StatelessWidget {
             child: CircularProgressIndicator(color: AppColor.kMainColor),
           );
         } else if (state is ProductsByCategorySuccess) {
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: state.products.length,
-            itemBuilder: (context, index) {
-              return ProductOfCategoryItem(
-                deleteIcononTap: () {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (context) => ShowDeleteProductDialog(
-                          id: state.products[index].id,
-                        ),
-                  );
-                },
-                editIcononTap: () {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (context) => EditProductDialog(
-                          productEntity: state.products[index],
-                        ),
-                  );
-                },
-                product: state.products[index],
-              );
-            },
-          );
+          final products =
+              state.products
+                  .where((product) => product.priceAfterDiscount == null)
+                  .toList();
+
+          if (products.isNotEmpty) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                return ProductOfCategoryItem(
+                  deleteIcononTap: () {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) =>
+                              ShowDeleteProductDialog(id: products[index].id),
+                    );
+                  },
+                  editIcononTap: () {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) =>
+                              EditProductDialog(productEntity: products[index]),
+                    );
+                  },
+                  product: products[index],
+                );
+              },
+            );
+          }
         } else if (state is ProductsByCategoryFailure) {
           return Text('Error: ${state.errorMessage}');
         }

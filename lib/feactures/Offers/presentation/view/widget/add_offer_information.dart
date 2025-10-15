@@ -14,12 +14,10 @@ class AddOfferInformation extends StatelessWidget {
     required this.onDescriptionChanged,
     required this.onPriceChanged,
     required this.onDiscountPriceChanged,
-    required this.onOfferTitleChanged,
   });
   final XFile? pickedImage;
   final VoidCallback onImagePicked;
   final Function(String) onNameChanged;
-  final Function(String) onOfferTitleChanged;
   final Function(String) onDescriptionChanged;
   final Function(String) onPriceChanged;
   final Function(String) onDiscountPriceChanged;
@@ -52,11 +50,6 @@ class AddOfferInformation extends StatelessWidget {
               hintText: 'Add Product Name',
             ),
             SizedBox(height: 24),
-            CustomTextFiled(
-              onChanged: onOfferTitleChanged,
-              helperText: 'Offer Title',
-              hintText: 'Add Offer Title',
-            ),
             SizedBox(height: 24),
             CustomTextFiled(
               onChanged: onDescriptionChanged,

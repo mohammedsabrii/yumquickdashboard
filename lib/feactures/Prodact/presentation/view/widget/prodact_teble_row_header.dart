@@ -64,7 +64,7 @@ TableRow prodactsTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Price After Discount',
+          'Edit Or Delete',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),

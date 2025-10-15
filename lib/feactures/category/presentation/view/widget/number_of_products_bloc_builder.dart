@@ -12,12 +12,18 @@ class NumberOfProductsBlocBuilder extends StatelessWidget {
     return BlocBuilder<ProductsByCategoryCubit, ProductsByCategoryState>(
       builder: (context, state) {
         if (state is ProductsByCategorySuccess) {
-          return Text(
-            'Products  ( ${state.products.length} )',
-            style: AppStayls.styleInterRegular16(
-              context,
-            ).copyWith(color: AppColor.kDarkRed),
-          );
+          final products =
+              state.products
+                  .where((product) => product.priceAfterDiscount == null)
+                  .toList();
+          if (products.isNotEmpty) {
+            return Text(
+              'Products  ( ${products.length} )',
+              style: AppStayls.styleInterRegular16(
+                context,
+              ).copyWith(color: AppColor.kDarkRed),
+            );
+          }
         }
         return Text(
           'Products   ( 0 )',

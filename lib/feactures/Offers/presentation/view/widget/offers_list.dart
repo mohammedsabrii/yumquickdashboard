@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/all_offers_table_header.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/all_offers_table_row.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/delete_offer_dialog.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/edit_offer_dialog.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
 class OffersList extends StatelessWidget {
   const OffersList({super.key, required this.offers});
-  final List<OffersEntity> offers;
+  final List<ProductEntity> offers;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,9 +26,8 @@ class OffersList extends StatelessWidget {
           columnWidths: {
             0: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.2),
             1: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.15),
-            2: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.08),
-            3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
-            4: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.16),
+            2: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.15),
+            // 3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
           },
           children: [
             allOfferssTableHeader(context),

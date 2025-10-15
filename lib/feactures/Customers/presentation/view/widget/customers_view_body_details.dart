@@ -12,9 +12,6 @@ class CustomersViewBodyDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CustomersProfileInfoCubit>(
-      context,
-    ).fetchCustomersInfo(context);
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.77,
       decoration: BoxDecoration(

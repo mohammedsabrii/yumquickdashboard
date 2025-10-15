@@ -25,19 +25,6 @@ TableRow allOfferssTableHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Produc Name',
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: Colors.grey),
-        ),
-      ),
-
-      Padding(
-        padding: EdgeInsets.only(
-          top: MediaQuery.sizeOf(context).height * 0.02,
-          bottom: MediaQuery.sizeOf(context).height * 0.01,
-        ),
-        child: Text(
           'Price',
           style: AppStayls.styleInterRegular14(
             context,

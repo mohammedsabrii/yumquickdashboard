@@ -81,12 +81,6 @@ TableRow prodactsTableRow(
         ),
         child: Row(
           children: [
-            Text(
-              prodactEntity.priceAfterDiscount.toString(),
-              style: AppStayls.styleInterRegular14(
-                context,
-              ).copyWith(color: AppColor.kDarkRed),
-            ),
             Spacer(),
             ActionItem(icon: AppAssets.kEditIcon, onTap: editIcononTap),
             SizedBox(width: 15),

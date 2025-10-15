@@ -4,9 +4,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
-import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offer_category.dart';
 import 'package:yumquickdashboard/feactures/Offers/presentation/view/widget/add_offer_information.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_brodact_view_header.dart';
 
 class AddOfferViewBody extends StatefulWidget {
@@ -36,14 +37,15 @@ class _AddOfferViewBodyState extends State<AddOfferViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddOffersCubit, AddOffersState>(
+    return BlocConsumer<AddProductCubit, AddProductState>(
       listener: (context, state) {
-        if (state is AddOffersLoading) {
+        if (state is AddProductLoading) {
           isLoading = true;
-        } else if (state is AddOffersSuccess) {
+        } else if (state is AddProductSuccess) {
+          BlocProvider.of<ProductsCubit>(context).loadProducts();
           customShowSnackBar(context, title: 'Successfully added offer');
           isLoading = false;
-        } else if (state is AddOffersFailure) {
+        } else if (state is AddProductFailure) {
           customShowSnackBar(context, title: state.errorMessage);
           isLoading = false;
         }
@@ -67,9 +69,9 @@ class _AddOfferViewBodyState extends State<AddOfferViewBody> {
                   children: [
                     CustomAddedHeader(
                       onSave: () {
-                        BlocProvider.of<AddOffersCubit>(context).addOffers(
-                          productName: productName ?? '',
-                          offerTitle: offerTitle ?? '',
+                        BlocProvider.of<AddProductCubit>(context).addProduct(
+                          context,
+                          name: productName ?? '',
                           subtitle: subaTitle ?? '',
                           price: double.tryParse(price ?? '') ?? 0.0,
                           priceAfterDiscount:
@@ -92,8 +94,6 @@ class _AddOfferViewBodyState extends State<AddOfferViewBody> {
                           onImagePicked: () => pickImage(),
                           onNameChanged:
                               (value) => setState(() => productName = value),
-                          onOfferTitleChanged:
-                              (value) => setState(() => offerTitle = value),
                           onDescriptionChanged:
                               (value) => setState(() => subaTitle = value),
                           onPriceChanged:

@@ -1,12 +1,11 @@
 class ProductEntity {
   final String id;
   final String categoryId;
-
   final String name;
   final String image;
   final String category;
   final double price;
-  final double priceAfterDiscount;
+  final double? priceAfterDiscount;
   final String subtitle;
 
   ProductEntity({
@@ -28,7 +27,10 @@ class ProductEntity {
       image: json['image'] ?? '',
       category: json['categories'] ?? '',
       price: (json['price'] ?? 0).toDouble(),
-      priceAfterDiscount: (json['price_after_discount'] ?? 0).toDouble(),
+      priceAfterDiscount:
+          json['price_after_discount'] != null
+              ? (json['price_after_discount'] as num).toDouble()
+              : null,
       subtitle: json['subtitle'] ?? '',
     );
   }

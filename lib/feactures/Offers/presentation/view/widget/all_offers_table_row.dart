@@ -3,11 +3,11 @@ import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/widget/action_item.dart';
-import 'package:yumquickdashboard/feactures/Offers/entity/offers_entity.dart';
+import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
 TableRow allOffersTableRow(
   BuildContext context, {
-  required OffersEntity offersEntity,
+  required ProductEntity offersEntity,
   required dynamic Function() editIcononTap,
   required dynamic Function() deleteIcononTap,
 }) {
@@ -37,7 +37,7 @@ TableRow allOffersTableRow(
             ),
             SizedBox(width: 12),
             Text(
-              offersEntity.offerName,
+              offersEntity.name,
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: AppColor.kDarkRed),
@@ -46,18 +46,6 @@ TableRow allOffersTableRow(
         ),
       ),
 
-      Padding(
-        padding: EdgeInsets.only(
-          top: MediaQuery.sizeOf(context).height * 0.03,
-          bottom: MediaQuery.sizeOf(context).height * 0.01,
-        ),
-        child: Text(
-          offersEntity.productName,
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: AppColor.kDarkRed),
-        ),
-      ),
       Padding(
         padding: EdgeInsets.only(
           top: MediaQuery.sizeOf(context).height * 0.03,
@@ -90,7 +78,7 @@ TableRow allOffersTableRow(
         child: Row(
           children: [
             Text(
-              '${((offersEntity.priceAfterDiscount / offersEntity.price) * 100).toInt()} %',
+              '${(100 - ((offersEntity.priceAfterDiscount! / offersEntity.price) * 100)).toInt()} %',
               style: AppStayls.styleInterRegular14(
                 context,
               ).copyWith(color: AppColor.kDarkRed, fontSize: 13),

@@ -11,7 +11,6 @@ class ProdactListBlocBuilder extends StatelessWidget {
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<ProductsCubit>(context).loadProducts();
     return Container(
       height: MediaQuery.sizeOf(context).height * 0.876,
       width: MediaQuery.sizeOf(context).width * 0.77,
@@ -36,8 +35,15 @@ class ProdactListBlocBuilder extends StatelessWidget {
                       ),
                     );
                   } else if (state is ProductsSuccess) {
-                    if (state.products.isNotEmpty) {
-                      return ProductsTable(products: state.products);
+                    final products =
+                        state.products
+                            .where(
+                              (product) => product.priceAfterDiscount == null,
+                            )
+                            .toList();
+
+                    if (products.isNotEmpty) {
+                      return ProductsTable(products: products);
                     } else {
                       return EmptyProductList(onTap: onTap);
                     }

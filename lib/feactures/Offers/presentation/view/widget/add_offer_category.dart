@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/core/utils/app_constant.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Offers/presentation/view/manger/cubit/offers_cubit/offers_cubit.dart';
+import 'package:yumquickdashboard/feactures/Prodact/model/category_info_model.dart';
+import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/widget/add_prodact_category_item.dart';
 
 class AddOfferCargorys extends StatelessWidget {
   const AddOfferCargorys({super.key});
 
-  static const List<String> categoriesTitel = [
-    'snacks',
-    'vegan',
-    'meal',
-    'drinks',
-    'dessert',
+  static const List<CategorysInFormationModel> categoriesTitel = [
+    CategorysInFormationModel(name: 'snacks', id: snacksId),
+    CategorysInFormationModel(name: 'vegan', id: veganId),
+    CategorysInFormationModel(name: 'meal', id: mealId),
+    CategorysInFormationModel(name: 'drinks', id: drinksId),
+    CategorysInFormationModel(name: 'dessert', id: dessertsId),
   ];
 
   @override
@@ -42,19 +44,22 @@ class AddOfferCargorys extends StatelessWidget {
           ...List.generate(
             categoriesTitel.length,
             (index) => AddProdactCategoryItem(
-              title: categoriesTitel[index],
+              title: categoriesTitel[index].name,
               isSelected:
-                  BlocProvider.of<AddOffersCubit>(
+                  BlocProvider.of<AddProductCubit>(
                     context,
                   ).selectedCategoryName ==
-                  categoriesTitel[index],
+                  categoriesTitel[index].name,
               onChanged: (value) {
                 if (value == true) {
-                  BlocProvider.of<AddOffersCubit>(
-                    context,
-                  ).selectCategory(categoriesTitel[index]);
+                  BlocProvider.of<AddProductCubit>(context).selectCategory(
+                    categoriesTitel[index].id,
+                    categoriesTitel[index].name,
+                  );
                 } else {
-                  BlocProvider.of<AddOffersCubit>(context).selectCategory(null);
+                  BlocProvider.of<AddProductCubit>(
+                    context,
+                  ).selectCategory(null, null);
                 }
               },
             ),
