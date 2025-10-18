@@ -1,7 +1,6 @@
-import 'package:intl/intl.dart';
 import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
-class ActiveOrderEntity {
+class OrderEntity {
   final String? id;
   final String userId;
   final ProductEntity product;
@@ -10,7 +9,7 @@ class ActiveOrderEntity {
   final String customerName;
   final String customerAddress;
   final DateTime createdAt;
-  ActiveOrderEntity({
+  OrderEntity({
     this.id,
     required this.userId,
     required this.product,
@@ -21,8 +20,8 @@ class ActiveOrderEntity {
     required this.createdAt,
   });
 
-  factory ActiveOrderEntity.fromJson(Map<String, dynamic> json) {
-    return ActiveOrderEntity(
+  factory OrderEntity.fromJson(Map<String, dynamic> json) {
+    return OrderEntity(
       id: json['id'],
       userId: json['user_id'] ?? '',
       product: ProductEntity.fromJson(json['products']),
@@ -30,9 +29,7 @@ class ActiveOrderEntity {
       totalAmount: (json['total_amount'] as num?)?.toDouble() ?? 0.0,
       customerAddress: json['customer_address'] ?? '',
       customerName: json['customer_name'] ?? '',
-      createdAt: DateTime.parse(
-        DateFormat('MMM d  HH:mm').format(json['created_at']),
-      ),
+      createdAt: DateTime.parse(json['created_at']),
     );
   }
 }

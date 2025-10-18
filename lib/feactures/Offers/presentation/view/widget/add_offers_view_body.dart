@@ -43,13 +43,10 @@ class _AddOfferViewBodyState extends State<AddOfferViewBody> {
           isLoading = true;
         } else if (state is AddProductSuccess) {
           BlocProvider.of<ProductsCubit>(context).loadProducts();
-          customShowSnackBar(
-            context: context,
-            title: 'Successfully added offer',
-          );
+          customShowSnackBar(context, title: 'Successfully added offer');
           isLoading = false;
         } else if (state is AddProductFailure) {
-          customShowSnackBar(context: context, title: state.errorMessage);
+          customShowSnackBar(context, title: state.errorMessage);
           isLoading = false;
         }
       },

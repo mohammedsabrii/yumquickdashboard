@@ -1,11 +1,11 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.dart';
 
-class GetOrdersService {
+class GetOnTrackOrders {
   final supabase = Supabase.instance.client;
-  Future<List<OrderEntity>> getActiveOrders() async {
+  Future<List<OrderEntity>> getOnTrackOrders() async {
     final response = await supabase
-        .from('active_orders')
+        .from('on_track_orders')
         .select('''
       id,
       user_id,               

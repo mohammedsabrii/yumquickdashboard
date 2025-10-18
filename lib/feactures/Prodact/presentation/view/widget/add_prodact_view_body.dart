@@ -39,10 +39,10 @@ class _AddProdactViewBodyyState extends State<AddProdactViewBody> {
     return BlocConsumer<AddProductCubit, AddProductState>(
       listener: (context, state) {
         if (state is AddProductSuccess) {
-          customShowSnackBar(title: 'Successfully added product');
+          customShowSnackBar(context, title: 'Successfully added product');
           isLoading = false;
         } else if (state is AddProductFailure) {
-          customShowSnackBar(title: state.errorMessage);
+          customShowSnackBar(context, title: state.errorMessage);
           isLoading = false;
         } else if (state is AddProductLoading) {
           isLoading = true;

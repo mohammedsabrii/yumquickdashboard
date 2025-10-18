@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.dart';
-import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/order_more_details_dialog_actions.dart';
+import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/on_track_order_more_details_dialog_actions.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/order_more_details_dialog_details.dart';
 
-class OrderMoreDetailsDialog extends StatelessWidget {
-  const OrderMoreDetailsDialog({
+class OnTrackOrderMoreDetailsDialog extends StatelessWidget {
+  const OnTrackOrderMoreDetailsDialog({
     super.key,
     required this.id,
     required this.activeOrderEntity,
@@ -42,7 +42,9 @@ class OrderMoreDetailsDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        OrderMoreDeitlsDialogActions(activeOrderEntity: activeOrderEntity),
+        OnTrackOrderMoreDetailsDialogActions(
+          activeOrderEntity: activeOrderEntity,
+        ),
       ],
     );
   }

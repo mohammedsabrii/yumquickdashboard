@@ -38,10 +38,10 @@ class _EditProductDialogState extends State<EditProductDialog> {
         if (state is EditProductSuccess) {
           Navigator.of(context).pop();
           BlocProvider.of<ProductsCubit>(context).loadProducts();
-          customShowSnackBar(title: 'Successfully edit product');
+          customShowSnackBar(context, title: 'Successfully edit product');
         } else if (state is EditProductFailure) {
           Navigator.of(context).pop();
-          customShowSnackBar(title: state.errorMessage);
+          customShowSnackBar(context, title: state.errorMessage);
         }
       },
       builder: (context, state) {

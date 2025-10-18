@@ -1,40 +1,38 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yumquickdashboard/core/service/get_orders_service.dart';
+import 'package:yumquickdashboard/core/service/get_on_track_orders.dart';
 import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
 import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.dart';
 
-part 'active_orders_state.dart';
+part 'on_track_state.dart';
 
-class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
-  ActiveOrdersCubit() : super(ActiveOrdersInitial());
-  final GetOrdersService getOrdersService = GetOrdersService();
-  final supabase = Supabase.instance.client;
-  Future<void> fetchActiveOrders() async {
-    emit(ActiveOrdersLoading());
-
+class OnTrackCubit extends Cubit<OnTrackState> {
+  OnTrackCubit() : super(OnTrackInitial());
+  final GetOnTrackOrders getOnTrackOrders = GetOnTrackOrders();
+  Future<void> fetchOnTrackOrders() async {
+    emit(OnTrackLoading());
     try {
-      final orders = await getOrdersService.getActiveOrders();
-      if (orders.isEmpty) {
-        emit(ActiveOrdersEmpty());
+      final onTrackOrders = await getOnTrackOrders.getOnTrackOrders();
+      if (onTrackOrders.isEmpty) {
+        emit(OnTrackEmpty());
       } else {
-        emit(ActiveOrdersSuccess(orders));
+        emit(OnTrackSuccess(onTrackOrders: onTrackOrders));
       }
     } catch (e) {
-      emit(ActiveOrdersFailure(e.toString()));
+      emit(OnTrackFailure(errorMessage: e.toString()));
     }
   }
 
-  Future<void> moveOrderToOnTrackTable(
+  Future<void> moveOrderToCompletedTable(
     BuildContext context,
     String orderId,
     OrderEntity activeOrder,
   ) async {
     final supabase = Supabase.instance.client;
-    emit(ActiveOrdersLoading());
+    emit(OnTrackLoading());
     try {
-      await supabase.from('on_track_orders').insert({
+      await supabase.from('completed_orders').insert({
         'user_id': activeOrder.userId,
         'product_id': activeOrder.product.id,
         'quantity': activeOrder.quantity,
@@ -44,7 +42,7 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
         'created_at': activeOrder.createdAt.toString(),
       });
 
-      await supabase.from('active_orders').delete().eq('id', activeOrder.id!);
+      await supabase.from('on_track_orders').delete().eq('id', activeOrder.id!);
       customShowSnackBar(context, title: 'Order moved successfully');
     } catch (e) {
       customShowSnackBar(context, title: e.toString());
