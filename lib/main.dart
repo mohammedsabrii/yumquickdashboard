@@ -8,6 +8,7 @@ import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cub
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/edit_product_cubit/edit_product_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
 import 'package:yumquickdashboard/feactures/category/manger/cubit/cubit/category_product_cubit.dart';
+import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/active_orders_cubit/active_orders_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,10 @@ class YumQuickDashBoard extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AddProductCubit()),
         BlocProvider(create: (context) => ProductsCubit()..loadProducts()),
+        BlocProvider(
+          create: (context) => ActiveOrdersCubit()..fetchActiveOrders(),
+        ),
+
         BlocProvider(create: (context) => EditProductCubit()),
         BlocProvider(create: (context) => ProductsByCategoryCubit()),
         BlocProvider(

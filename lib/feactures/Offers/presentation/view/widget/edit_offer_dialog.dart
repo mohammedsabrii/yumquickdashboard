@@ -38,10 +38,13 @@ class _EditOfferDialogState extends State<EditOfferDialog> {
         if (state is EditProductSuccess) {
           Navigator.of(context).pop();
           BlocProvider.of<ProductsCubit>(context).loadProducts();
-          customShowSnackBar(context, title: 'Successfully Edit Offer');
+          customShowSnackBar(
+            context: context,
+            title: 'Successfully Edit Offer',
+          );
         } else if (state is EditProductFailure) {
           Navigator.of(context).pop();
-          customShowSnackBar(context, title: state.errorMessage);
+          customShowSnackBar(context: context, title: state.errorMessage);
         }
       },
       builder: (context, state) {

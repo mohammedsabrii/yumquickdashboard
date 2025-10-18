@@ -13,12 +13,6 @@ TableRow ordersTableRowHeader(BuildContext context) {
         ),
         child: Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-              side: BorderSide(color: Colors.grey),
-            ),
-            SizedBox(width: 12),
             Text(
               'Order',
               style: AppStayls.styleInterRegular14(
@@ -58,7 +52,7 @@ TableRow ordersTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Payment status',
+          'Address',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),
@@ -70,7 +64,7 @@ TableRow ordersTableRowHeader(BuildContext context) {
           bottom: MediaQuery.sizeOf(context).height * 0.01,
         ),
         child: Text(
-          'Order Status',
+          'quantity',
           style: AppStayls.styleInterRegular14(
             context,
           ).copyWith(color: Colors.grey),

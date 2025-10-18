@@ -18,7 +18,7 @@ class CustomersProfileInfoCubit extends Cubit<CustomersProfileInfoState> {
       emit(CustomersProfileInfoSuccess(customers: customers));
     } on AuthApiException catch (e) {
       emit(CustomersProfileInfoFailure(errorMessage: e.toString()));
-      customShowSnackBar(context, title: e.toString());
+      customShowSnackBar(title: e.toString());
     }
   }
 
@@ -32,7 +32,7 @@ class CustomersProfileInfoCubit extends Cubit<CustomersProfileInfoState> {
       emit(CustomersProfileInfoSuccess(customers: [customer]));
     } on AuthApiException catch (e) {
       emit(CustomersProfileInfoFailure(errorMessage: e.toString()));
-      customShowSnackBar(context, title: e.toString());
+      customShowSnackBar(title: e.toString());
     }
   }
 }

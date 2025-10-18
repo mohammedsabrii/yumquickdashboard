@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 
-void customShowSnackBar(BuildContext context, {required String title}) {
+void customShowSnackBar({BuildContext? context, required String title}) {
   var snackBar = SnackBar(
-    width: MediaQuery.sizeOf(context).width * 0.7,
+    width: MediaQuery.sizeOf(context!).width * 0.7,
     content: Text(
       title,
       style: AppStayls.styleInterBold16(

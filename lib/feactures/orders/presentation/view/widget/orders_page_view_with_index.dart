@@ -41,20 +41,18 @@ class _OrdersPageViewWithIndexState extends State<OrdersPageViewWithIndex> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: OrdersPageViewList(
-              cruntPageIndex: pageIndex,
-              onTap: changePage,
-            ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: OrdersPageViewList(
+            cruntPageIndex: pageIndex,
+            onTap: changePage,
           ),
-          const SizedBox(height: 20),
-          Expanded(child: OrdersPageView(controller: pageController)),
-        ],
-      ),
+        ),
+        const SizedBox(height: 20),
+        Expanded(child: OrdersPageView(controller: pageController)),
+      ],
     );
   }
 }
