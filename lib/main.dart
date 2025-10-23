@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -12,9 +13,12 @@ import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubi
 import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/cancelled_cubit/cancelled_orders_cubit.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/completed_orders_cubit/completed_orders_cubit.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/on_track_cubit/on_track_cubit.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await Supabase.initialize(url: supbaseUrl, anonKey: supbaseAnonKey);
   runApp(const YumQuickDashBoard());
 }
