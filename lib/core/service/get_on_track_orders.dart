@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.d
 
 class GetOnTrackOrders {
   final supabase = Supabase.instance.client;
-  Future<List<OrderEntity>> getOnTrackOrders() async {
+  Future<List<OrdersEntity>> getOnTrackOrders() async {
     final response = await supabase
         .from('on_track_orders')
         .select('''
@@ -28,7 +28,7 @@ class GetOnTrackOrders {
         .order('created_at', ascending: false);
 
     final orders =
-        (response as List).map((json) => OrderEntity.fromJson(json)).toList();
+        (response as List).map((json) => OrdersEntity.fromJson(json)).toList();
     return orders;
   }
 }

@@ -6,7 +6,7 @@ sealed class OnTrackState {}
 final class OnTrackInitial extends OnTrackState {}
 
 final class OnTrackSuccess extends OnTrackState {
-  final List<OrderEntity> onTrackOrders;
+  final List<OrdersEntity> onTrackOrders;
 
   OnTrackSuccess({required this.onTrackOrders});
 }

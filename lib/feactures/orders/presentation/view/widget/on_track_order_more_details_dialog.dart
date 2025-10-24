@@ -12,7 +12,7 @@ class OnTrackOrderMoreDetailsDialog extends StatelessWidget {
     required this.activeOrderEntity,
   });
   final String id;
-  final OrderEntity activeOrderEntity;
+  final OrdersEntity activeOrderEntity;
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.sizeOf(context);

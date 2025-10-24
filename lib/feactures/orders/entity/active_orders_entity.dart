@@ -1,6 +1,6 @@
 import 'package:yumquickdashboard/feactures/Prodact/entity/prodact_entity.dart';
 
-class OrderEntity {
+class OrdersEntity {
   final String? id;
   final String userId;
   final ProductEntity product;
@@ -9,7 +9,7 @@ class OrderEntity {
   final String customerName;
   final String customerAddress;
   final DateTime createdAt;
-  OrderEntity({
+  OrdersEntity({
     this.id,
     required this.userId,
     required this.product,
@@ -20,8 +20,8 @@ class OrderEntity {
     required this.createdAt,
   });
 
-  factory OrderEntity.fromJson(Map<String, dynamic> json) {
-    return OrderEntity(
+  factory OrdersEntity.fromJson(Map<String, dynamic> json) {
+    return OrdersEntity(
       id: json['id'],
       userId: json['user_id'] ?? '',
       product: ProductEntity.fromJson(json['products']),

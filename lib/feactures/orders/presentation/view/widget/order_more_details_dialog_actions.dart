@@ -13,7 +13,7 @@ class OrderMoreDeitlsDialogActions extends StatelessWidget {
     super.key,
     required this.activeOrderEntity,
   });
-  final OrderEntity activeOrderEntity;
+  final OrdersEntity activeOrderEntity;
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.sizeOf(context);

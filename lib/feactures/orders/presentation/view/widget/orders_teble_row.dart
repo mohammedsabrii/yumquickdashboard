@@ -6,7 +6,7 @@ import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.d
 
 TableRow ordersTableRow(
   BuildContext context, {
-  required OrderEntity actieOrderEntity,
+  required OrdersEntity actieOrderEntity,
   Function()? onTap,
 }) {
   return TableRow(

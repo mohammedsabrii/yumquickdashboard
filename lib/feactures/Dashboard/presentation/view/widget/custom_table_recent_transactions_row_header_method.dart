@@ -12,8 +12,19 @@ TableRow customTableRecentTransactionsRowHeader(BuildContext context) {
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
-          'Name',
-          style: AppStayls.styleInterRegular14(
+          'Product Name',
+          style: AppStayls.styleInterRegular12(
+            context,
+          ).copyWith(color: Colors.grey),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.02,
+        ),
+        child: Text(
+          'Customer Name',
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),
@@ -24,7 +35,7 @@ TableRow customTableRecentTransactionsRowHeader(BuildContext context) {
         ),
         child: Text(
           'Date',
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),
@@ -34,19 +45,8 @@ TableRow customTableRecentTransactionsRowHeader(BuildContext context) {
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
-          'Amount',
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: Colors.grey),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.02,
-        ),
-        child: Text(
-          'Status',
-          style: AppStayls.styleInterRegular14(
+          'Total amount',
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),

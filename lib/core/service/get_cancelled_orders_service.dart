@@ -3,7 +3,7 @@ import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.d
 
 class GetCancelledOrdersService {
   final supabase = Supabase.instance.client;
-  Future<List<OrderEntity>> getCancelledOrders() async {
+  Future<List<OrdersEntity>> getCancelledOrders() async {
     final response = await supabase
         .from('cancelled_orders')
         .select('''
@@ -28,7 +28,7 @@ class GetCancelledOrdersService {
         .order('created_at', ascending: false);
 
     final orders =
-        (response as List).map((json) => OrderEntity.fromJson(json)).toList();
+        (response as List).map((json) => OrdersEntity.fromJson(json)).toList();
     return orders;
   }
 }

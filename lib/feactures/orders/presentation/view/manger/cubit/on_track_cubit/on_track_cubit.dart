@@ -26,7 +26,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
   Future<void> moveOrderToCompletedTable(
     BuildContext context,
     String orderId,
-    OrderEntity activeOrder,
+    OrdersEntity activeOrder,
   ) async {
     final supabase = Supabase.instance.client;
     emit(OnTrackLoading());

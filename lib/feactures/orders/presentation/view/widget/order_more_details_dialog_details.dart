@@ -9,7 +9,7 @@ class OrderMoreDeitlsDialogDetails extends StatelessWidget {
     required this.activeOrderEntity,
   });
 
-  final OrderEntity activeOrderEntity;
+  final OrdersEntity activeOrderEntity;
 
   @override
   Widget build(BuildContext context) {

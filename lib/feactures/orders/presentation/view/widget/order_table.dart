@@ -9,7 +9,7 @@ class OrderTable extends StatelessWidget {
     required this.activeOrderEntity,
     required this.detailsDialog,
   });
-  final List<OrderEntity> activeOrderEntity;
+  final List<OrdersEntity> activeOrderEntity;
   final Widget Function(BuildContext, int) detailsDialog;
   @override
   Widget build(BuildContext context) {

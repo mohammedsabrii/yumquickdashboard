@@ -6,7 +6,7 @@ sealed class CompletedOrdersState {}
 final class CompletedOrdersInitial extends CompletedOrdersState {}
 
 final class CompletedOrdersSuccess extends CompletedOrdersState {
-  final List<OrderEntity> completedOrders;
+  final List<OrdersEntity> completedOrders;
 
   CompletedOrdersSuccess({required this.completedOrders});
 }
