@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/service/get_on_track_orders.dart';
-import 'package:yumquickdashboard/core/widget/custom_show_snackbar.dart';
 import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.dart';
 
 part 'on_track_state.dart';
@@ -43,9 +42,22 @@ class OnTrackCubit extends Cubit<OnTrackState> {
       });
 
       await supabase.from('on_track_orders').delete().eq('id', activeOrder.id!);
-      customShowSnackBar(context, title: 'Order moved successfully');
+
+      await supabase.functions.invoke(
+        'yumquick_notifications',
+        body: {
+          'user_id': activeOrder.userId,
+          'title': 'Your order has been delivered!',
+          'body':
+              'Your order has been delivered successfully. Thank you for your business.',
+          'screen': 'MyOrders',
+          'product_id': activeOrder.product.id,
+        },
+      );
+
+      fetchOnTrackOrders();
     } catch (e) {
-      customShowSnackBar(context, title: e.toString());
+      emit(OnTrackFailure(errorMessage: e.toString()));
     }
   }
 }

@@ -67,6 +67,15 @@ class AddProductCubit extends Cubit<AddProductState> {
         'category_id': selectedCategoryId,
       });
 
+      await supabase.functions.invoke(
+        'yumquick_notifications',
+        body: {
+          'user_id': 'all',
+          'title': 'New product!',
+          'body': 'New product "$name" has been added to our store, try it now',
+        },
+      );
+
       emit(AddProductSuccess());
     } catch (e) {
       emit(AddProductFailure(errorMessage: e.toString()));

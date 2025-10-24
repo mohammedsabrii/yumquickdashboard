@@ -1,41 +1,100 @@
-import { createClient } from "jsr:@supabase/supabase-js@2";
+import { createClient } from 'npm:@supabase/supabase-js@2'
+import { JWT } from 'npm:google-auth-library@9'
+import serviceAccount from '../service_account.json' with { type: 'json' }
+
+interface Notification {
+  id: string
+  user_id: string
+  body: string
+}
+
+interface WebhookPayload {
+  type: 'INSERT'
+  table: string
+  record: Notification
+  schema: 'public'
+}
+
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+)
 
 Deno.serve(async (req) => {
-  const supabase = createClient(
-    Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
-  );
+ 
+  const body = await req.json();
+console.log('📦 Payload:', body);
 
-  const { userId, title, body } = await req.json();
+const { data, error } = await supabase
+  .from('profiles')
+  .select('fcm_token')
+  .eq('id', body.user_id)
+  .single();
 
-  if (!userId || !title || !body) {
-    return new Response("Missing parameters", { status: 400 });
+
+  const fcmToken = data!.fcm_token as string
+  
+
+  const accessToken = await getAccessToken({
+    clientEmail: serviceAccount.client_email,
+    privateKey: serviceAccount.private_key,
+  })
+
+  const res = await fetch(
+    `https://fcm.googleapis.com/v1/projects/${serviceAccount.project_id}/messages:send`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        message: {
+          token: fcmToken,
+          notification: {
+            title: body.title,
+            body: body.body,
+            image: body.image_url,
+          },
+          data: {
+            screen: body.screen, 
+            image_position: 'right',  
+            product_id: body.product_id ?? '', 
+          },
+        },
+      }),
+    }
+  )
+
+  const resData = await res.json()
+  if (res.status < 200 || 299 < res.status) {
+    throw resData
   }
 
-  const { data: tokenData, error } = await supabase
-    .from("profiles")
-    .select("fcm_token")
-    .eq("id", userId)
-    .single();
+  return new Response(JSON.stringify(resData), {
+    headers: { 'Content-Type': 'application/json' },
+  })
+})
 
-  if (error || !tokenData?.fcm_token) {
-    return new Response("User token not found", { status: 404 });
-  }
-
-  const fcmToken = tokenData.fcm_token;
-
-  const res = await fetch("https://fcm.googleapis.com/fcm/send", {
-    method: "POST",
-    headers: {
-      "Authorization": `key=${Deno.env.get("FCM_SERVER_KEY")}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      to: fcmToken,
-      notification: { title, body },
-    }),
-  });
-
-  const result = await res.json();
-  return new Response(JSON.stringify(result), { status: 200 });
-});
+const getAccessToken = ({
+  clientEmail,
+  privateKey,
+}: {
+  clientEmail: string
+  privateKey: string
+}): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const jwtClient = new JWT({
+      email: clientEmail,
+      key: privateKey,
+      scopes: ['https://www.googleapis.com/auth/firebase.messaging'],
+    })
+    jwtClient.authorize((err, tokens) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      resolve(tokens!.access_token!)
+    })
+  })
+}

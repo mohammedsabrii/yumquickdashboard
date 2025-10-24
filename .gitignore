@@ -11,7 +11,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-
+supabase/functions/service_account.json
 # IntelliJ related
 *.iml
 *.ipr
