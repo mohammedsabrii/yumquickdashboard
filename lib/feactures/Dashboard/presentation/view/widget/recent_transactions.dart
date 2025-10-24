@@ -24,8 +24,7 @@ class RecentTransactions extends StatelessWidget {
           vertical: MediaQuery.sizeOf(context).height * 0.035,
           horizontal: MediaQuery.sizeOf(context).width * 0.0194,
         ),
-        child: BlocConsumer<CompletedOrdersCubit, CompletedOrdersState>(
-          listener: (context, state) {},
+        child: BlocBuilder<CompletedOrdersCubit, CompletedOrdersState>(
           builder: (context, state) {
             if (state is CompletedOrdersSuccess) {
               return SingleChildScrollView(

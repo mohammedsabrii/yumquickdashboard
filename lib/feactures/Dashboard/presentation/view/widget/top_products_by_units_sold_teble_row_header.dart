@@ -12,6 +12,17 @@ TableRow topProductsByUnitsSoldtableRowHeader(BuildContext context) {
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
+          'image',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.02,
+        ),
+        child: Text(
           'Name',
           style: AppStayls.styleInterRegular14(
             context,
