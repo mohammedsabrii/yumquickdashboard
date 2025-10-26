@@ -30,43 +30,39 @@ TableRow topProductsByUnitsSoldTableRow(
               ),
             ),
             SizedBox(width: 5),
+            Flexible(
+              child: Text(
+                ordersEntity.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppStayls.styleInterRegular12(context).copyWith(
+                  color: AppColor.kDarkRed,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
           ],
-        ),
-      ),
-      Flexible(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.sizeOf(context).height * 0.02,
-          ),
-          child: Text(
-            ordersEntity.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppStayls.styleInterRegular14(
-              context,
-            ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
-          ),
         ),
       ),
 
       Padding(
         padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.02,
+          vertical: MediaQuery.sizeOf(context).height * 0.035,
         ),
         child: Text(
           '\$${ordersEntity.price}',
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: AppColor.kDarkRed),
         ),
       ),
       Padding(
         padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.02,
+          vertical: MediaQuery.sizeOf(context).height * 0.035,
         ),
         child: Text(
           ordersEntity.totalSales.toString(),
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: AppColor.kDarkRed),
         ),

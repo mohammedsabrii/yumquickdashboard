@@ -12,19 +12,8 @@ TableRow topProductsByUnitsSoldtableRowHeader(BuildContext context) {
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
         child: Text(
-          'image',
-          style: AppStayls.styleInterRegular14(
-            context,
-          ).copyWith(color: Colors.grey),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.sizeOf(context).height * 0.02,
-        ),
-        child: Text(
           'Name',
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),
@@ -35,7 +24,7 @@ TableRow topProductsByUnitsSoldtableRowHeader(BuildContext context) {
         ),
         child: Text(
           'Price',
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),
@@ -46,7 +35,7 @@ TableRow topProductsByUnitsSoldtableRowHeader(BuildContext context) {
         ),
         child: Text(
           'Units Sold',
-          style: AppStayls.styleInterRegular14(
+          style: AppStayls.styleInterRegular12(
             context,
           ).copyWith(color: Colors.grey),
         ),

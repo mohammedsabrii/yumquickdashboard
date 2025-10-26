@@ -1,23 +1,27 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/entity/app_state_entity.dart';
 
 class SimpleBarChart extends StatelessWidget {
-  const SimpleBarChart({super.key});
+  final List<DailySales> itemsSoldLast7Days;
+
+  const SimpleBarChart({super.key, required this.itemsSoldLast7Days});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200, // adjust as needed
+      height: 220,
       child: BarChart(
         BarChartData(
           barTouchData: BarTouchData(
             enabled: true,
             touchTooltipData: BarTouchTooltipData(
-              // tooltipBgColor: Colors.black87,
               getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                final day = itemsSoldLast7Days[groupIndex].day;
                 return BarTooltipItem(
-                  '\$${rod.toY.toInt()}',
+                  '$day\n${rod.toY.toInt()} items',
                   const TextStyle(color: Colors.white, fontSize: 12),
                 );
               },
@@ -32,10 +36,21 @@ class SimpleBarChart extends StatelessWidget {
                 showTitles: true,
                 interval: 1,
                 getTitlesWidget: (value, meta) {
+                  final index = value.toInt();
+                  if (index < 0 || index >= itemsSoldLast7Days.length) {
+                    return const SizedBox.shrink();
+                  }
+
+                  final dateStr = itemsSoldLast7Days[index].day;
+                  final date = DateTime.tryParse(dateStr);
+
+                  final dayNumber =
+                      date != null ? DateFormat('d').format(date) : dateStr;
+
                   return Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
-                      '${value.toInt()}',
+                      dayNumber,
                       style: const TextStyle(fontSize: 10),
                     ),
                   );
@@ -46,13 +61,11 @@ class SimpleBarChart extends StatelessWidget {
           gridData: FlGridData(show: false),
           borderData: FlBorderData(show: false),
           barGroups: [
-            makeGroup(12, 10),
-            makeGroup(13, 12),
-            makeGroup(14, 14),
-            makeGroup(15, 16),
-            makeGroup(16, 18),
-            makeGroup(17, 17),
-            makeGroup(18, 19),
+            for (int i = 0; i < itemsSoldLast7Days.length; i++)
+              makeGroup(
+                i.toDouble(),
+                itemsSoldLast7Days[i].itemsSold.toDouble(),
+              ),
           ],
         ),
       ),

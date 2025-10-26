@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/cubit/get_top_selling_cubit.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/get_top_selling_cubit/get_top_selling_cubit.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/top_products_by_units_sold_teble_row.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/top_products_by_units_sold_teble_row_header.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/order_empty.dart';
@@ -42,6 +42,17 @@ class TopProductsByUnitsSold extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
                     Table(
+                      columnWidths: {
+                        0: FixedColumnWidth(
+                          MediaQuery.sizeOf(context).width * 0.18,
+                        ),
+                        1: FixedColumnWidth(
+                          MediaQuery.sizeOf(context).width * 0.065,
+                        ),
+                        2: FixedColumnWidth(
+                          MediaQuery.sizeOf(context).width * 0.072,
+                        ),
+                      },
                       children: [
                         topProductsByUnitsSoldtableRowHeader(context),
                         ...List.generate(

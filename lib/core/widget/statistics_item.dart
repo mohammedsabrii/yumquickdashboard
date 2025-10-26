@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/core/model/statistics_item_model.dart';
@@ -27,26 +25,16 @@ class StatisticsItem extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '\$${statisticsItemModel.relaive}',
+                    statisticsItemModel.relaive,
                     style: AppStayls.styleInterBold16(
                       context,
                     ).copyWith(color: AppColor.kDarkRed),
                   ),
                 ),
+                SizedBox(height: 10),
                 Text(
                   statisticsItemModel.title,
                   style: AppStayls.styleInerRegular10(context),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '${statisticsItemModel.quantity}%',
-                      style: AppStayls.styleInerRegular10(
-                        context,
-                      ).copyWith(color: AppColor.kMainColor),
-                    ),
-                    SvgPicture.asset(AppAssets.kUpIcon),
-                  ],
                 ),
               ],
             ),

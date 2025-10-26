@@ -5,7 +5,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/utils/app_constant.dart';
 import 'package:yumquickdashboard/core/utils/app_router.dart';
 import 'package:yumquickdashboard/feactures/Customers/presentation/manger/cubit/customers_profile_info_cubit/customers_profile_info_cubit.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/cubit/get_top_selling_cubit.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/app_state_cubit/app_state_cubit.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/get_top_selling_cubit/get_top_selling_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/add_prodact_cubit/add_prodact_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/edit_product_cubit/edit_product_cubit.dart';
 import 'package:yumquickdashboard/feactures/Prodact/presentation/view/manger/cubits/products_cubit/products_cubit.dart';
@@ -46,7 +47,7 @@ class YumQuickDashBoard extends StatelessWidget {
         BlocProvider(
           create: (context) => GetTopSellingCubit()..getTopSelling(),
         ),
-
+        BlocProvider(create: (context) => AppStatsCubit()..fetchAppState()),
         BlocProvider(create: (context) => EditProductCubit()),
         BlocProvider(create: (context) => ProductsByCategoryCubit()),
         BlocProvider(

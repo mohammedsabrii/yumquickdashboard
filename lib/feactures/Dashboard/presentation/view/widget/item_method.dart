@@ -3,11 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/model/statistics_item_model.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/entity/app_state_entity.dart';
 
-List<StatisticsItemModel> itemMethod(BuildContext context) {
+List<StatisticsItemModel> itemMethod(
+  BuildContext context, {
+  required AppStatsEntity appStatsEntity,
+}) {
   return [
     StatisticsItemModel(
-      quantity: '22.45',
       icon: Container(
         width: 28,
         height: 28,
@@ -17,11 +20,10 @@ List<StatisticsItemModel> itemMethod(BuildContext context) {
         ),
         child: Center(child: SvgPicture.asset(AppAssets.kDollarIcon)),
       ),
-      relaive: '10.54',
+      relaive: '\$${appStatsEntity.totalRevenue}',
       title: 'Total Revenue',
     ),
     StatisticsItemModel(
-      quantity: '15.34',
       icon: Container(
         width: 28,
         height: 28,
@@ -31,26 +33,23 @@ List<StatisticsItemModel> itemMethod(BuildContext context) {
         ),
         child: Center(child: SvgPicture.asset(AppAssets.kCartIcon)),
       ),
-      relaive: '1,056',
+      relaive: appStatsEntity.totalOrders.toString(),
       title: 'Orders',
     ),
     StatisticsItemModel(
-      quantity: '5.420',
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: '10.27',
+      relaive: appStatsEntity.totalVisits.toString(),
       title: 'Unique Visits',
     ),
     StatisticsItemModel(
-      quantity: '15.34',
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: '1.650',
+      relaive: appStatsEntity.newUsersLast14Days.toString(),
       title: 'New Users',
     ),
     StatisticsItemModel(
-      quantity: '22.45',
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: '9.653',
-      title: 'Existing Users',
+      relaive: appStatsEntity.totalUsers.toString(),
+      title: 'Total Users',
     ),
   ];
 }

@@ -7,6 +7,5 @@ final List<DrawerData> drawerIconAndTitle = const [
   DrawerData(icon: AppAssets.kProdactIcon, title: 'Products'),
   DrawerData(icon: AppAssets.kCategorysIcon, title: 'Categories'),
   DrawerData(icon: AppAssets.kCustomersIcon, title: 'Customers'),
-  DrawerData(icon: AppAssets.kReportsIcon, title: 'Reports'),
   DrawerData(icon: AppAssets.kCouponsIcon, title: 'Offers'),
 ];

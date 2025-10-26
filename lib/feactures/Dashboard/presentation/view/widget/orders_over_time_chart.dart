@@ -1,20 +1,31 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/entity/app_state_entity.dart';
 
 class OrdersOverTimeChart extends StatelessWidget {
-  const OrdersOverTimeChart({super.key});
+  final List<HourlySales> itemsSoldPerHour;
+
+  const OrdersOverTimeChart({super.key, required this.itemsSoldPerHour});
 
   @override
   Widget build(BuildContext context) {
+    final spots =
+        itemsSoldPerHour.asMap().entries.map((entry) {
+          final index = entry.key.toDouble();
+          final sales = entry.value.itemsSold.toDouble();
+          return FlSpot(index, sales);
+        }).toList();
+
     return LineChart(
       LineChartData(
         lineTouchData: LineTouchData(
           touchTooltipData: LineTouchTooltipData(
             getTooltipItems: (touchedSpots) {
               return touchedSpots.map((spot) {
+                final hourLabel = itemsSoldPerHour[spot.x.toInt()].hour;
                 return LineTooltipItem(
-                  '${spot.y.toInt()} Orders\nMay 22, ${_formatHour(spot.x)}',
+                  '${spot.y.toInt()} Orders\n$hourLabel',
                   const TextStyle(color: Colors.white, fontSize: 12),
                 );
               }).toList();
@@ -26,78 +37,48 @@ class OrdersOverTimeChart extends StatelessWidget {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-
               interval: 1,
               getTitlesWidget: (value, meta) {
+                final hourLabel = itemsSoldPerHour[value.toInt()].hour;
                 return Text(
-                  _formatHour(value),
+                  _formatHourLabel(hourLabel),
                   style: const TextStyle(fontSize: 10),
                 );
               },
             ),
           ),
-
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
         borderData: FlBorderData(show: false),
-        minX: 4,
-        maxX: 15,
+
         minY: 0,
-        maxY: 50,
+        maxY: getMaxY(spots),
 
         lineBarsData: [
           LineChartBarData(
-            spots: [
-              FlSpot(4, 19),
-              FlSpot(5, 10),
-              FlSpot(6, 30),
-              FlSpot(7, 15),
-              FlSpot(8, 30),
-              FlSpot(9, 20),
-              FlSpot(10, 40),
-              FlSpot(11, 35),
-              FlSpot(12, 25),
-              FlSpot(13, 30),
-              FlSpot(14, 20),
-              FlSpot(15, 45),
-            ],
-            isCurved: false,
-            color: AppColor.kPinkishOrange,
-            barWidth: 2,
-            dotData: FlDotData(show: false),
-          ),
-
-          LineChartBarData(
-            spots: [
-              FlSpot(4, 8),
-              FlSpot(5, 12),
-              FlSpot(6, 20),
-              FlSpot(7, 34),
-              FlSpot(8, 28),
-              FlSpot(9, 50),
-              FlSpot(10, 40),
-              FlSpot(11, 30),
-              FlSpot(12, 35),
-              FlSpot(13, 30),
-              FlSpot(14, 32),
-              FlSpot(15, 45),
-            ],
-            isCurved: false,
+            spots: spots,
+            isCurved: true,
             color: AppColor.kMainColor,
-
-            dotData: FlDotData(show: true),
+            // dotData: FlDotData(show: true),
+            barWidth: 3,
           ),
         ],
       ),
     );
   }
 
-  String _formatHour(double value) {
-    // Map 4 -> 4am, 5 -> 5am, ..., 12 -> 12pm, 13 -> 1pm, etc.
-    int hour = value.toInt();
+  String _formatHourLabel(String hourText) {
+    final hour = int.tryParse(hourText.split(':').first) ?? 0;
+    if (hour == 0) return '12am';
+    if (hour < 12) return '${hour}am';
     if (hour == 12) return '12pm';
-    if (hour > 12) return '${hour - 12}pm';
-    return '${hour}am';
+    return '${hour - 12}pm';
+  }
+
+  double getMaxY(List<FlSpot> spots) {
+    if (spots.isEmpty) return 10;
+    final maxVal = spots.map((s) => s.y).reduce((a, b) => a > b ? a : b);
+    return (maxVal + 10).clamp(10, double.infinity);
   }
 }
