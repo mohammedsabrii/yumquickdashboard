@@ -13,11 +13,11 @@ TableRow customTableRecentTransactionsRow(
       border: Border(bottom: BorderSide(color: Colors.grey)),
     ),
     children: [
-      Flexible(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.sizeOf(context).height * 0.02,
-          ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.02,
+        ),
+        child: Flexible(
           child: Text(
             ordersEntity.product.name,
             maxLines: 1,
@@ -28,11 +28,11 @@ TableRow customTableRecentTransactionsRow(
           ),
         ),
       ),
-      Flexible(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.sizeOf(context).height * 0.02,
-          ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.02,
+        ),
+        child: Flexible(
           child: Text(
             ordersEntity.customerName,
             maxLines: 1,

@@ -12,7 +12,7 @@ class SimpleBarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: MediaQuery.sizeOf(context).height * 0.275,
       child: BarChart(
         BarChartData(
           barTouchData: BarTouchData(
