@@ -29,12 +29,12 @@ class Last7DaysSales extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Last 7 Days Sales',
-                    style: AppStayls.styleInterBold16(
-                      context,
-                    ).copyWith(color: AppColor.kDarkRed),
-                  ),
+                  // Text(
+                  //   'Last 7 Days Sales',
+                  //   style: AppStayls.styleInterBold16(
+                  //     context,
+                  //   ).copyWith(color: AppColor.kDarkRed),
+                  // ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                   TotalItem(
                     totalOrders: state.stats.itemsSoldLast7Days.toString(),
