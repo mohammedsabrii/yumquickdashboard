@@ -24,6 +24,7 @@ class AppStatsCubit extends Cubit<AppStatsState> {
         emit(AppStatsSuccess(stats: stats, usersStats: usersStats!));
       }
     } catch (e) {
+      print(e.toString());
       emit(AppStateFailure(errorMessage: e.toString()));
     }
   }

@@ -31,7 +31,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
     final supabase = Supabase.instance.client;
     emit(OnTrackLoading());
     try {
-      await supabase.from('completed_orders').insert({
+      await supabase.from('completed').insert({
         'id': activeOrder.id,
         'user_id': activeOrder.userId,
         'product_id': activeOrder.product.id,

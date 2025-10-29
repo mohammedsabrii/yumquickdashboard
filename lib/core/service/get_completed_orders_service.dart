@@ -6,88 +6,83 @@ class GetCompletedOrdersService {
   final supabase = Supabase.instance.client;
 
   Future<AppStatsEntity> getOrderStatistics() async {
-    try {
-      final response = await supabase
-          .from('completed_orders')
-          .select('quantity, total_amount, created_at')
-          .order('created_at', ascending: false);
+    final response = await supabase
+        .from('completed')
+        .select('quantity, total_amount, created_at')
+        .order('created_at', ascending: false);
 
-      final List<Map<String, dynamic>> data = List<Map<String, dynamic>>.from(
-        response,
-      );
+    final List<Map<String, dynamic>> data = List<Map<String, dynamic>>.from(
+      response,
+    );
 
-      if (data.isEmpty) {
-        return _emptyStats();
-      }
+    if (data.isEmpty) {
+      return _emptyStats();
+    }
 
-      final now = DateTime.now().toUtc();
-      final last7DaysStart = now.subtract(const Duration(days: 7));
-      final last24HoursStart = now.subtract(const Duration(hours: 24));
+    final now = DateTime.now().toUtc();
+    final last7DaysStart = now.subtract(const Duration(days: 7));
+    final last24HoursStart = now.subtract(const Duration(hours: 24));
 
-      int itemsLast7Days = 0;
-      int itemsLast24Hours = 0;
-      double revenueLast7Days = 0.0;
-      double revenueLast24Hours = 0.0;
-      double totalRevenue = 0.0;
+    int itemsLast7Days = 0;
+    int itemsLast24Hours = 0;
+    double revenueLast7Days = 0.0;
+    double revenueLast24Hours = 0.0;
+    double totalRevenue = 0.0;
 
-      final Map<String, int> dailySalesMap = {};
-      final Map<String, int> hourlySalesMap = {};
+    final Map<String, int> dailySalesMap = {};
+    final Map<String, int> hourlySalesMap = {};
 
-      for (var row in data) {
-        final orderDate = DateTime.parse(row['created_at']).toUtc();
-        final quantity = row['quantity'] as int;
-        final amount = (row['total_amount'] as num).toDouble();
+    for (var row in data) {
+      final orderDate = DateTime.parse(row['created_at']).toUtc();
+      final quantity = row['quantity'] as int;
+      final amount = (row['total_amount'] as num).toDouble();
 
-        totalRevenue += amount;
+      totalRevenue += amount;
 
-        if (orderDate.isAfter(last7DaysStart)) {
-          itemsLast7Days += quantity;
-          revenueLast7Days += amount;
+      if (orderDate.isAfter(last7DaysStart)) {
+        itemsLast7Days += quantity;
+        revenueLast7Days += amount;
 
-          final dayKey = DateFormat('yyyy-MM-dd').format(orderDate);
-          dailySalesMap[dayKey] = (dailySalesMap[dayKey] ?? 0) + quantity;
+        final dayKey = DateFormat('yyyy-MM-dd').format(orderDate);
+        dailySalesMap[dayKey] = (dailySalesMap[dayKey] ?? 0) + quantity;
 
-          if (orderDate.isAfter(last24HoursStart)) {
-            itemsLast24Hours += quantity;
-            revenueLast24Hours += amount;
+        if (orderDate.isAfter(last24HoursStart)) {
+          itemsLast24Hours += quantity;
+          revenueLast24Hours += amount;
 
-            final hourKey = DateFormat('HH:00').format(orderDate);
-            hourlySalesMap[hourKey] = (hourlySalesMap[hourKey] ?? 0) + quantity;
-          }
+          final hourKey = DateFormat('HH:00').format(orderDate);
+          hourlySalesMap[hourKey] = (hourlySalesMap[hourKey] ?? 0) + quantity;
         }
       }
-
-      final List<DailySales> dailySalesList = _buildDailySales(
-        now,
-        dailySalesMap,
-      );
-      final List<HourlySales> hourlySalesList = _buildHourlySales(
-        now,
-        hourlySalesMap,
-      );
-
-      final totalOrders = data.length;
-      final itemsSoldPerHour = itemsLast7Days / (7 * 24);
-      final itemsSoldPerDayLast7Days = itemsLast7Days / 7.0;
-
-      return AppStatsEntity(
-        itemsSoldLast7Days: itemsLast7Days,
-        itemsSoldLast24Hours: itemsLast24Hours,
-        itemsSoldPerHour: double.parse(itemsSoldPerHour.toStringAsFixed(2)),
-        itemsSoldPerDayLast7Days: double.parse(
-          itemsSoldPerDayLast7Days.toStringAsFixed(2),
-        ),
-        revenueLast7Days: double.parse(revenueLast7Days.toStringAsFixed(2)),
-        revenueLast24Hours: double.parse(revenueLast24Hours.toStringAsFixed(2)),
-        totalRevenue: double.parse(totalRevenue.toStringAsFixed(2)),
-        totalOrders: totalOrders,
-        itemsSoldPerDayLast7DaysList: dailySalesList,
-        itemsSoldPerHourList: hourlySalesList,
-      );
-    } catch (e) {
-      print('Error in GetCompletedOrdersService: $e');
-      rethrow;
     }
+
+    final List<DailySales> dailySalesList = _buildDailySales(
+      now,
+      dailySalesMap,
+    );
+    final List<HourlySales> hourlySalesList = _buildHourlySales(
+      now,
+      hourlySalesMap,
+    );
+
+    final totalOrders = data.length;
+    final itemsSoldPerHour = itemsLast7Days / (7 * 24);
+    final itemsSoldPerDayLast7Days = itemsLast7Days / 7.0;
+
+    return AppStatsEntity(
+      itemsSoldLast7Days: itemsLast7Days,
+      itemsSoldLast24Hours: itemsLast24Hours,
+      itemsSoldPerHour: double.parse(itemsSoldPerHour.toStringAsFixed(2)),
+      itemsSoldPerDayLast7Days: double.parse(
+        itemsSoldPerDayLast7Days.toStringAsFixed(2),
+      ),
+      revenueLast7Days: double.parse(revenueLast7Days.toStringAsFixed(2)),
+      revenueLast24Hours: double.parse(revenueLast24Hours.toStringAsFixed(2)),
+      totalRevenue: double.parse(totalRevenue.toStringAsFixed(2)),
+      totalOrders: totalOrders,
+      itemsSoldPerDayLast7DaysList: dailySalesList,
+      itemsSoldPerHourList: hourlySalesList,
+    );
   }
 
   AppStatsEntity _emptyStats() {
@@ -127,10 +122,9 @@ class GetCompletedOrdersService {
     });
   }
 
-  // لو لسة عايز تجيب الطلبات كاملة
   Future<List<OrdersEntity>> getCompletedOrders() async {
     final response = await supabase
-        .from('completed_orders')
+        .from('completed')
         .select('''
       id,
       user_id,               
@@ -158,17 +152,15 @@ class GetCompletedOrdersService {
   }
 }
 
-// models.dart (أو ملف الـ Entity)
-// models/app_stats_entity.dart
 class DailySales {
-  final String day; // "2025-10-25"
+  final String day;
   final int itemsSold;
 
   DailySales({required this.day, required this.itemsSold});
 }
 
 class HourlySales {
-  final String hour; // "14:00"
+  final String hour;
   final int itemsSold;
 
   HourlySales({required this.hour, required this.itemsSold});

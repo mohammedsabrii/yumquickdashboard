@@ -34,6 +34,7 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
     emit(ActiveOrdersLoading());
     try {
       await supabase.from('on_track_orders').insert({
+        'id': activeOrder.id,
         'user_id': activeOrder.userId,
         'product_id': activeOrder.product.id,
         'quantity': activeOrder.quantity,

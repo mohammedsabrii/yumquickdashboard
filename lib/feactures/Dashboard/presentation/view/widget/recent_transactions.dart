@@ -27,6 +27,7 @@ class RecentTransactions extends StatelessWidget {
         child: BlocBuilder<CompletedOrdersCubit, CompletedOrdersState>(
           builder: (context, state) {
             if (state is CompletedOrdersSuccess) {
+              final count = state.completedOrders.length.clamp(0, 5);
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +42,9 @@ class RecentTransactions extends StatelessWidget {
                     Table(
                       children: [
                         customTableRecentTransactionsRowHeader(context),
+
                         ...List.generate(
-                          5,
+                          count,
                           (index) => customTableRecentTransactionsRow(
                             context,
                             ordersEntity: state.completedOrders[index],

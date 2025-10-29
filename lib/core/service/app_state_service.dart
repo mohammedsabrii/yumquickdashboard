@@ -10,7 +10,7 @@ class AppUsersStatsService {
         await supabase
             .from('app_stats')
             .select()
-            .order('created_at', ascending: false)
+            .order('updated_at', ascending: false)
             .limit(1)
             .single();
 
