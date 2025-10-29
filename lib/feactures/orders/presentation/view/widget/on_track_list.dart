@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/on_track_cubit/on_track_cubit.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/on_track_bloc_bulider.dart';
 
 class OnTrackList extends StatefulWidget {
@@ -12,6 +16,24 @@ class OnTrackList extends StatefulWidget {
 
 class _OnTrackListState extends State<OnTrackList> {
   String? selectedValue;
+  Timer? refreshTimer;
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<OnTrackCubit>(context).fetchOnTrackOrdersSilently();
+
+    refreshTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      BlocProvider.of<OnTrackCubit>(context).fetchOnTrackOrdersSilently();
+    });
+  }
+
+  @override
+  void dispose() {
+    refreshTimer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

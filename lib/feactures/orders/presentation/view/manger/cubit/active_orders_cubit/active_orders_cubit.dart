@@ -10,9 +10,9 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
   ActiveOrdersCubit() : super(ActiveOrdersInitial());
   final GetOrdersService getOrdersService = GetOrdersService();
   final supabase = Supabase.instance.client;
+
   Future<void> fetchActiveOrders() async {
     emit(ActiveOrdersLoading());
-
     try {
       final orders = await getOrdersService.getActiveOrders();
       if (orders.isEmpty) {
@@ -23,6 +23,17 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
     } catch (e) {
       emit(ActiveOrdersFailure(e.toString()));
     }
+  }
+
+  Future<void> fetchActiveOrdersSilently() async {
+    try {
+      final orders = await getOrdersService.getActiveOrders();
+      if (orders.isEmpty) {
+        emit(ActiveOrdersEmpty());
+      } else {
+        emit(ActiveOrdersSuccess(orders));
+      }
+    } catch (_) {}
   }
 
   Future<void> moveOrderToOnTrackTable(

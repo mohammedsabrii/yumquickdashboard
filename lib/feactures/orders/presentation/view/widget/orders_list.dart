@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
+import 'package:yumquickdashboard/feactures/orders/presentation/view/manger/cubit/active_orders_cubit/active_orders_cubit.dart';
 import 'package:yumquickdashboard/feactures/orders/presentation/view/widget/order_table_bloc_builder.dart';
 
 class OrdersList extends StatefulWidget {
@@ -12,6 +16,25 @@ class OrdersList extends StatefulWidget {
 
 class _OrdersListState extends State<OrdersList> {
   String? selectedValue;
+  Timer? refreshTimer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<ActiveOrdersCubit>(context).fetchActiveOrders();
+
+    refreshTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      BlocProvider.of<ActiveOrdersCubit>(context).fetchActiveOrdersSilently();
+    });
+  }
+
+  @override
+  void dispose() {
+    refreshTimer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +60,7 @@ class _OrdersListState extends State<OrdersList> {
                 ).copyWith(color: AppColor.kDarkRed),
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.0145),
-              OrdersTableBlocBuilder(),
+              const OrdersTableBlocBuilder(),
             ],
           ),
         ),

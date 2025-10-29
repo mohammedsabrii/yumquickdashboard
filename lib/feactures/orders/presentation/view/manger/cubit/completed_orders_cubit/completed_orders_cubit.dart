@@ -7,8 +7,10 @@ part 'completed_orders_state.dart';
 
 class CompletedOrdersCubit extends Cubit<CompletedOrdersState> {
   CompletedOrdersCubit() : super(CompletedOrdersInitial());
+
   final GetCompletedOrdersService getCompletedOrdersService =
       GetCompletedOrdersService();
+
   Future<void> fetchCompletedOrders() async {
     emit(CompletedOrdersLoading());
     try {
@@ -22,5 +24,17 @@ class CompletedOrdersCubit extends Cubit<CompletedOrdersState> {
     } catch (e) {
       emit(CompletedOrdersFailure(errorMessage: e.toString()));
     }
+  }
+
+  Future<void> fetchCompletedOrdersSilently() async {
+    try {
+      final completedOrders =
+          await getCompletedOrdersService.getCompletedOrders();
+      if (completedOrders.isEmpty) {
+        emit(CompletedOrdersEmpty());
+      } else {
+        emit(CompletedOrdersSuccess(completedOrders: completedOrders));
+      }
+    } catch (_) {}
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yumquickdashboard/core/service/get_on_track_orders.dart';
 import 'package:yumquickdashboard/feactures/orders/entity/active_orders_entity.dart';
@@ -21,6 +22,17 @@ class OnTrackCubit extends Cubit<OnTrackState> {
     } catch (e) {
       emit(OnTrackFailure(errorMessage: e.toString()));
     }
+  }
+
+  Future<void> fetchOnTrackOrdersSilently() async {
+    try {
+      final onTrackOrders = await getOnTrackOrders.getOnTrackOrders();
+      if (onTrackOrders.isEmpty) {
+        emit(OnTrackEmpty());
+      } else {
+        emit(OnTrackSuccess(onTrackOrders: onTrackOrders));
+      }
+    } catch (_) {}
   }
 
   Future<void> moveOrderToCompletedTable(
@@ -55,7 +67,6 @@ class OnTrackCubit extends Cubit<OnTrackState> {
           'product_id': activeOrder.product.id,
         },
       );
-
       fetchOnTrackOrders();
     } catch (e) {
       print(e.toString());
