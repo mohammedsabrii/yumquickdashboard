@@ -47,7 +47,7 @@ class YumQuickDashBoard extends StatelessWidget {
         BlocProvider(
           create: (context) => GetTopSellingCubit()..getTopSelling(),
         ),
-        BlocProvider(create: (context) => AppStatsCubit()..fetchAppState()),
+        BlocProvider(create: (context) => AppStatsCubit()..fetchAppStats()),
         BlocProvider(create: (context) => EditProductCubit()),
         BlocProvider(create: (context) => ProductsByCategoryCubit()),
         BlocProvider(

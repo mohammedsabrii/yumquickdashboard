@@ -56,6 +56,7 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
       await supabase.from('active_orders').delete().eq('id', activeOrder.id!);
       fetchActiveOrders();
     } catch (e) {
+      print(e.toString());
       emit(ActiveOrdersFailure(e.toString()));
     }
   }

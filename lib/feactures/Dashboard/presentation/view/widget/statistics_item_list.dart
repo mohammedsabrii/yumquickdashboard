@@ -17,11 +17,19 @@ class StatisticsItemList extends StatelessWidget {
           return Row(
             spacing: 10,
             children: List.generate(
-              itemMethod(context, appStatsEntity: state.stats).length,
+              itemMethod(
+                context,
+                appUsersStatsEntity: state.usersStats,
+                appStatsEntity: state.stats,
+              ).length,
               (index) {
                 return StatisticsItem(
                   statisticsItemModel:
-                      itemMethod(context, appStatsEntity: state.stats)[index],
+                      itemMethod(
+                        context,
+                        appUsersStatsEntity: state.usersStats,
+                        appStatsEntity: state.stats,
+                      )[index],
                 );
               },
             ),

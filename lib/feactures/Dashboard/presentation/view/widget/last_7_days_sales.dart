@@ -29,39 +29,33 @@ class Last7DaysSales extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Text(
-                  //   'Last 7 Days Sales',
-                  //   style: AppStayls.styleInterBold16(
-                  //     context,
-                  //   ).copyWith(color: AppColor.kDarkRed),
-                  // ),
+                  Text(
+                    'Last 7 Days Sales',
+                    style: AppStayls.styleInterBold16(
+                      context,
+                    ).copyWith(color: AppColor.kDarkRed),
+                  ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                   TotalItem(
-                    totalOrders: state.stats.itemsSoldLast7Days.toString(),
                     title: 'Items Sold',
+                    totalOrders: state.stats.itemsSoldLast7Days.toString(),
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
                   TotalItem(
-                    totalOrders: '\$${state.stats.revenueLast7Days}',
                     title: 'Revenue',
+                    totalOrders: '\$${state.stats.revenueLast7Days}',
                   ),
                   Divider(thickness: 2, color: Colors.grey),
                   Flexible(
                     child: SimpleBarChart(
-                      itemsSoldLast7Days: state.stats.itemsSoldPerDayLast7Days,
+                      itemsSoldLast7Days:
+                          state.stats.itemsSoldPerDayLast7DaysList,
                     ),
                   ),
                 ],
               );
             } else if (state is AppStateFailure) {
-              return Center(
-                child: Text(
-                  state.errorMessage,
-                  style: AppStayls.styleInterRegular16(
-                    context,
-                  ).copyWith(color: AppColor.kMainColor),
-                ),
-              );
+              return Center(child: Text(state.errorMessage));
             }
             return Center(
               child: CircularProgressIndicator(color: AppColor.kMainColor),

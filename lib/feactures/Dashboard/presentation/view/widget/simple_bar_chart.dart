@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:yumquickdashboard/core/service/get_completed_orders_service.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
-import 'package:yumquickdashboard/feactures/Dashboard/entity/app_state_entity.dart';
 
 class SimpleBarChart extends StatelessWidget {
   final List<DailySales> itemsSoldLast7Days;
@@ -20,8 +20,9 @@ class SimpleBarChart extends StatelessWidget {
             touchTooltipData: BarTouchTooltipData(
               getTooltipItem: (group, groupIndex, rod, rodIndex) {
                 final day = itemsSoldLast7Days[groupIndex].day;
+                final date = DateTime.parse(day);
                 return BarTooltipItem(
-                  '$day\n${rod.toY.toInt()} items',
+                  '${DateFormat('d MMM').format(date)}\n${rod.toY.toInt()} items',
                   const TextStyle(color: Colors.white, fontSize: 12),
                 );
               },
@@ -37,22 +38,12 @@ class SimpleBarChart extends StatelessWidget {
                 interval: 1,
                 getTitlesWidget: (value, meta) {
                   final index = value.toInt();
-                  if (index < 0 || index >= itemsSoldLast7Days.length) {
-                    return const SizedBox.shrink();
-                  }
-
-                  final dateStr = itemsSoldLast7Days[index].day;
-                  final date = DateTime.tryParse(dateStr);
-
-                  final dayNumber =
-                      date != null ? DateFormat('d').format(date) : dateStr;
-
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      dayNumber,
-                      style: const TextStyle(fontSize: 10),
-                    ),
+                  if (index >= itemsSoldLast7Days.length)
+                    return const SizedBox();
+                  final date = DateTime.parse(itemsSoldLast7Days[index].day);
+                  return Text(
+                    DateFormat('d').format(date),
+                    style: const TextStyle(fontSize: 10),
                   );
                 },
               ),
@@ -60,13 +51,17 @@ class SimpleBarChart extends StatelessWidget {
           ),
           gridData: FlGridData(show: false),
           borderData: FlBorderData(show: false),
-          barGroups: [
-            for (int i = 0; i < itemsSoldLast7Days.length; i++)
-              makeGroup(
-                i.toDouble(),
-                itemsSoldLast7Days[i].itemsSold.toDouble(),
-              ),
-          ],
+          barGroups:
+              itemsSoldLast7Days
+                  .asMap()
+                  .entries
+                  .map(
+                    (e) => makeGroup(
+                      e.key.toDouble(),
+                      e.value.itemsSold.toDouble(),
+                    ),
+                  )
+                  .toList(),
         ),
       ),
     );

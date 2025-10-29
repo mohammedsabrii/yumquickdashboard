@@ -41,7 +41,6 @@ class OredrsOverTimeItem extends StatelessWidget {
                       Spacer(),
                       Text(
                         'Last 24 Hours',
-                        textAlign: TextAlign.right,
                         style: AppStayls.styleInterRegular14(
                           context,
                         ).copyWith(color: Colors.grey),
@@ -58,29 +57,21 @@ class OredrsOverTimeItem extends StatelessWidget {
                       ),
                       Spacer(),
                       TotalItem(
-                        title: 'Revnue in Last 24 Hours',
+                        title: 'Revenue in Last 24 Hours',
                         totalOrders: '\$${state.stats.revenueLast24Hours}',
                       ),
                     ],
                   ),
-
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.035),
                   Flexible(
                     child: OrdersOverTimeChart(
-                      itemsSoldPerHour: state.stats.itemsSoldPerHour,
+                      itemsSoldPerHour: state.stats.itemsSoldPerHourList,
                     ),
                   ),
                 ],
               );
             } else if (state is AppStateFailure) {
-              return Center(
-                child: Text(
-                  state.errorMessage,
-                  style: AppStayls.styleInterRegular16(
-                    context,
-                  ).copyWith(color: AppColor.kMainColor),
-                ),
-              );
+              return Center(child: Text(state.errorMessage));
             }
             return Center(
               child: CircularProgressIndicator(color: AppColor.kMainColor),

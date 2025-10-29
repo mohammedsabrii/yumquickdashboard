@@ -7,8 +7,9 @@ final class AppStateInitial extends AppStatsState {}
 
 final class AppStatsSuccess extends AppStatsState {
   final AppStatsEntity stats;
+  final AppUsersStatsEntity usersStats;
 
-  AppStatsSuccess({required this.stats});
+  AppStatsSuccess({required this.stats, required this.usersStats});
 }
 
 final class AppStateLoading extends AppStatsState {}

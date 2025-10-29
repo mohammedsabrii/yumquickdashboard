@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yumquickdashboard/core/service/get_completed_orders_service.dart';
 import 'package:yumquickdashboard/core/utils/app_assets.dart';
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/model/statistics_item_model.dart';
@@ -7,6 +8,7 @@ import 'package:yumquickdashboard/feactures/Dashboard/entity/app_state_entity.da
 
 List<StatisticsItemModel> itemMethod(
   BuildContext context, {
+  required AppUsersStatsEntity appUsersStatsEntity,
   required AppStatsEntity appStatsEntity,
 }) {
   return [
@@ -38,17 +40,17 @@ List<StatisticsItemModel> itemMethod(
     ),
     StatisticsItemModel(
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: appStatsEntity.totalVisits.toString(),
+      relaive: appUsersStatsEntity.totalVisits.toString(),
       title: 'Unique Visits',
     ),
     StatisticsItemModel(
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: appStatsEntity.newUsersLast14Days.toString(),
+      relaive: appUsersStatsEntity.newUsersLast14Days.toString(),
       title: 'New Users',
     ),
     StatisticsItemModel(
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: appStatsEntity.totalUsers.toString(),
+      relaive: appUsersStatsEntity.totalUsers.toString(),
       title: 'Total Users',
     ),
   ];
