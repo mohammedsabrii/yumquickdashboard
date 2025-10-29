@@ -18,15 +18,27 @@ class AppStatsCubit extends Cubit<AppStatsState> {
       final stats = await appStatsService.getLatestStats();
       final usersStats = await appUsersStatsService.getLatestStats();
 
-      if (stats == null) {
+      if (stats == null || usersStats == null) {
         emit(AppStateFailure(errorMessage: 'No data available'));
       } else {
-        emit(AppStatsSuccess(stats: stats, usersStats: usersStats!));
+        emit(AppStatsSuccess(stats: stats, usersStats: usersStats));
       }
     } catch (e) {
       print(e.toString());
       emit(AppStateFailure(errorMessage: e.toString()));
     }
+  }
+
+  Future<void> fetchAppStatsSilently() async {
+    try {
+      final stats = await appStatsService.getLatestStats();
+      final usersStats = await appUsersStatsService.getLatestStats();
+      if (stats == null || usersStats == null) {
+        emit(AppStateFailure(errorMessage: 'No data available'));
+      } else {
+        emit(AppStatsSuccess(stats: stats, usersStats: usersStats));
+      }
+    } catch (_) {}
   }
 
   void startAutoRefresh() {

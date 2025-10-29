@@ -21,7 +21,7 @@ class _OnTrackListState extends State<OnTrackList> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<OnTrackCubit>(context).fetchOnTrackOrdersSilently();
+    BlocProvider.of<OnTrackCubit>(context).fetchOnTrackOrders();
 
     refreshTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       BlocProvider.of<OnTrackCubit>(context).fetchOnTrackOrdersSilently();

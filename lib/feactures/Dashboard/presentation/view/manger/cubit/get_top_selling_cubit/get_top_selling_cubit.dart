@@ -24,4 +24,16 @@ class GetTopSellingCubit extends Cubit<GetTopSellingState> {
       emit(GetTopSellingFailure(errorMessage: e.toString()));
     }
   }
+
+  Future<void> fetchTopSellingSilently() async {
+    try {
+      final topSellingProducts =
+          await getTopSellingProductsService.getTopSellingProducts();
+      if (topSellingProducts.isEmpty) {
+        emit(GetTopSellingEmpty());
+      } else {
+        emit(GetTopSellingSuccess(topSellingProducts: topSellingProducts));
+      }
+    } catch (_) {}
+  }
 }
