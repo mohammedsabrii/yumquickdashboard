@@ -32,15 +32,13 @@ TableRow ordersTableRow(
               ),
             ),
             SizedBox(width: 12),
-            Flexible(
-              child: Text(
-                actieOrderEntity.product.name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppStayls.styleInterRegular14(
-                  context,
-                ).copyWith(color: AppColor.kDarkRed),
-              ),
+            Text(
+              actieOrderEntity.product.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppStayls.styleInterRegular14(
+                context,
+              ).copyWith(color: AppColor.kDarkRed),
             ),
           ],
         ),
@@ -115,15 +113,15 @@ TableRow ordersTableRow(
               ).copyWith(color: AppColor.kDarkRed),
             ),
             SizedBox(width: 10),
-            Flexible(
-              child: GestureDetector(
-                onTap: onTap,
-                child: Text(
-                  'see more...',
-                  style: AppStayls.styleInterRegular14(
-                    context,
-                  ).copyWith(color: AppColor.kMainColor),
-                ),
+            GestureDetector(
+              onTap: onTap,
+              child: Text(
+                'see more...',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppStayls.styleInterRegular14(
+                  context,
+                ).copyWith(color: AppColor.kMainColor),
               ),
             ),
           ],

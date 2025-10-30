@@ -17,30 +17,26 @@ TableRow customTableRecentTransactionsRow(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
-        child: Flexible(
-          child: Text(
-            ordersEntity.product.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppStayls.styleInterRegular12(
-              context,
-            ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
-          ),
+        child: Text(
+          ordersEntity.product.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppStayls.styleInterRegular12(
+            context,
+          ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
         ),
       ),
       Padding(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.02,
         ),
-        child: Flexible(
-          child: Text(
-            ordersEntity.customerName,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppStayls.styleInterRegular12(
-              context,
-            ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
-          ),
+        child: Text(
+          ordersEntity.customerName,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppStayls.styleInterRegular12(
+            context,
+          ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
         ),
       ),
       Padding(

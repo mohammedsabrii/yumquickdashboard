@@ -30,16 +30,13 @@ TableRow topProductsByUnitsSoldTableRow(
               ),
             ),
             SizedBox(width: 5),
-            Flexible(
-              child: Text(
-                ordersEntity.name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppStayls.styleInterRegular12(context).copyWith(
-                  color: AppColor.kDarkRed,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+            Text(
+              ordersEntity.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppStayls.styleInterRegular12(
+                context,
+              ).copyWith(color: AppColor.kDarkRed, fontWeight: FontWeight.w600),
             ),
           ],
         ),
