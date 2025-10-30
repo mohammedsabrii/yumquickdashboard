@@ -33,7 +33,7 @@ class OrderMoreDeitlsDialogActions extends StatelessWidget {
           children: [
             BlocListener<ActiveOrdersCubit, ActiveOrdersState>(
               listener: (context, state) {
-                if (state is ActiveOrdersSuccess) {
+                if (state is ActiveOrdersMoveingSuccess) {
                   customShowSnackBar(
                     context,
                     title: 'Order moved successfully',
@@ -61,7 +61,7 @@ class OrderMoreDeitlsDialogActions extends StatelessWidget {
             ),
             BlocListener<OnTrackCubit, OnTrackState>(
               listener: (context, state) {
-                if (state is OnTrackSuccess) {
+                if (state is OnTrackMoveingSuccess) {
                   customShowSnackBar(
                     context,
                     title: 'Order moved successfully',

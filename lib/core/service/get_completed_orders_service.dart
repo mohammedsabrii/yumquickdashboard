@@ -68,8 +68,14 @@ class GetCompletedOrdersService {
     final totalOrders = data.length;
     final itemsSoldPerHour = itemsLast7Days / (7 * 24);
     final itemsSoldPerDayLast7Days = itemsLast7Days / 7.0;
+    int totalItemsSold = 0;
+    for (var row in data) {
+      final quantity = row['quantity'] as int;
+      totalItemsSold += quantity;
+    }
 
     return AppStatsEntity(
+      totalItemsSold: totalItemsSold,
       itemsSoldLast7Days: itemsLast7Days,
       itemsSoldLast24Hours: itemsLast24Hours,
       itemsSoldPerHour: double.parse(itemsSoldPerHour.toStringAsFixed(2)),
@@ -87,6 +93,7 @@ class GetCompletedOrdersService {
 
   AppStatsEntity _emptyStats() {
     return AppStatsEntity(
+      totalItemsSold: 0,
       itemsSoldLast7Days: 0,
       itemsSoldLast24Hours: 0,
       itemsSoldPerHour: 0.0,
@@ -167,6 +174,7 @@ class HourlySales {
 }
 
 class AppStatsEntity {
+  final int totalItemsSold;
   final int itemsSoldLast7Days;
   final int itemsSoldLast24Hours;
   final double itemsSoldPerHour;
@@ -179,6 +187,7 @@ class AppStatsEntity {
   final List<HourlySales> itemsSoldPerHourList;
 
   AppStatsEntity({
+    required this.totalItemsSold,
     required this.itemsSoldLast7Days,
     required this.itemsSoldLast24Hours,
     required this.itemsSoldPerHour,

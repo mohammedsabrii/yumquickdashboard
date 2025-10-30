@@ -7,6 +7,8 @@ class ActiveOrdersInitial extends ActiveOrdersState {}
 
 class ActiveOrdersLoading extends ActiveOrdersState {}
 
+final class ActiveOrdersMoveingSuccess extends ActiveOrdersState {}
+
 class ActiveOrdersEmpty extends ActiveOrdersState {}
 
 class ActiveOrdersSuccess extends ActiveOrdersState {

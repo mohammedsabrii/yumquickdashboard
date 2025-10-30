@@ -40,8 +40,8 @@ List<StatisticsItemModel> itemMethod(
     ),
     StatisticsItemModel(
       icon: SvgPicture.asset(AppAssets.kChartIcon),
-      relaive: appUsersStatsEntity.totalVisits.toString(),
-      title: 'Unique Visits',
+      relaive: appStatsEntity.totalItemsSold.toString(),
+      title: 'Total Items Sold',
     ),
     StatisticsItemModel(
       icon: SvgPicture.asset(AppAssets.kChartIcon),

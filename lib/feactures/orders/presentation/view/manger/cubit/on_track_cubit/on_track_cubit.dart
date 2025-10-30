@@ -67,7 +67,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
           'product_id': activeOrder.product.id,
         },
       );
-      fetchOnTrackOrders();
+      emit(OnTrackMoveingSuccess());
     } catch (e) {
       print(e.toString());
       emit(OnTrackFailure(errorMessage: e.toString()));

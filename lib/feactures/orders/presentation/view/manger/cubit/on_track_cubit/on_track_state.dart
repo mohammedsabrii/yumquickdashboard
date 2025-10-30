@@ -5,6 +5,8 @@ sealed class OnTrackState {}
 
 final class OnTrackInitial extends OnTrackState {}
 
+final class OnTrackMoveingSuccess extends OnTrackState {}
+
 final class OnTrackSuccess extends OnTrackState {
   final List<OrdersEntity> onTrackOrders;
 
