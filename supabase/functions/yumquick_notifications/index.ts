@@ -2,17 +2,13 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 import { JWT } from 'npm:google-auth-library@9'
 import serviceAccount from '../service_account.json' with { type: 'json' }
 
-interface Notification {
-  id: string
+interface NotificationPayload {
   user_id: string
+  title: string
   body: string
-}
-
-interface WebhookPayload {
-  type: 'INSERT'
-  table: string
-  record: Notification
-  schema: 'public'
+  image_url?: string
+  screen?: string
+  product_id?: string
 }
 
 const supabase = createClient(
@@ -21,19 +17,24 @@ const supabase = createClient(
 )
 
 Deno.serve(async (req) => {
- 
-  const body = await req.json();
-console.log('📦 Payload:', body);
+  const body: NotificationPayload = await req.json()
+  console.log('📦 Payload:', body)
 
-const { data, error } = await supabase
-  .from('profiles')
-  .select('fcm_token')
-  .eq('id', body.user_id)
-  .single();
+  const { data: profile, error: profileError } = await supabase
+    .from('profiles')
+    .select('fcm_token')
+    .eq('id', body.user_id)
+    .single()
 
+  if (profileError || !profile?.fcm_token) {
+    console.error('❌ Error fetching FCM token:', profileError)
+    return new Response(JSON.stringify({ error: 'User FCM token not found' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
 
-  const fcmToken = data!.fcm_token as string
-  
+  const fcmToken = profile.fcm_token as string
 
   const accessToken = await getAccessToken({
     clientEmail: serviceAccount.client_email,
@@ -57,9 +58,9 @@ const { data, error } = await supabase
             image: body.image_url,
           },
           data: {
-            screen: body.screen, 
-            image_position: 'right',  
-            product_id: body.product_id ?? '', 
+            screen: body.screen ?? '',
+            image_position: 'right',
+            product_id: body.product_id ?? '',
           },
         },
       }),
@@ -67,11 +68,28 @@ const { data, error } = await supabase
   )
 
   const resData = await res.json()
+
   if (res.status < 200 || 299 < res.status) {
-    throw resData
+    console.error('❌ FCM Error:', resData)
+    return new Response(JSON.stringify(resData), {
+      status: res.status,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 
-  return new Response(JSON.stringify(resData), {
+  const { error: insertError } = await supabase.from('notifications').insert({
+    user_id: body.user_id,
+    title: body.title,
+    body: body.body,
+    image_url: body.image_url,
+    product_id: body.product_id,
+  })
+
+  if (insertError) {
+    console.error('❌ Error saving notification:', insertError)
+  }
+
+  return new Response(JSON.stringify({ success: true, fcm: resData }), {
     headers: { 'Content-Type': 'application/json' },
   })
 })

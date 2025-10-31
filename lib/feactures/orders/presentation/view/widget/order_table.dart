@@ -15,12 +15,13 @@ class OrderTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       columnWidths: {
-        0: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.18),
-        1: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
+        0: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.07),
+        1: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.11),
         2: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
-        3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.1),
-        4: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.07),
-        5: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
+        3: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
+        4: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.1),
+        5: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.07),
+        6: FixedColumnWidth(MediaQuery.sizeOf(context).width * 0.12),
       },
       children: [
         ordersTableRowHeader(context),

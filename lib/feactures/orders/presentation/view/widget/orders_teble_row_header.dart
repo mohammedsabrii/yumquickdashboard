@@ -11,15 +11,22 @@ TableRow ordersTableRowHeader(BuildContext context) {
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.01,
         ),
-        child: Row(
-          children: [
-            Text(
-              'Order',
-              style: AppStayls.styleInterRegular14(
-                context,
-              ).copyWith(color: Colors.grey),
-            ),
-          ],
+        child: Text(
+          'Image',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Text(
+          'Name',
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: Colors.grey),
         ),
       ),
       Padding(

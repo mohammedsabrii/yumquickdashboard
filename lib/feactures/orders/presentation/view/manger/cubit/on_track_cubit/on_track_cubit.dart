@@ -43,7 +43,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
     final supabase = Supabase.instance.client;
     emit(OnTrackLoading());
     try {
-      await supabase.from('completed').insert({
+      await supabase.from('completed').upsert({
         'id': activeOrder.id,
         'user_id': activeOrder.userId,
         'product_id': activeOrder.product.id,
@@ -63,6 +63,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
           'title': 'Your order has been delivered!',
           'body':
               'Your order has been delivered successfully. Thank you for your business.',
+          'image_url': activeOrder.product.image,
           'screen': 'MyOrders',
           'product_id': activeOrder.product.id,
         },

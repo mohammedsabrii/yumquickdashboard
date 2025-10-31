@@ -32,15 +32,21 @@ TableRow ordersTableRow(
               ),
             ),
             SizedBox(width: 12),
-            Text(
-              actieOrderEntity.product.name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppStayls.styleInterRegular14(
-                context,
-              ).copyWith(color: AppColor.kDarkRed),
-            ),
           ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height * 0.03,
+          bottom: MediaQuery.sizeOf(context).height * 0.01,
+        ),
+        child: Text(
+          actieOrderEntity.product.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppStayls.styleInterRegular14(
+            context,
+          ).copyWith(color: AppColor.kDarkRed),
         ),
       ),
       Padding(
