@@ -92,6 +92,7 @@ class GetCompletedOrdersService {
   }
 
   AppStatsEntity _emptyStats() {
+    final now = DateTime.now();
     return AppStatsEntity(
       totalItemsSold: 0,
       itemsSoldLast7Days: 0,
@@ -102,14 +103,17 @@ class GetCompletedOrdersService {
       revenueLast24Hours: 0.0,
       totalRevenue: 0.0,
       totalOrders: 0,
-      itemsSoldPerDayLast7DaysList: List.generate(
-        7,
-        (_) => DailySales(day: '', itemsSold: 0),
-      ),
-      itemsSoldPerHourList: List.generate(
-        24,
-        (_) => HourlySales(hour: '', itemsSold: 0),
-      ),
+      itemsSoldPerDayLast7DaysList: List.generate(7, (i) {
+        final date = now.subtract(Duration(days: 6 - i));
+        final dayKey = DateFormat('yyyy-MM-dd').format(date);
+        return DailySales(day: dayKey, itemsSold: 0);
+      }),
+      itemsSoldPerHourList: List.generate(24, (i) {
+        final hourKey = DateFormat(
+          'HH:00',
+        ).format(now.subtract(Duration(hours: 23 - i)));
+        return HourlySales(hour: hourKey, itemsSold: 0);
+      }),
     );
   }
 

@@ -1,6 +1,6 @@
-const String supbaseUrl = 'https://wdwhpfwwbvketavjtcei.supabase.co';
+const String supbaseUrl = 'https://ogsvcywwsejypruamzts.supabase.co';
 const String supbaseAnonKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indkd2hwZnd3YnZrZXRhdmp0Y2VpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ3MzgxMTAsImV4cCI6MjA3MDMxNDExMH0.vwPmk-QSA5QajVIgQTiLknSYP0KmoKn6dJqu64mXO3I';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nc3ZjeXd3c2VqeXBydWFtenRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMjQ5NzksImV4cCI6MjA3NzcwMDk3OX0.aEGkdKXLbLhzXJShck60_UFtlfmFh9AQyZAWEWlGMXs';
 const String snacksId = '0fd46bb0-0eec-47de-af15-971c9f2e6954';
 const String veganId = '11649870-8ae5-455a-beec-874f85b5883f';
 const String mealId = '149360ca-598c-42f0-983f-4b7ffa2f3c19';

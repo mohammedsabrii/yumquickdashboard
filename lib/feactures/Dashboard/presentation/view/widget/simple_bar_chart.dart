@@ -20,7 +20,15 @@ class SimpleBarChart extends StatelessWidget {
             touchTooltipData: BarTouchTooltipData(
               getTooltipItem: (group, groupIndex, rod, rodIndex) {
                 final day = itemsSoldLast7Days[groupIndex].day;
-                final date = DateTime.parse(day);
+                final date = DateTime.tryParse(day);
+
+                if (date == null) {
+                  return BarTooltipItem(
+                    '${rod.toY.toInt()} items',
+                    const TextStyle(color: Colors.white, fontSize: 12),
+                  );
+                }
+
                 return BarTooltipItem(
                   '${DateFormat('d MMM').format(date)}\n${rod.toY.toInt()} items',
                   const TextStyle(color: Colors.white, fontSize: 12),
@@ -40,7 +48,11 @@ class SimpleBarChart extends StatelessWidget {
                   final index = value.toInt();
                   if (index >= itemsSoldLast7Days.length)
                     return const SizedBox();
-                  final date = DateTime.parse(itemsSoldLast7Days[index].day);
+
+                  final day = itemsSoldLast7Days[index].day;
+                  final date = DateTime.tryParse(day);
+                  if (date == null) return const SizedBox();
+
                   return Text(
                     DateFormat('d').format(date),
                     style: const TextStyle(fontSize: 10),

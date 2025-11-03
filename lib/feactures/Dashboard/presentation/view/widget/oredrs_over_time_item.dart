@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yumquickdashboard/core/service/get_completed_orders_service.dart';
 
 import 'package:yumquickdashboard/core/utils/app_color.dart';
 import 'package:yumquickdashboard/core/utils/app_stayls.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/manger/cubit/app_state_cubit/app_state_cubit.dart';
+import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/Oredrs_over_time_item_details.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/orders_over_time_chart.dart';
 import 'package:yumquickdashboard/feactures/Dashboard/presentation/view/widget/total_item.dart';
 
@@ -24,61 +26,28 @@ class OredrsOverTimeItem extends StatelessWidget {
           vertical: MediaQuery.sizeOf(context).height * 0.035,
           horizontal: MediaQuery.sizeOf(context).width * 0.0194,
         ),
-        child: BlocBuilder<AppStatsCubit, AppStatsState>(
-          builder: (context, state) {
-            if (state is AppStatsSuccess) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Orders Over Time',
-                        style: AppStayls.styleInterBold16(
-                          context,
-                        ).copyWith(color: AppColor.kDarkRed),
-                      ),
-                      Spacer(),
-                      Text(
-                        'Last 24 Hours',
-                        style: AppStayls.styleInterRegular14(
-                          context,
-                        ).copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-                  Row(
-                    children: [
-                      TotalItem(
-                        title: 'Orders in Last 24 Hours',
-                        totalOrders:
-                            state.stats.itemsSoldLast24Hours.toString(),
-                      ),
-                      Spacer(),
-                      TotalItem(
-                        title: 'Revenue in Last 24 Hours',
-                        totalOrders: '\$${state.stats.revenueLast24Hours}',
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.035),
-                  Flexible(
-                    child: OrdersOverTimeChart(
-                      itemsSoldPerHour: state.stats.itemsSoldPerHourList,
-                    ),
-                  ),
-                ],
-              );
-            } else if (state is AppStateFailure) {
-              return Center(child: Text(state.errorMessage));
-            }
-            return Center(
-              child: CircularProgressIndicator(color: AppColor.kMainColor),
-            );
-          },
-        ),
+        child: OredrsOverTimeItemBlocBuilder(),
       ),
+    );
+  }
+}
+
+class OredrsOverTimeItemBlocBuilder extends StatelessWidget {
+  const OredrsOverTimeItemBlocBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppStatsCubit, AppStatsState>(
+      builder: (context, state) {
+        if (state is AppStatsSuccess) {
+          return OredrsOverTimeItemDetails(stats: state.stats);
+        } else if (state is AppStateFailure) {
+          return Center(child: Text(state.errorMessage));
+        }
+        return Center(
+          child: CircularProgressIndicator(color: AppColor.kMainColor),
+        );
+      },
     );
   }
 }

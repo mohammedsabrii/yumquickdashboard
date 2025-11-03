@@ -1,7 +1,7 @@
 class CustomerEntity {
   final String name, email, address, phone, country, id;
   final DateTime dateOfBirth;
-
+  final DateTime createdAt;
   CustomerEntity({
     required this.id,
     required this.name,
@@ -10,6 +10,7 @@ class CustomerEntity {
     required this.phone,
     required this.country,
     required this.dateOfBirth,
+    required this.createdAt,
   });
 
   factory CustomerEntity.fromJson(Map<String, dynamic> json) {
@@ -23,6 +24,10 @@ class CustomerEntity {
       dateOfBirth:
           json['date_of_birth'] != null && json['date_of_birth'] != ''
               ? DateTime.parse(json['date_of_birth'])
+              : DateTime(1900),
+      createdAt:
+          json['created_at'] != null && json['created_at'] != ''
+              ? DateTime.parse(json['created_at'])
               : DateTime(1900),
     );
   }

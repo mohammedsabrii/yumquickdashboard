@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'yumquiknotifiction.firebasestorage.app',
     measurementId: 'G-2JPZZE6QE3',
   );
+
 }

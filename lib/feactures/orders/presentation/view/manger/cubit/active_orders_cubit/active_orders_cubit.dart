@@ -55,7 +55,7 @@ class ActiveOrdersCubit extends Cubit<ActiveOrdersState> {
         'created_at': activeOrder.createdAt.toString(),
       });
       await supabase.functions.invoke(
-        'yumquick_notifications',
+        'notifications',
         body: {
           'user_id': activeOrder.userId,
           'title': 'Your order is on the way',

@@ -57,7 +57,7 @@ class OnTrackCubit extends Cubit<OnTrackState> {
       await supabase.from('on_track_orders').delete().eq('id', activeOrder.id!);
 
       await supabase.functions.invoke(
-        'yumquick_notifications',
+        'notifications',
         body: {
           'user_id': activeOrder.userId,
           'title': 'Your order has been delivered!',

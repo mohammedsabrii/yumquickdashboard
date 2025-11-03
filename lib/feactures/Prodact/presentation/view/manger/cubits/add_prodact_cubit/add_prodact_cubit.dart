@@ -68,7 +68,7 @@ class AddProductCubit extends Cubit<AddProductState> {
       });
 
       await supabase.functions.invoke(
-        'yumquick_notifications',
+        'notifications',
         body: {
           'user_id': 'all',
           'title': 'New product!',
