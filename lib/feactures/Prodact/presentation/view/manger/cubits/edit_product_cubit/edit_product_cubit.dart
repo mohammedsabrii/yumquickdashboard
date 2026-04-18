@@ -16,7 +16,7 @@ class EditProductCubit extends Cubit<EditProductState> {
     required String subtitle,
     XFile? image,
     required String price,
-    required String priceAfterDiscount,
+    required String? priceAfterDiscount,
     required String id,
   }) async {
     emit(EditProductLoading());
@@ -33,7 +33,7 @@ class EditProductCubit extends Cubit<EditProductState> {
         'name': name,
         'subtitle': subtitle,
         'price': price,
-        'price_after_discount': priceAfterDiscount,
+        'price_after_discount': priceAfterDiscount!,
       };
 
       if (imageUrl != null) {
@@ -44,6 +44,7 @@ class EditProductCubit extends Cubit<EditProductState> {
 
       emit(EditProductSuccess());
     } catch (e) {
+      print(e.toString());
       emit(EditProductFailure(errorMessage: e.toString()));
     }
   }

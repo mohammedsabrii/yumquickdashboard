@@ -21,7 +21,11 @@ class OfffersViewBodyBlocBuilder extends StatelessWidget {
         } else if (state is ProductsSuccess) {
           final discountedProducts =
               state.products
-                  .where((product) => product.priceAfterDiscount != null)
+                  .where(
+                    (product) =>
+                        product.priceAfterDiscount != null &&
+                        product.priceAfterDiscount != 0,
+                  )
                   .toList();
 
           if (discountedProducts.isNotEmpty) {

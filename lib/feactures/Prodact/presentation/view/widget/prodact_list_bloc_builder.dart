@@ -38,7 +38,9 @@ class ProdactListBlocBuilder extends StatelessWidget {
                     final products =
                         state.products
                             .where(
-                              (product) => product.priceAfterDiscount == null,
+                              (product) =>
+                                  product.priceAfterDiscount == null ||
+                                  product.priceAfterDiscount == 0,
                             )
                             .toList();
 

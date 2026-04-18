@@ -14,7 +14,11 @@ class NumberOfProductsBlocBuilder extends StatelessWidget {
         if (state is ProductsByCategorySuccess) {
           final products =
               state.products
-                  .where((product) => product.priceAfterDiscount == null)
+                  .where(
+                    (product) =>
+                        product.priceAfterDiscount == null ||
+                        product.priceAfterDiscount == 0,
+                  )
                   .toList();
           if (products.isNotEmpty) {
             return Text(
